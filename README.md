@@ -1,11 +1,3 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/header-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset=".github/readme/header-light.png">
-    <img alt="jevsearch: a search box, its results re-ranked by a model" src=".github/readme/header-light.png" width="100%">
-  </picture>
-</p>
-
 # jevsearch
 
 Site search that understands the question. A [shadcn/ui](https://ui.shadcn.com) registry block: a command palette that shows keyword hits on the first keystroke and, a couple of hundred milliseconds later, re-ranks them with [TypeSafe](https://typesafe.ai)'s Jev model by what the visitor actually meant.
