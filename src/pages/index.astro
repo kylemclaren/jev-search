@@ -7,7 +7,15 @@ import { Code } from "astro:components"
 import bench from "../../bench/results.json"
 
 const repo = "https://github.com/kylemclaren/jev-search"
-const add = "npx shadcn@latest add https://jev-search.fly.dev/r/jev-search.json"
+// Pinned to the repo, so the command works with no hosting in between.
+const registry = "https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json"
+const installers: [string, string][] = [
+  ["npm", `npx shadcn@latest add ${registry}`],
+  ["pnpm", `pnpm dlx shadcn@latest add ${registry}`],
+  ["yarn", `yarn dlx shadcn@latest add ${registry}`],
+  ["bun", `bunx --bun shadcn@latest add ${registry}`],
+]
+const add = installers[0][1]
 
 const corpus = bench.corpus as { documents: number; pages: number; source: string }
 const systems = bench.systems as {
@@ -125,7 +133,7 @@ const docShape = `{
     </header>
 
     <section class="hero">
-      <h1>Site search, <mark>re-ranked by a model.</mark></h1>
+      <h1>Site search, <mark>ranked by Jev.</mark></h1>
       <p class="lede">
         A keyword pass answers on the first keystroke, then
         <a href="https://typesafe.ai" target="_blank" rel="noopener">TypeSafe</a>'s Jev model re-ranks the top twenty by
@@ -136,8 +144,8 @@ const docShape = `{
       <HeroSearch client:load />
 
       <div class="cmd hero-cmd">
-        <code data-registry-line>{add}</code>
-        <button class="copy small" type="button" data-copy-from-registry aria-label="Copy install command"
+        <code>{add}</code>
+        <button class="copy small" type="button" data-copy={add} aria-label="Copy install command"
           ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
         >
       </div>
@@ -183,12 +191,20 @@ const docShape = `{
           <span class="step-num">1</span>
           <div>
             <h3>Add the block</h3>
-            <div class="cmd">
-              <code data-registry-line>{add}</code>
-              <button class="copy small" type="button" data-copy-from-registry aria-label="Copy install command"
-                ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
-              >
-            </div>
+            <Tabs labels={installers.map(([name]) => name)} storageKey="pm">
+              {
+                installers.map(([, cmd]) => (
+                  <div>
+                    <div class="cmd">
+                      <code>{cmd}</code>
+                      <button class="copy small" type="button" data-copy={cmd} aria-label="Copy install command"
+                        ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
+                      >
+                    </div>
+                  </div>
+                ))
+              }
+            </Tabs>
             <p class="fine">
               Component, hook, keyword index, server handler and API route. Set <code>TYPESAFE_API_KEY</code>; it stays on
               the server.
@@ -272,11 +288,6 @@ const docShape = `{
   <script>
     import "@/scripts/copy-buttons"
 
-    // The install command reflects wherever this site is hosted.
-    const cmd = `npx shadcn@latest add ${location.origin}/r/jev-search.json`
-    for (const el of document.querySelectorAll<HTMLElement>("[data-registry-line]")) el.textContent = cmd
-    for (const el of document.querySelectorAll<HTMLElement>("[data-registry-cmd]")) el.dataset.copy = cmd
-
     function flash(btn: HTMLElement, ok = true) {
       const original = btn.innerHTML
       btn.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">${ok ? "check" : "close"}</span>${btn.classList.contains("small") ? "" : " copied"}`
@@ -286,7 +297,7 @@ const docShape = `{
     document.addEventListener("click", async (e) => {
       const btn = (e.target as HTMLElement).closest<HTMLElement>(".copy")
       if (!btn) return
-      const text = btn.hasAttribute("data-copy-from-registry") ? cmd : btn.dataset.copy || ""
+      const text = btn.dataset.copy || ""
       try {
         await navigator.clipboard.writeText(text)
         flash(btn)
@@ -335,11 +346,11 @@ const docShape = `{
     color: var(--paper);
   }
   .brand span:last-child {
-    background: var(--lime);
+    background: var(--brand);
     color: var(--ink);
   }
   .brand:hover span:last-child {
-    background: var(--pink);
+    background: var(--highlight);
   }
   .gh-link {
     display: inline-flex;
@@ -350,7 +361,7 @@ const docShape = `{
     color: var(--ink);
   }
   .gh-link:hover {
-    color: var(--pink);
+    color: var(--highlight);
   }
   .section-head {
     margin-bottom: 16px;
@@ -363,7 +374,7 @@ const docShape = `{
   .doc-tabs { margin: 0; }
   .doc-tablist { display: flex; gap: 6px; }
   .doc-tab { padding: 9px 12px; border: 1.5px solid var(--ink); border-bottom: 0; background: #ecebe4; box-shadow: none; font-size: .62rem; }
-  .doc-tab[aria-selected="true"] { background: var(--lime); }
+  .doc-tab[aria-selected="true"] { background: var(--brand); }
   .doc-tabpanels > * { border: 1.5px solid var(--ink); padding: 14px; background: var(--panel); }
   .doc-tabpanels > *[hidden] { display: none; }
   .doc-tabpanels pre, .step-row pre { margin: 0; border: 1px solid var(--line); padding: 12px 14px; overflow-x: auto; font: 600 .74rem/1.55 ui-monospace, monospace; background: #fff !important; }
@@ -375,7 +386,7 @@ const docShape = `{
   .copy-btn { position: absolute; top: 6px; right: 6px; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border: 1.5px solid var(--ink); background: #fff; box-shadow: 2px 2px 0 var(--ink); opacity: 0; transition: opacity 120ms, background-color 120ms; }
   .copy-wrap:hover .copy-btn, .copy-btn:focus-visible, .copy-btn.done { opacity: 1; }
   .copy-btn:hover { background: #ecebe4; }
-  .copy-btn.done { background: var(--lime); }
+  .copy-btn.done { background: var(--brand); }
   .copy-btn:active:not(:disabled) { transform: none; box-shadow: none; }
   details summary { display: flex; align-items: center; gap: 10px; list-style: none; }
   details summary::-webkit-details-marker { display: none; }

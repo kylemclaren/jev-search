@@ -1,3 +1,13 @@
+/* Theme roles. Pink leads; the yellow-green is the secondary highlight.
+   openjev.css is vendored and writes var(--lime) / var(--pink) throughout, so
+   those names are pointed at the roles rather than renamed at ~40 call sites. */
+:root {
+  --brand: #ee5ba6;
+  --highlight: #d4ff3f;
+  --lime: var(--brand);
+  --pink: var(--highlight);
+}
+
 /* jev-search marketing site.
    The registry component ships neutral (plain shadcn tokens). Here it wears
    the jevQL look: ink borders, hard shadows, lime accent, zero radius. Every
@@ -33,7 +43,7 @@
 [data-slot="jev-search-input"] input {
   height: 60px;
   font: 700 1rem ui-monospace, monospace;
-  caret-color: var(--pink);
+  caret-color: var(--highlight);
 }
 [data-slot="jev-search-input"] input::placeholder {
   color: #9a988f;
@@ -83,7 +93,7 @@
   border-bottom: 0;
 }
 [data-slot="jev-search-item"][aria-selected="true"] {
-  background: var(--lime);
+  background: var(--brand);
   color: var(--ink);
 }
 [data-slot="jev-search-item-icon"] {
@@ -118,7 +128,7 @@
 [data-slot="jev-search-list"] mark {
   background: none;
   text-decoration: underline;
-  text-decoration-color: var(--pink);
+  text-decoration-color: var(--highlight);
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
 }
@@ -137,7 +147,7 @@
 }
 [data-slot="jev-search-meter-fill"] {
   border-radius: 0;
-  background: var(--lime) !important;
+  background: var(--brand) !important;
 }
 [data-slot="jev-search-item"][aria-selected="true"] [data-slot="jev-search-meter-track"] {
   background: #fff;
@@ -166,7 +176,7 @@
   font: 700 0.66rem/1 ui-monospace, monospace;
 }
 [data-slot="jev-search-suggestion"]:hover {
-  background: var(--lime);
+  background: var(--brand);
 }
 
 /* footer */
@@ -182,7 +192,7 @@
   letter-spacing: 0.06em;
 }
 [data-slot="jev-search-status"] svg {
-  color: var(--pink) !important;
+  color: var(--highlight) !important;
 }
 
 /* The pink bouncing loader from the jevQL playground, reused for both the hero
@@ -211,7 +221,7 @@
   bottom: 0;
   left: 0;
   width: 18%;
-  background: var(--pink);
+  background: var(--highlight);
 }
 [data-slot="jev-search-progress"] i::before,
 [data-slot="jev-search-progress"] i::after {
@@ -221,7 +231,7 @@
   bottom: 0;
   width: 220%;
   opacity: 0;
-  background: repeating-linear-gradient(to right, var(--pink) 0 3px, transparent 3px 6px);
+  background: repeating-linear-gradient(to right, var(--highlight) 0 3px, transparent 3px 6px);
 }
 [data-slot="jev-search-progress"] i::before {
   right: 100%;
@@ -287,7 +297,7 @@
   box-shadow: 5px 5px 0 var(--ink);
 }
 .demo-field:focus-within {
-  box-shadow: 5px 5px 0 var(--pink);
+  box-shadow: 5px 5px 0 var(--highlight);
 }
 .demo-field input {
   flex: 1;
@@ -391,7 +401,7 @@
   letter-spacing: -0.02em;
 }
 .hit-main a:hover {
-  background: var(--lime);
+  background: var(--brand);
 }
 .hit-main small {
   display: flex;
@@ -406,7 +416,7 @@
 }
 .hit-main .climb {
   padding: 1px 5px;
-  background: var(--lime);
+  background: var(--brand);
   color: var(--ink);
   font-size: 0.56rem;
 }
@@ -423,7 +433,7 @@
 .hitlist .bar i {
   display: block;
   height: 100%;
-  background: var(--lime);
+  background: var(--brand);
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .hitlist .ghost-bar {
@@ -458,7 +468,7 @@
   letter-spacing: 0.06em;
 }
 .hero-status.working {
-  background: var(--lime);
+  background: var(--brand);
   color: var(--ink);
 }
 .demo-presets {
@@ -484,7 +494,7 @@
   text-transform: none;
 }
 .demo-presets button:hover {
-  background: var(--lime);
+  background: var(--brand);
 }
 .demo-presets button:active {
   transform: none;
@@ -498,6 +508,32 @@
   .hitlist {
     padding: 4px 12px;
   }
+}
+
+/* Rows Jev ruled out stay put, dimmed, so the list never collapses. */
+.hitlist li.demoted {
+  opacity: 0.55;
+}
+.hitlist li:not(.demoted) + li.demoted {
+  border-top: 1px dashed var(--ink);
+}
+.hitlist li.demoted .bar i {
+  background: #c9c7bd;
+}
+.hit-main .ruled-out {
+  padding: 1px 5px;
+  background: #ecebe4;
+  color: var(--muted);
+  font-size: 0.56rem;
+}
+
+/* same idea in the palette */
+[data-slot="jev-search-group"][data-variant="demoted"] {
+  border-top: 1px dashed var(--ink);
+  color: var(--muted);
+}
+[data-slot="jev-search-item"][data-demoted] [data-slot="jev-search-meter-fill"] {
+  background: #c9c7bd !important;
 }
 
 /* ---- hero stats --------------------------------------------------- */
@@ -604,16 +640,16 @@
   color: var(--muted);
 }
 .bench-row.ours .bar i {
-  background: var(--lime);
+  background: var(--brand);
 }
 .bench-row.lexical .bar i {
-  background: #f8d8e9;
+  background: #edffb3;
 }
 .quality-card {
   margin-top: 20px;
 }
 .quality-card tbody tr.ours {
-  background: var(--lime);
+  background: var(--brand);
   font-weight: 900;
 }
 .quality-card td small {
@@ -674,7 +710,7 @@
   width: 34px;
   height: 34px;
   border: 1.5px solid var(--ink);
-  background: var(--lime);
+  background: var(--brand);
   font: 900 0.8rem/1 ui-monospace, monospace;
 }
 .step-row h3 {
@@ -696,7 +732,7 @@
   align-items: center;
   gap: 10px;
   border: 1.5px solid var(--ink);
-  background: var(--lime);
+  background: var(--brand);
   padding: 11px 12px;
   margin: 0 0 10px;
 }

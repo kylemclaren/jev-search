@@ -35,6 +35,9 @@ export interface JevSearchOptions {
 
 export interface JevRanking {
   hits: SearchHit[]
+  /** Judged candidates that fell below `threshold`, still ranked. Rendering
+   *  these dimmed keeps a result list from collapsing when Jev answers. */
+  demoted: SearchHit[]
   model: string
   judged: number
   /** Input tokens billed for this query. Output tokens are free. */
@@ -114,7 +117,7 @@ export function createJevSearch(options: JevSearchOptions) {
     const started = performance.now()
     const cands = hits.slice(0, candidateCount)
     if (cands.length === 0) {
-      return { hits: [], model, judged: 0, inputTokens: 0, answerable: 0, tookMs: 0, cached: false }
+      return { hits: [], demoted: [], model, judged: 0, inputTokens: 0, answerable: 0, tookMs: 0, cached: false }
     }
 
     const state = {
@@ -195,9 +198,11 @@ export function createJevSearch(options: JevSearchOptions) {
     ranked.sort((a, b) => blended(b) - blended(a) || b.score - a.score)
     let kept = ranked.filter((h) => (h.relevance ?? 0) >= threshold)
     if (kept.length === 0) kept = ranked.slice(0, 3)
+    const keptIds = new Set(kept.map((h) => h.id))
 
     const result = {
       hits: kept,
+      demoted: ranked.filter((h) => !keptIds.has(h.id)),
       model: body.model ?? model,
       judged: cands.length,
       inputTokens: body.usage?.input_tokens ?? 0,

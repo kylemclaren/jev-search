@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { useJevSearch } from "@/hooks/use-jev-search"
 import { JevSearchDialog } from "@/components/jev-search"
 import { Kbd, KbdGroup } from "@/components/ui/kbd"
@@ -15,10 +15,49 @@ const EXAMPLES = [
 const ROWS = 6
 
 /**
- * The hero: one search field over the TypeSafe documentation, with results
- * inline underneath. Keyword order shows first, then Jev's order replaces it
- * and every row that climbed says how far it moved.
+ * Glide rows to their new positions instead of letting them jump, and fade in
+ * rows that are new. Entrances only animate on the render where Jev's ranking
+ * arrives, so ordinary typing stays quiet.
  */
+function useFlip(ref: React.RefObject<HTMLElement | null>, deps: unknown[], animateEnter: boolean) {
+  const previous = useRef(new Map<string, number>())
+  const entered = useRef(false)
+  useLayoutEffect(() => {
+    const root = ref.current
+    if (!root) return
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    const enter = animateEnter && !entered.current
+    entered.current = animateEnter
+    const next = new Map<string, number>()
+    for (const el of root.querySelectorAll<HTMLElement>("[data-flip]")) {
+      const id = el.dataset.flip!
+      const top = el.getBoundingClientRect().top
+      next.set(id, top)
+      if (reduce) continue
+      const prev = previous.current.get(id)
+      if (prev !== undefined && Math.abs(prev - top) > 0.5) {
+        el.style.transition = "none"
+        el.style.transform = `translateY(${prev - top}px)`
+        requestAnimationFrame(() => {
+          el.style.transition = "transform 320ms cubic-bezier(.2,.8,.2,1)"
+          el.style.transform = ""
+        })
+      } else if (prev === undefined && enter) {
+        el.style.transition = "none"
+        el.style.opacity = "0"
+        el.style.transform = "translateY(6px)"
+        requestAnimationFrame(() => {
+          el.style.transition = "opacity 280ms ease, transform 280ms cubic-bezier(.2,.8,.2,1)"
+          el.style.opacity = ""
+          el.style.transform = ""
+        })
+      }
+    }
+    previous.current = next
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
+}
+
 export default function HeroSearch() {
   const search = useJevSearch({ endpoint: "/api/jev-search", debounceMs: 100 })
   const input = useRef<HTMLInputElement>(null)
@@ -60,9 +99,25 @@ export default function HeroSearch() {
   }, [])
 
   const lexicalRank = useMemo(() => new Map(search.lexicalHits.map((h, i) => [h.id, i])), [search.lexicalHits])
-  const hits = search.hits.slice(0, ROWS)
   const judging = search.phase === "judging"
   const query = search.query.trim()
+
+  // Keep the list the same length across the refine. Anything Jev ruled out
+  // that was already on screen stays, dimmed, rather than vanishing.
+  const hits = search.hits.slice(0, ROWS)
+  const wasVisible = (h: { id: string }) => (lexicalRank.get(h.id) ?? 99) < ROWS
+  const demoted = useMemo(() => {
+    const room = ROWS - hits.length
+    if (room <= 0) return []
+    const seen = new Set(hits.map((h) => h.id))
+    const pool = search.demoted.filter((h) => !seen.has(h.id))
+    // rows the visitor could already see come back first
+    return [...pool.filter(wasVisible), ...pool.filter((h) => !wasVisible(h))].slice(0, room)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search.demoted, search.hits, lexicalRank])
+
+  const listRef = useRef<HTMLUListElement>(null)
+  useFlip(listRef, [hits, demoted], search.judged)
 
   const pick = (q: string) => {
     setTouched(true)
@@ -106,13 +161,14 @@ export default function HeroSearch() {
           <div data-slot="jev-search-progress" data-state={judging ? "on" : "off"} aria-hidden>
             <i />
           </div>
-          <ul className="hitlist">
-            {hits.map((h, i) => {
+          <ul className="hitlist" ref={listRef}>
+            {[...hits, ...demoted].map((h, i) => {
+              const isDemoted = i >= hits.length
               const was = lexicalRank.get(h.id)
-              const climbed = search.judged && was !== undefined && was > i
+              const climbed = search.judged && !isDemoted && was !== undefined && was > i
               return (
-                <li key={h.id}>
-                  <span className="rank">{i + 1}</span>
+                <li key={h.id} data-flip={h.id} className={isDemoted ? "demoted" : undefined}>
+                  <span className="rank">{isDemoted ? "·" : i + 1}</span>
                   <span className="hit-main">
                     <a href={h.url} target="_blank" rel="noopener">
                       {h.title}
@@ -120,6 +176,7 @@ export default function HeroSearch() {
                     <small>
                       {h.section ?? "docs"}
                       {climbed ? <b className="climb">▲ {was! - i}</b> : null}
+                      {isDemoted ? <b className="ruled-out">ruled out</b> : null}
                     </small>
                   </span>
                   {h.relevance !== undefined ? (

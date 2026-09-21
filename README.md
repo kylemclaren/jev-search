@@ -2,7 +2,7 @@
 
 Site search that understands the question. A [shadcn/ui](https://ui.shadcn.com) registry block: a command palette that shows keyword hits on the first keystroke and, a couple of hundred milliseconds later, re-ranks them with [TypeSafe](https://typesafe.ai)'s Jev model by what the visitor actually meant.
 
-- **Drop-in.** `npx shadcn@latest add <registry-url>/r/jev-search.json` lands the component, hook, lexical index, server handler and an API route in your project. No package to wrap; the files are yours.
+- **Drop-in.** One `shadcn add` against the registry JSON in this repo lands the component, hook, lexical index, server handler and an API route in your project. No package to wrap; the files are yours.
 - **Fast first, smart second.** The keyword pass answers in single-digit milliseconds and streams straight to the UI. Jev's ranking arrives behind it and the rows glide into their new order.
 - **Ranked by intent, not overlap.** Jev reads the query and the top candidates and returns a calibrated relevance for each one in a single request. No embeddings, no vector database, no re-indexing job.
 - **Honest about failure.** If TypeSafe is slow or down, keyword order stands and the footer says so.
@@ -13,14 +13,29 @@ The marketing site in this repo is an Astro app whose demo searches all 109 page
 ## Install
 
 ```bash
-npx shadcn@latest add https://<your-registry-host>/r/jev-search.json
+# npm
+npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+
+# pnpm
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+
+# yarn
+yarn dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+
+# bun
+bunx --bun shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+```
+
+Then set your key:
+
+```bash
 echo 'TYPESAFE_API_KEY=tsk_…' >> .env.local
 ```
 
 Then build an index. Hand the route any `SearchDocument[]`, or add the indexer and point it at a folder of Markdown/MDX:
 
 ```bash
-npx shadcn@latest add https://<your-registry-host>/r/jev-search-indexer.json
+npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search-indexer.json
 npx tsx scripts/jev-search-index.ts content/docs /docs      # → lib/jev-search-index.json
 ```
 

@@ -335,7 +335,15 @@ export function JevSearchDialog({
           ) : hits.length === 0 && search.phase !== "lexical" && search.phase !== "idle" ? (
             <NoResults query={query} search={search} brand={brand} />
           ) : (
-            <Results hits={hits} active={active} setActive={setActive} choose={choose} judged={search.judged} judging={search.phase === "judging"} />
+            <Results
+              hits={hits}
+              demoted={search.demoted}
+              active={active}
+              setActive={setActive}
+              choose={choose}
+              judged={search.judged}
+              judging={search.phase === "judging"}
+            />
           )}
         </div>
 
@@ -372,6 +380,7 @@ export function JevSearchDialog({
 
 function Results({
   hits,
+  demoted,
   active,
   setActive,
   choose,
@@ -379,6 +388,7 @@ function Results({
   judging,
 }: {
   hits: SearchHit[]
+  demoted: SearchHit[]
   active: number
   setActive: (i: number) => void
   choose: (h: SearchHit) => void
@@ -424,6 +434,30 @@ function Results({
           ))}
         </div>
       ))}
+      {demoted.length > 0 ? (
+        <div role="group" aria-label="Below the relevance threshold">
+          <div
+            data-slot="jev-search-group"
+            data-variant="demoted"
+            className="px-2 pb-1 pt-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
+          >
+            Jev ruled these out
+          </div>
+          {demoted.map((hit, i) => (
+            <Row
+              key={hit.id}
+              hit={hit}
+              index={hits.length + i}
+              active={false}
+              onHover={() => {}}
+              onChoose={() => choose(hit)}
+              judged={judged}
+              judging={judging}
+              demoted
+            />
+          ))}
+        </div>
+      ) : null}
     </>
   )
 }
@@ -436,6 +470,7 @@ function Row({
   onChoose,
   judged,
   judging,
+  demoted,
 }: {
   hit: SearchHit
   index: number
@@ -444,6 +479,7 @@ function Row({
   onChoose: () => void
   judged: boolean
   judging: boolean
+  demoted?: boolean
 }) {
   const isAnchor = hit.url.includes("#")
   const Icon = isAnchor ? Hash : FileText
@@ -451,6 +487,7 @@ function Row({
     <a
       id={`jev-hit-${hit.id}`}
       data-slot="jev-search-item"
+      data-demoted={demoted ? "" : undefined}
       href={hit.url}
       role="option"
       aria-selected={active}
@@ -465,6 +502,7 @@ function Row({
       className={cn(
         "group flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm outline-none transition-colors",
         active ? "bg-accent text-accent-foreground" : "text-foreground",
+        demoted && "opacity-55",
       )}
     >
       <span

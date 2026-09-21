@@ -42,6 +42,8 @@ export type SearchEvent =
       type: "jev"
       query: string
       hits: SearchHit[]
+      /** Judged but below threshold, still ranked. */
+      demoted: SearchHit[]
       tookMs: number
       model: string
       judged: number

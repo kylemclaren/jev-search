@@ -11,6 +11,9 @@ export interface UseJevSearchOptions {
   /** Debounce in ms before hitting the endpoint. Lexical results are cached so 0 feels fine. Default 60. */
   debounceMs?: number
   minLength?: number
+  /** Keep the keyword list on screen at least this long before swapping in
+   *  Jev's ranking, so a fast or cached answer does not flash past. Default 200. */
+  minDwellMs?: number
 }
 
 export interface JevSearchState {
@@ -21,6 +24,9 @@ export interface JevSearchState {
   lexicalHits: SearchHit[]
   /** The re-ranked list, or undefined until Jev answers. */
   jevHits?: SearchHit[]
+  /** Judged but below threshold, ranked. Render these dimmed so the list
+   *  does not collapse when the refined answer lands. */
+  demoted: SearchHit[]
   phase: SearchPhase
   /** True once the visible hits are Jev-ranked (not just lexical). */
   judged: boolean
@@ -43,7 +49,7 @@ interface Entry {
 }
 
 export function useJevSearch(options: UseJevSearchOptions = {}): JevSearchState {
-  const { endpoint = "/api/jev-search", debounceMs = 60, minLength = 1 } = options
+  const { endpoint = "/api/jev-search", debounceMs = 60, minLength = 1, minDwellMs = 200 } = options
   const [query, setQuery] = React.useState("")
   const [entry, setEntry] = React.useState<Entry>({})
   const [phase, setPhase] = React.useState<SearchPhase>("idle")
@@ -81,13 +87,18 @@ export function useJevSearch(options: UseJevSearchOptions = {}): JevSearchState 
         const decoder = new TextDecoder()
         let buffer = ""
         const current: Entry = { ...(cache.current.get(key) ?? {}) }
-        const apply = (line: string) => {
+        let shownAt = 0
+        const apply = async (line: string) => {
           if (!line.trim()) return
           const ev = JSON.parse(line) as SearchEvent
           if (ev.type === "lexical") {
             current.lexical = ev
+            shownAt = performance.now()
             setPhase("judging")
           } else if (ev.type === "jev") {
+            const held = minDwellMs - (performance.now() - shownAt)
+            if (held > 0) await new Promise((r) => setTimeout(r, held))
+            if (ac.signal.aborted) return
             current.jev = ev
             setPhase("done")
           } else {
@@ -103,11 +114,11 @@ export function useJevSearch(options: UseJevSearchOptions = {}): JevSearchState 
           buffer += decoder.decode(value, { stream: true })
           let nl: number
           while ((nl = buffer.indexOf("\n")) >= 0) {
-            apply(buffer.slice(0, nl))
+            await apply(buffer.slice(0, nl))
             buffer = buffer.slice(nl + 1)
           }
         }
-        if (buffer.trim()) apply(buffer)
+        if (buffer.trim()) await apply(buffer)
       } catch (err) {
         if ((err as Error).name === "AbortError") return
         setEntry((e) => ({ ...e, error: (err as Error).message }))
@@ -118,7 +129,7 @@ export function useJevSearch(options: UseJevSearchOptions = {}): JevSearchState 
       clearTimeout(timer)
       ac.abort()
     }
-  }, [query, endpoint, debounceMs, minLength])
+  }, [query, endpoint, debounceMs, minLength, minDwellMs])
 
   const hits = entry.jev?.hits ?? entry.lexical?.hits ?? []
   return {
@@ -127,6 +138,7 @@ export function useJevSearch(options: UseJevSearchOptions = {}): JevSearchState 
     hits,
     lexicalHits: entry.lexical?.hits ?? [],
     jevHits: entry.jev?.hits,
+    demoted: entry.jev?.demoted ?? [],
     phase,
     judged: Boolean(entry.jev),
     lexicalMs: entry.lexical?.tookMs,
