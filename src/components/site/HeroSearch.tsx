@@ -103,6 +103,9 @@ export default function HeroSearch() {
 
       {query ? (
         <div className="hero-panel">
+          <div data-slot="jev-search-progress" data-state={judging ? "on" : "off"} aria-hidden>
+            <i />
+          </div>
           <ul className="hitlist">
             {hits.map((h, i) => {
               const was = lexicalRank.get(h.id)

@@ -185,6 +185,94 @@
   color: var(--pink) !important;
 }
 
+/* The pink bouncing loader from the jevQL playground, reused for both the hero
+   field and the palette. Overrides the component's neutral default bar. */
+[data-slot="jev-search-progress"] {
+  position: relative;
+  height: 6px;
+  margin-top: -1px;
+  border-top: 1px solid var(--line);
+  background: #ecebe4;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+[data-slot="jev-search-progress"][data-state="on"] {
+  opacity: 1;
+}
+/* In the palette it sits directly under the input's ink rule, so it adds none. */
+[data-slot="jev-search-panel"] [data-slot="jev-search-progress"] {
+  margin-top: 0;
+  border-top: 0;
+}
+[data-slot="jev-search-progress"] i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 18%;
+  background: var(--pink);
+}
+[data-slot="jev-search-progress"] i::before,
+[data-slot="jev-search-progress"] i::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 220%;
+  opacity: 0;
+  background: repeating-linear-gradient(to right, var(--pink) 0 3px, transparent 3px 6px);
+}
+[data-slot="jev-search-progress"] i::before {
+  right: 100%;
+  mask-image: linear-gradient(to left, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 85%);
+}
+[data-slot="jev-search-progress"] i::after {
+  left: 100%;
+  mask-image: linear-gradient(to right, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(to right, #000, transparent 85%);
+}
+[data-slot="jev-search-progress"][data-state="on"] i {
+  animation: pg-bounce 0.9s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+[data-slot="jev-search-progress"][data-state="on"] i::before {
+  animation: pg-trail-r 0.9s linear infinite;
+}
+[data-slot="jev-search-progress"][data-state="on"] i::after {
+  animation: pg-trail-l 0.9s linear infinite;
+}
+@keyframes pg-bounce {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(455%); }
+  100% { transform: translateX(0); }
+}
+@keyframes pg-trail-r {
+  0%, 6% { opacity: 0; }
+  15%, 40% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes pg-trail-l {
+  0%, 50% { opacity: 0; }
+  56% { opacity: 0; }
+  65%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="jev-search-progress"][data-state="on"] i {
+    animation: pg-pulse 1s ease-in-out infinite alternate;
+    width: 100%;
+  }
+  [data-slot="jev-search-progress"][data-state="on"] i::before,
+  [data-slot="jev-search-progress"][data-state="on"] i::after {
+    animation: none;
+  }
+  @keyframes pg-pulse {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+  }
+}
+
 /* ---- the hero search --------------------------------------------- */
 .hero-search {
   margin: 0 0 8px;

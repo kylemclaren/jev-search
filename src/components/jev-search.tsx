@@ -305,6 +305,21 @@ export function JevSearchDialog({
           </button>
         </div>
 
+        {/* Indeterminate bar while Jev judges. Restyle it via the data-slot. */}
+        <div
+          data-slot="jev-search-progress"
+          data-state={search.phase === "judging" ? "on" : "off"}
+          aria-hidden
+          className="relative h-0.5 overflow-hidden bg-muted opacity-0 transition-opacity duration-150 data-[state=on]:opacity-100"
+        >
+          <i
+            className={cn(
+              "absolute inset-y-0 left-0 block w-1/5 bg-[var(--_jev-accent)]",
+              search.phase === "judging" && "animate-[jev-indeterminate_1.1s_ease-in-out_infinite] motion-reduce:w-full motion-reduce:animate-none",
+            )}
+          />
+        </div>
+
         {/* Body */}
         <div ref={listRef} data-slot="jev-search-list" id={listboxId} role="listbox" className="max-h-[min(60vh,32rem)] overflow-y-auto overscroll-contain p-2">
           {showEmptyState ? (
@@ -725,6 +740,11 @@ function useFlip(hits: SearchHit[]) {
 }
 
 const KEYFRAMES = `
+@keyframes jev-indeterminate {
+  0% { transform: translateX(-10%) }
+  50% { transform: translateX(410%) }
+  100% { transform: translateX(-10%) }
+}
 @keyframes jev-fade { from { opacity: 0 } to { opacity: 1 } }
 @keyframes jev-pop { from { opacity: 0; transform: translateY(-6px) scale(.985) } to { opacity: 1; transform: none } }
 @keyframes jev-shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
