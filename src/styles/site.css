@@ -13,6 +13,12 @@
   --pink: var(--highlight);
 }
 
+/* The user-agent stylesheet paints <mark> text pure black. Inherit instead, so
+   the highlighted words match the rest of the heading. */
+mark {
+  color: inherit;
+}
+
 /* jev-search marketing site.
    The registry component ships neutral (plain shadcn tokens). Here it wears
    the jevQL look: ink borders, hard shadows, lime accent, zero radius. Every
@@ -48,7 +54,7 @@
 [data-slot="jev-search-input"] input {
   height: 60px;
   font: 700 1rem ui-monospace, monospace;
-  caret-color: var(--highlight);
+  caret-color: var(--brand-strong);
 }
 [data-slot="jev-search-input"] input::placeholder {
   color: #9a988f;
@@ -133,7 +139,7 @@
 [data-slot="jev-search-list"] mark {
   background: none;
   text-decoration: underline;
-  text-decoration-color: var(--highlight);
+  text-decoration-color: var(--brand-strong);
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
 }
@@ -197,7 +203,7 @@
   letter-spacing: 0.06em;
 }
 [data-slot="jev-search-status"] svg {
-  color: var(--highlight) !important;
+  color: var(--brand-strong) !important;
 }
 
 /* The pink bouncing loader from the jevQL playground, reused for both the hero
@@ -207,7 +213,8 @@
   height: 6px;
   margin-top: -1px;
   border-top: 1px solid var(--line);
-  background: #ecebe4;
+  /* dark track so the yellow bar actually reads */
+  background: var(--ink);
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.15s;
@@ -302,7 +309,7 @@
   box-shadow: 5px 5px 0 var(--ink);
 }
 .demo-field:focus-within {
-  box-shadow: 5px 5px 0 var(--highlight);
+  box-shadow: 5px 5px 0 var(--brand-strong);
 }
 .demo-field input {
   flex: 1;
@@ -406,7 +413,10 @@
   letter-spacing: -0.02em;
 }
 .hit-main a:hover {
-  background: var(--brand);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-strong);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 .hit-main small {
   display: flex;
