@@ -6,9 +6,9 @@ import HeroSearch from "@/components/site/HeroSearch"
 import { Code } from "astro:components"
 import bench from "../../bench/results.json"
 
-const repo = "https://github.com/kylemclaren/jev-search"
+const repo = "https://github.com/kylemclaren/jevsearch"
 // Pinned to the repo, so the command works with no hosting in between.
-const registry = "https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json"
+const registry = "https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search.json"
 const installers: [string, string][] = [
   ["npm", `npx shadcn@latest add ${registry}`],
   ["pnpm", `pnpm dlx shadcn@latest add ${registry}`],

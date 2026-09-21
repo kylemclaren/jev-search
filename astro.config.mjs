@@ -6,7 +6,7 @@ import node from "@astrojs/node"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jev-pg-dvft.sprites.app",
+  site: "https://jevsearch.fly.dev",
   // Static pages plus one on-demand endpoint (src/pages/api/jev-search.ts).
   adapter: node({ mode: "standalone" }),
   vite: {

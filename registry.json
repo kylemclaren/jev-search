@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "jev-search",
-  "homepage": "https://github.com/kylemclaren/jev-search",
+  "homepage": "https://github.com/kylemclaren/jevsearch",
   "items": [
     {
       "name": "jev-search",

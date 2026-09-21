@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.github
+.astro
+.env
+.env.*
+bench/results.json.bak
+*.log

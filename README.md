@@ -14,16 +14,16 @@ The marketing site in this repo is an Astro app whose demo searches all 109 page
 
 ```bash
 # npm
-npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search.json
 
 # pnpm
-pnpm dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search.json
 
 # yarn
-yarn dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+yarn dlx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search.json
 
 # bun
-bunx --bun shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search.json
+bunx --bun shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search.json
 ```
 
 Then set your key:
@@ -35,7 +35,7 @@ echo 'TYPESAFE_API_KEY=tsk_…' >> .env.local
 Then build an index. Hand the route any `SearchDocument[]`, or add the indexer and point it at a folder of Markdown/MDX:
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jev-search/main/public/r/jev-search-indexer.json
+npx shadcn@latest add https://raw.githubusercontent.com/kylemclaren/jevsearch/main/public/r/jev-search-indexer.json
 npx tsx scripts/jev-search-index.ts content/docs /docs      # → lib/jev-search-index.json
 ```
 
