@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type { SearchEvent, SearchHit } from "@/lib/jev-search"
+import type { SearchEvent, SearchHit } from "@/lib/jev-search-core"
 
 export type SearchPhase = "idle" | "lexical" | "judging" | "done" | "error"
 

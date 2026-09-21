@@ -42,7 +42,7 @@ export function Nav() {
 | --- | --- |
 | `components/jev-search.tsx` | `JevSearch`, `JevSearchTrigger`, `JevSearchDialog`. shadcn tokens, one accent variable `--jev-accent`. |
 | `hooks/use-jev-search.ts` | Reads the NDJSON stream, caches per query, aborts stale requests. |
-| `lib/jev-search.ts` | Types, tokenizer, stemmer, weighted lexical scorer, highlighter. No dependencies. |
+| `lib/jev-search-core.ts` | Types, tokenizer, stemmer, weighted lexical scorer, highlighter. No dependencies. |
 | `lib/jev-search-server.ts` | `createJevSearch()` / `createJevSearchHandler()`: lexical pass, Jev judging, LRU cache, retries, streaming handler. Fetch-API only, so it runs on Next.js, Remix, Hono, Bun, Deno and Workers. |
 | `app/api/jev-search/route.ts` | A Next.js route that wires the handler to `lib/jev-search-index.json`. |
 | `lib/jev-search-index.json` | A three-document sample. Replace it. |

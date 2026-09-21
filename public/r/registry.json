@@ -15,7 +15,7 @@
       "files": [
         { "path": "components/jev-search.tsx", "type": "registry:component" },
         { "path": "hooks/use-jev-search.ts", "type": "registry:hook" },
-        { "path": "lib/jev-search.ts", "type": "registry:lib" },
+        { "path": "lib/jev-search-core.ts", "type": "registry:lib" },
         { "path": "lib/jev-search-server.ts", "type": "registry:lib" },
         { "path": "app/api/jev-search/route.ts", "type": "registry:page", "target": "app/api/jev-search/route.ts" },
         { "path": "registry/jev-search-index.sample.json", "type": "registry:file", "target": "lib/jev-search-index.json" }

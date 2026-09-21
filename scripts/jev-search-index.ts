@@ -12,7 +12,7 @@
 import { readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from "node:fs"
 import { join, relative, dirname, extname, basename } from "node:path"
 
-/** Mirrors SearchDocument in lib/jev-search.ts; inlined so this script has no imports beyond node. */
+/** Mirrors SearchDocument in lib/jev-search-core.ts; inlined so this script has no imports beyond node. */
 interface SearchDocument {
   id: string
   title: string

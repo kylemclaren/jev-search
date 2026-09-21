@@ -14,7 +14,7 @@ import Fuse from "fuse.js"
 import FlexSearch from "flexsearch"
 import lunr from "lunr"
 import { create as oramaCreate, insertMultiple as oramaInsert, search as oramaSearch } from "@orama/orama"
-import { buildIndex, lexicalSearch, type SearchDocument } from "../lib/jev-search"
+import { buildIndex, lexicalSearch, type SearchDocument } from "../lib/jev-search-core"
 import { createJevSearch } from "../lib/jev-search-server"
 
 type Query = { kind: "keyword" | "typo" | "intent"; query: string; expect: string[] }

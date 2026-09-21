@@ -13,7 +13,7 @@ import * as React from "react"
 import { createPortal } from "react-dom"
 import { ArrowDown, ArrowUp, Clock, CornerDownLeft, FileText, Hash, Search, Sparkles, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { highlightSegments, type SearchHit } from "@/lib/jev-search"
+import { highlightSegments, type SearchHit } from "@/lib/jev-search-core"
 import { useJevSearch, type JevSearchState } from "@/hooks/use-jev-search"
 
 /* ------------------------------------------------------------------ */

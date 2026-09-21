@@ -9,7 +9,7 @@
  * Works anywhere the Fetch API exists: Next.js route handlers, Remix, Hono,
  * Bun, Deno, Cloudflare Workers.
  */
-import { buildIndex, lexicalSearch, type LexicalIndex, type SearchDocument, type SearchEvent, type SearchHit } from "./jev-search"
+import { buildIndex, lexicalSearch, type LexicalIndex, type SearchDocument, type SearchEvent, type SearchHit } from "./jev-search-core"
 
 export interface JevSearchOptions {
   documents: SearchDocument[]
