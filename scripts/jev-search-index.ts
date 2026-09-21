@@ -11,7 +11,17 @@
  */
 import { readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from "node:fs"
 import { join, relative, dirname, extname, basename } from "node:path"
-import type { SearchDocument } from "../lib/jev-search"
+
+/** Mirrors SearchDocument in lib/jev-search.ts; inlined so this script has no imports beyond node. */
+interface SearchDocument {
+  id: string
+  title: string
+  url: string
+  description?: string
+  content?: string
+  section?: string
+  keywords?: string[]
+}
 
 const [contentDir = "content/docs", urlPrefix = "/docs", outFile = "lib/jev-search-index.json"] = process.argv.slice(2)
 

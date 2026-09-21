@@ -28,7 +28,6 @@
       "type": "registry:block",
       "title": "jev-search indexer",
       "description": "Builds lib/jev-search-index.json from a folder of Markdown or MDX, one document per page and one per h2 heading.",
-      "registryDependencies": ["jev-search"],
       "files": [{ "path": "scripts/jev-search-index.ts", "type": "registry:file", "target": "scripts/jev-search-index.ts" }],
       "docs": "Run: bunx tsx scripts/jev-search-index.ts content/docs /docs lib/jev-search-index.json"
     }
