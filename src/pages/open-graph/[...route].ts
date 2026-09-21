@@ -4,7 +4,7 @@ import { OGImageRoute } from "astro-og-canvas"
 export const { getStaticPaths, GET } = await OGImageRoute({
   pages: {
     index: {
-      title: "Site search that understands the question.",
+      title: "Site search, re-ranked by a model.",
       description: "npx shadcn@latest add …/r/jev-search.json\n\nKeyword hits on the first keystroke. Re-ranked by Jev a few hundred milliseconds later.",
     },
   },

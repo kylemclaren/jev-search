@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T08:54:23.303Z",
+  "generatedAt": "2026-09-21T09:20:25.772Z",
   "corpus": {
     "documents": 443,
     "pages": 109,
@@ -17,7 +17,7 @@
     "recall": 0.8292682926829268
   },
   "cost": {
-    "meanInputTokens": 6169,
+    "meanInputTokens": 6163,
     "usdPerMillionInputTokens": 0.042
   },
   "runtime": "bun 1.4.2",
@@ -26,19 +26,19 @@
       "name": "MiniSearch",
       "version": "7.2.0",
       "kind": "local",
-      "buildMs": 130.49,
+      "buildMs": 135.68,
       "latencyMs": {
         "median": 2.11,
-        "p95": 8.63
+        "p95": 8.53
       },
       "hit1": 0.34146341463414637,
-      "hit3": 0.4634146341463415,
-      "mrr": 0.4384436701509872,
+      "hit3": 0.4878048780487805,
+      "mrr": 0.4404761904761904,
       "byKind": {
         "keyword": {
           "hit1": 0.75,
-          "hit3": 0.8333333333333334,
-          "mrr": 0.8333333333333334,
+          "hit3": 0.9166666666666666,
+          "mrr": 0.8402777777777777,
           "n": 12
         },
         "typo": {
@@ -128,11 +128,11 @@
         {
           "query": "confidence",
           "kind": "keyword",
-          "rank": 4,
+          "rank": 3,
           "top": [
             "patterns-confidence-routing",
-            "cookbooks-classification-using-confidence",
-            "cookbooks-date-extraction-cookbook-confidence-to-route-on"
+            "cookbooks-date-extraction-cookbook-confidence-to-route-on",
+            "confidence"
           ]
         },
         {
@@ -471,10 +471,10 @@
       "name": "Fuse.js",
       "version": "7.5.0",
       "kind": "local",
-      "buildMs": 9.76,
+      "buildMs": 9.52,
       "latencyMs": {
-        "median": 244.83,
-        "p95": 610.24
+        "median": 241.65,
+        "p95": 605.23
       },
       "hit1": 0.3902439024390244,
       "hit3": 0.4634146341463415,
@@ -878,10 +878,10 @@
       "name": "FlexSearch",
       "version": "0.8.212",
       "kind": "local",
-      "buildMs": 296.99,
+      "buildMs": 294.77,
       "latencyMs": {
         "median": 0.16,
-        "p95": 0.55
+        "p95": 0.53
       },
       "hit1": 0.2682926829268293,
       "hit3": 0.34146341463414637,
@@ -1244,10 +1244,10 @@
       "name": "Lunr",
       "version": "2.3.9",
       "kind": "local",
-      "buildMs": 382.28,
+      "buildMs": 399.95,
       "latencyMs": {
         "median": 0.72,
-        "p95": 1.98
+        "p95": 1.85
       },
       "hit1": 0.4146341463414634,
       "hit3": 0.5853658536585366,
@@ -1452,7 +1452,7 @@
           "top": [
             "confidence",
             "primitives-advanced-structured-choice-options",
-            "cookbooks-llm-guardrails-screen-every-message"
+            "sdk-javascript-api-classes-ratelimiterror"
           ]
         },
         {
@@ -1601,7 +1601,7 @@
           "rank": 1,
           "top": [
             "agent-skill",
-            "agent-skill-common-issues",
+            "agent-skill-good-vibe-coding-principles",
             "agent-skill-installation"
           ]
         },
@@ -1681,14 +1681,14 @@
       "name": "Orama",
       "version": "3.1.18",
       "kind": "local",
-      "buildMs": 241.24,
+      "buildMs": 253.05,
       "latencyMs": {
-        "median": 5.18,
-        "p95": 13.64
+        "median": 5.28,
+        "p95": 13.78
       },
       "hit1": 0.3902439024390244,
-      "hit3": 0.5609756097560976,
-      "mrr": 0.4818041037553232,
+      "hit3": 0.5365853658536586,
+      "mrr": 0.47977158343011983,
       "byKind": {
         "keyword": {
           "hit1": 0.8333333333333334,
@@ -1704,8 +1704,8 @@
         },
         "intent": {
           "hit1": 0.11538461538461539,
-          "hit3": 0.34615384615384615,
-          "mrr": 0.24694749694749693,
+          "hit3": 0.3076923076923077,
+          "mrr": 0.24374236874236874,
           "n": 26
         }
       },
@@ -1933,11 +1933,11 @@
         {
           "query": "ask a yes or no question",
           "kind": "intent",
-          "rank": 3,
+          "rank": 4,
           "top": [
             "sdk-python-api-clients-async",
             "sdk-python-api-types-questions",
-            "primitives-noul"
+            "sdk-python-api-types-responses"
           ]
         },
         {
@@ -2126,19 +2126,19 @@
       "name": "Pagefind",
       "version": "1.5.2",
       "kind": "local",
-      "buildMs": 996.98,
+      "buildMs": 1010.68,
       "latencyMs": {
-        "median": 2.6,
-        "p95": 6.93
+        "median": 2.81,
+        "p95": 8.24
       },
-      "hit1": 0.1951219512195122,
+      "hit1": 0.17073170731707318,
       "hit3": 0.2926829268292683,
-      "mrr": 0.24959349593495933,
+      "mrr": 0.23658536585365852,
       "byKind": {
         "keyword": {
-          "hit1": 0.5,
+          "hit1": 0.4166666666666667,
           "hit3": 0.8333333333333334,
-          "mrr": 0.6694444444444444,
+          "mrr": 0.6277777777777778,
           "n": 12
         },
         "typo": {
@@ -2150,7 +2150,7 @@
         "intent": {
           "hit1": 0.07692307692307693,
           "hit3": 0.07692307692307693,
-          "mrr": 0.08461538461538462,
+          "mrr": 0.08333333333333334,
           "n": 26
         }
       },
@@ -2170,8 +2170,8 @@
           "kind": "keyword",
           "rank": 5,
           "top": [
-            "sdk-javascript-api-type-aliases-choicecriteria",
             "sdk-javascript-api-interfaces-choiceresponse",
+            "sdk-javascript-api-type-aliases-choicecriteria",
             "sdk-javascript-api-interfaces-choicequestion"
           ]
         },
@@ -2218,11 +2218,11 @@
         {
           "query": "agent skill",
           "kind": "keyword",
-          "rank": 1,
+          "rank": 2,
           "top": [
-            "agent-skill",
             "introduction-quickstart-vibe-it-the-agent-skill",
-            "cookbooks-skill-suggestion"
+            "agent-skill",
+            "cookbooks-skill-suggestion-step-2-score-the-agent-on-its-own"
           ]
         },
         {
@@ -2365,11 +2365,11 @@
         {
           "query": "ask a yes or no question",
           "kind": "intent",
-          "rank": 5,
+          "rank": 6,
           "top": [
             "cookbooks-llm-guardrails-define-the-guardrails",
-            "primitives-noul-handling-multiple-noul-answers-in-code",
-            "cookbooks-consistency-noul-cookbook-how-we-ask"
+            "sdk-python-api-types-questions",
+            "primitives-noul-handling-multiple-noul-answers-in-code"
           ]
         },
         {
@@ -2511,10 +2511,10 @@
       "name": "jev-search (lexical only)",
       "version": "0.1.0",
       "kind": "local",
-      "buildMs": 38.7,
+      "buildMs": 40.08,
       "latencyMs": {
-        "median": 8.65,
-        "p95": 14.18
+        "median": 9.38,
+        "p95": 15.74
       },
       "hit1": 0.4146341463414634,
       "hit3": 0.5853658536585366,
@@ -2956,10 +2956,10 @@
       "name": "jev-search",
       "version": "0.1.0",
       "kind": "remote",
-      "buildMs": 34.3,
+      "buildMs": 39.03,
       "latencyMs": {
-        "median": 278.03,
-        "p95": 327
+        "median": 255.39,
+        "p95": 295.81
       },
       "hit1": 0.8292682926829268,
       "hit3": 0.8292682926829268,
@@ -3002,7 +3002,7 @@
           "top": [
             "primitives-choice",
             "primitives-define-a-question",
-            "sdk-javascript-api-functions-choice"
+            "primitives-choice-response-structure"
           ]
         },
         {
@@ -3132,7 +3132,7 @@
           "top": [
             "sdk-python",
             "introduction-quickstart-code-it-the-python-sdk",
-            "sdk"
+            "sdk-python-api-clients-sync"
           ]
         },
         {
@@ -3140,8 +3140,8 @@
           "kind": "intent",
           "rank": null,
           "top": [
-            "cookbooks-autoformat-cost-and-latency",
             "cookbooks-parallel-questions-the-only-difference-cost-and-speed",
+            "cookbooks-autoformat-cost-and-latency",
             "primitives-ask-multiple-questions-together"
           ]
         },
@@ -3179,7 +3179,7 @@
           "top": [
             "api-errors",
             "introduction-quickstart-call-it-the-api",
-            "sdk-python-api-clients-sync"
+            "cookbooks-skill-suggestion-setup"
           ]
         },
         {
@@ -3209,7 +3209,7 @@
           "top": [
             "primitives-noul",
             "primitives-noul-writing-a-noul-question",
-            "primitives"
+            "sdk-python-api-types-questions"
           ]
         },
         {
@@ -3218,8 +3218,8 @@
           "rank": 1,
           "top": [
             "primitives-ask-multiple-questions-together",
-            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
-            "cookbooks-parallel-questions"
+            "cookbooks-parallel-questions",
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call"
           ]
         },
         {
@@ -3387,7 +3387,7 @@
           "top": [
             "introduction-machine-learning-primer",
             "introduction-machine-learning-primer-rlcd-and-calibrated-decisions",
-            "introduction-machine-learning-primer-three-post-training-approaches"
+            "introduction-machine-learning-primer-building-prod-not-god"
           ]
         }
       ]

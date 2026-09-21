@@ -76,7 +76,13 @@ function plain(md: string): string {
   s = s.replace(/^(?:export|import)\b.*$/gm, " ")
   return s
     .replace(/```[\s\S]*?```/g, (block) => block.replace(/```\w*\n?/g, " "))
+    // MDX expression containers, which the docs use to render code signatures:
+    // {"RetryPolicy"} {"("} {"\n"} → RetryPolicy (
+    .replace(/\{"((?:[^"\\]|\\.)*)"\}/g, (_, inner: string) => inner.replace(/\\[nrt]/g, " "))
+    .replace(/\{'((?:[^'\\]|\\.)*)'\}/g, "$1")
     .replace(/<[^>]+>/g, " ")
+    // Markdown escapes: typesafe\_sdk → typesafe_sdk
+    .replace(/\\([_*`[\]()#+\-.!~])/g, "$1")
     .replace(/`([^`]*)`/g, "$1")
     .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")

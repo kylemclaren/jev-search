@@ -69,6 +69,68 @@ Bun.serve({
       : new Response("not found", { status: 404 }),
 })`
 
+// A real exchange, captured with scripts/index-typesafe-docs.ts's corpus and
+// trimmed to three of the twenty candidates. Values are verbatim.
+const wireRequest = `POST https://api.typesafe.ai/v1/systemone
+
+{
+  "model": "jev-latest",
+  "state": {
+    "query": "what do I do when I get a 429",
+    "candidates": [
+      { "id": "c1",  "section": "Primitives",
+        "title": "When to structure a question",
+        "excerpt": "When it helps with clarity. When a question has multiple parts\u2026" },
+      { "id": "c10", "section": "SDKs",
+        "title": "Retries",
+        "excerpt": "Configure retries with RetryPolicy \u2014 attempt count, retryable statuses\u2026" },
+      { "id": "c11", "section": "API",
+        "title": "Errors",
+        "excerpt": "Errors use standard HTTP status codes with a JSON body\u2026" }
+    ]
+  },
+  "questions": {
+    "c1": {
+      "type": "noul",
+      "instructions": "The user typed the search query above into a site search box.
+                       Is candidate c1 (\\"When to structure a question\\") a page they
+                       would be glad to land on for that query?",
+      "criteria": {
+        "true":  "The page answers, covers or is clearly about what the query is asking for",
+        "false": "The page is off-topic, or only shares a word or two with the query"
+      }
+    },
+    "best": {
+      "type": "choice",
+      "instructions": "Which candidate page best answers the user's search query?",
+      "criteria": { "c1": "When to structure a question", "c10": "Retries", "c11": "Errors" }
+    },
+    "answerable": {
+      "type": "noul",
+      "instructions": "Does at least one candidate page answer the user's search query?"
+    }
+  }
+}`
+
+const wireAnswer = `{
+  "model": "jev-1.13.0",
+  "answers": {
+    "c1":  { "type": "noul", "noul": 0.03 },
+    "c2":  { "type": "noul", "noul": 0.02 },
+    "c3":  { "type": "noul", "noul": 0.06 },
+    "c10": { "type": "noul", "noul": 0.86 },
+    "c11": { "type": "noul", "noul": 0.60 },
+    "best": {
+      "type": "choice",
+      "choice": "c10",
+      "confidence": 0.9,
+      "probabilities": { "c10": 0.91, "c11": 0.09 }
+    },
+    "answerable": { "type": "noul", "noul": 0.72 }
+  },
+  "usage": { "input_tokens": 6264, "output_tokens": 560 }
+}`
+
 const docShape = `{
   "id": "pricing",
   "title": "Pricing",
@@ -85,7 +147,7 @@ const docShape = `{
     <header class="mast">
       <a class="brand" href="./"><Mark /> jev-search</a>
       <div class="mast-right">
-        <span class="tagline">Site search that understands the question</span>
+        <span class="tagline">React component and server route</span>
         <a class="repo-link" href="#how">how it works</a>
         <a class="repo-link" href="#benchmarks">benchmarks</a>
         <a class="repo-link" href="#install">install</a>
@@ -107,7 +169,7 @@ const docShape = `{
         <span>·</span>
         <span>shadcn/ui registry block</span>
       </p>
-      <h1>Search that reads <mark>the question.</mark></h1>
+      <h1>Site search, <mark>re-ranked by a model.</mark></h1>
       <p class="lede">
         Keyword hits land on the first keystroke. A couple of hundred milliseconds later Jev has read the top matches and
         re-ranked them by what the visitor actually meant. The box above searches all {corpus.pages} pages of the
@@ -165,37 +227,39 @@ const docShape = `{
 
     <section class="machine" id="how" aria-labelledby="how-title">
       <div class="section-head">
-        <div><p class="eyebrow">how it works</p><h2 id="how-title">Two passes, one round trip</h2></div>
+        <div><p class="eyebrow">how it works</p><h2 id="how-title">The TypeSafe request and answer</h2></div>
+        <a class="repo-link" href="https://docs.typesafe.ai/api" target="_blank" rel="noopener">typesafe api ↗</a>
       </div>
-      <div class="phases">
-        <div class="phase">
-          <small>01 · keystroke</small>
-          <strong>Keyword pass</strong>
-          <span>
-            A small in-process index scores every document: weighted fields, prefixes, a light stemmer, one-edit typos.
-            About a millisecond, streamed to the browser before the model is even called.
-          </span>
+      <p class="prose-note">
+        The keyword pass picks twenty candidates and streams them straight to the browser. Those twenty go to TypeSafe in
+        one request, each with a yes/no question attached, plus a single <code>choice</code> across all of them. Jev
+        evaluates the lot in parallel and answers with probabilities, not prose. Below is a real exchange for
+        <code>what do I do when I get a 429</code>, trimmed to three of the twenty candidates.
+      </p>
+      <Tabs labels={["Request", "Answer"]} storageKey="wire">
+        <div>
+          <Code code={wireRequest} lang="json" theme="github-light" />
+          <p class="fine">
+            Titles, descriptions and a {320}-character excerpt per candidate. Nothing else about your pages leaves the
+            server, and the browser never sees your API key.
+          </p>
         </div>
-        <div class="phase">
-          <small>02 · judge</small>
-          <strong>Jev reads twenty</strong>
-          <span>
-            The query and the top twenty candidates go to TypeSafe in one request. Jev answers a calibrated yes/no per
-            page plus a best-answer distribution, all evaluated in parallel. No embeddings, no index to rebuild.
-          </span>
+        <div>
+          <Code code={wireAnswer} lang="json" theme="github-light" />
+          <p class="fine">
+            Every number is calibrated, so <code>0.86</code> means what it says and the component can threshold on it.
+            Rows below {0.15} are dropped; <code>answerable</code> drives the “nothing here covers that” message.
+          </p>
         </div>
-        <div class="phase">
-          <small>03 · settle</small>
-          <strong>Rows glide</strong>
-          <span>
-            Results re-order with a relevance meter each, weak pages drop out, and the answer is cached so the next
-            visitor pays nothing.
-          </span>
-        </div>
-      </div>
+      </Tabs>
       <p class="fine">
-        Over this corpus a query averages {cost.meanInputTokens.toLocaleString()} input tokens at $0.042 per million,
-        so about {perDollar.toLocaleString()} uncached searches per dollar. Output tokens are free and repeat queries are
+        In this example the page that actually answers, the Python SDK's <b>Retries</b>, was tenth on keyword score, below
+        three pages Jev scored at {0.06} and under. It took {0.91} of the best-answer probability and moved to first.
+        That reordering is the whole product.
+      </p>
+      <p class="fine">
+        Over this corpus a query averages {cost.meanInputTokens.toLocaleString()} input tokens at $0.042 per million, so
+        about {perDollar.toLocaleString()} uncached searches per dollar. Output tokens are free and repeat queries are
         cached. If TypeSafe is slow or down the keyword ranking stands and the footer says so.
       </p>
     </section>
@@ -204,7 +268,7 @@ const docShape = `{
       <div class="section-head">
         <div>
           <p class="eyebrow">benchmarks</p>
-          <h2 id="bench-title">Against the libraries you would otherwise reach for</h2>
+          <h2 id="bench-title">Results against six keyword libraries</h2>
         </div>
         <a class="repo-link" href={`${repo}/blob/main/bench/queries.json`} target="_blank" rel="noopener">query set ↗</a>
       </div>
@@ -213,7 +277,7 @@ const docShape = `{
 
     <section class="machine" id="install" aria-labelledby="install-title">
       <div class="section-head">
-        <div><p class="eyebrow">install</p><h2 id="install-title">Three steps, then it is your code</h2></div>
+        <div><p class="eyebrow">install</p><h2 id="install-title">Adding it to a project</h2></div>
         <a class="repo-link" href="/r/jev-search.json">registry json</a>
       </div>
       <div class="steps-grid">
@@ -275,7 +339,7 @@ const docShape = `{
 
     <section class="machine" aria-labelledby="route-title">
       <div class="section-head">
-        <div><p class="eyebrow">the route</p><h2 id="route-title">The search endpoint, in three frameworks</h2></div>
+        <div><p class="eyebrow">server</p><h2 id="route-title">The API route</h2></div>
       </div>
       <p class="prose-note">
         <code>createJevSearchHandler</code> returns a plain <code>(Request) =&gt; Response</code> function that speaks the
@@ -299,7 +363,7 @@ const docShape = `{
     </section>
 
     <details>
-      <summary>Read before pointing it at your docs</summary>
+      <summary>Limits, costs, and what gets sent</summary>
       <div class="details-grid">
         <p>
           <b>Candidate text goes to TypeSafe.</b> Titles, descriptions and the first 320 characters of each of the twenty

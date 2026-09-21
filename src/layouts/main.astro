@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = "jev-search — site search that understands the question",
-  description = "A shadcn/ui registry block for site search. Keyword hits on the first keystroke, re-ranked by TypeSafe's Jev model a few hundred milliseconds later. One command to install, one env var to run.",
+  title = "jev-search — React site search re-ranked by TypeSafe Jev",
+  description = "A shadcn/ui registry block for site search. A keyword pass answers on the first keystroke, then TypeSafe's Jev model re-ranks the top twenty candidates by relevance.",
 } = Astro.props
 const ogImage = new URL("/open-graph/index.png", Astro.site ?? Astro.url).href
 ---
