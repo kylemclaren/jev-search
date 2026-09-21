@@ -26,7 +26,6 @@ const pct = (x: number) => `${Math.round(x * 100)}%`
 // Cost, measured by the benchmark rather than guessed.
 const cost = bench.cost as { meanInputTokens: number; usdPerMillionInputTokens: number }
 const ceiling = bench.candidateRecall as { candidates: number; recall: number }
-const perDollar = Math.round(1 / ((cost.meanInputTokens / 1e6) * cost.usdPerMillionInputTokens))
 const perThousand = (1000 * (cost.meanInputTokens / 1e6) * cost.usdPerMillionInputTokens).toFixed(2)
 
 const usage = `import { JevSearch } from "@/components/jev-search"
@@ -40,37 +39,7 @@ export function Nav() {
   )
 }`
 
-const nextRoute = `// app/api/jev-search/route.ts
-import { createJevSearchHandler } from "@/lib/jev-search-server"
-import documents from "@/lib/jev-search-index.json"
-
-const handler = createJevSearchHandler({ documents })
-export const GET = handler`
-
-const astroRoute = `// src/pages/api/jev-search.ts
-import type { APIRoute } from "astro"
-import { createJevSearchHandler } from "@/lib/jev-search-server"
-import documents from "@/lib/jev-search-index.json"
-
-export const prerender = false
-const handler = createJevSearchHandler({ documents })
-export const GET: APIRoute = ({ request }) => handler(request)`
-
-const anyRoute = `// Hono, Bun.serve, Deno.serve, Workers: it is just (Request) => Response
-import { createJevSearchHandler } from "./jev-search-server"
-import documents from "./jev-search-index.json"
-
-const search = createJevSearchHandler({ documents })
-
-Bun.serve({
-  fetch: (req) =>
-    new URL(req.url).pathname === "/api/jev-search"
-      ? search(req)
-      : new Response("not found", { status: 404 }),
-})`
-
-// A real exchange, captured with scripts/index-typesafe-docs.ts's corpus and
-// trimmed to three of the twenty candidates. Values are verbatim.
+// A real exchange, trimmed to three of the twenty candidates. Values verbatim.
 const wireRequest = `POST https://api.typesafe.ai/v1/systemone
 
 {
@@ -147,7 +116,6 @@ const docShape = `{
     <header class="mast">
       <a class="brand" href="./"><Mark /> jev-search</a>
       <div class="mast-right">
-        <span class="tagline">React component and server route</span>
         <a class="repo-link" href="#benchmarks">benchmarks</a>
         <a class="repo-link" href="#install">install</a>
         <a class="repo-link" href="#how">how it works</a>
@@ -164,65 +132,41 @@ const docShape = `{
     </header>
 
     <section class="hero">
-      <p class="hero-tag">
-        <a href="https://typesafe.ai" target="_blank" rel="noopener">ranked by TypeSafe's Jev model</a>
-        <span>·</span>
-        <span>shadcn/ui registry block</span>
-      </p>
       <h1>Site search, <mark>re-ranked by a model.</mark></h1>
       <p class="lede">
-        Keyword hits land on the first keystroke. A couple of hundred milliseconds later Jev has read the top matches and
-        re-ranked them by what the visitor actually meant. The box above searches all {corpus.pages} pages of the
-        <a href="https://docs.typesafe.ai" target="_blank" rel="noopener">TypeSafe documentation</a>, live. No vector
-        database, no embeddings, no re-indexing job.
+        A keyword pass answers on the first keystroke, then
+        <a href="https://typesafe.ai" target="_blank" rel="noopener">TypeSafe</a>'s Jev model re-ranks the top twenty by
+        what the query meant. Searching all {corpus.pages} pages of the
+        <a href="https://docs.typesafe.ai" target="_blank" rel="noopener">TypeSafe docs</a>, live:
       </p>
 
       <HeroSearch client:load />
 
-      <div class="install-cta">
-        <button class="copy prompt-pill" type="button" data-copy={add} data-registry-cmd aria-label="Copy the install command">
-          <span class="coins" aria-hidden="true">
-            <span class="coin" style="--i:0"
-              ><svg viewBox="0 0 24 24" width="16" height="16"
-                ><path
-                  fill="currentColor"
-                  d="M12 2 2 7l10 5 10-5-10-5Zm0 7.5L4.5 6 12 3.2 19.5 6 12 9.5ZM2 12l10 5 10-5-1.9-.95L12 15l-8.1-3.95L2 12Zm0 5 10 5 10-5-1.9-.95L12 20l-8.1-3.95L2 17Z"
-                ></path></svg
-              ></span
-            >
-            <span class="coin" style="--i:1"
-              ><svg viewBox="0 0 24 24" width="16" height="16"
-                ><path
-                  fill="currentColor"
-                  d="M10.5 3a7.5 7.5 0 1 0 4.55 13.46l4.24 4.25 1.42-1.42-4.25-4.24A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z"
-                ></path></svg
-              ></span
-            >
-          </span>
-          <span class="pill-text"><b>npx shadcn add jev-search</b><small>copies the full install command</small></span>
-        </button>
+      <div class="cmd hero-cmd">
+        <code data-registry-line>{add}</code>
+        <button class="copy small" type="button" data-copy-from-registry aria-label="Copy install command"
+          ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
+        >
       </div>
 
       <dl class="stat-strip">
         <div>
-          <dt>hit@1 on plain-English queries</dt>
+          <dt>hit@1, questions</dt>
           <dd>{pct(ours.byKind.intent.hit1)}</dd>
         </div>
         <div>
-          <dt>{best.name}, best keyword library</dt>
+          <dt>best of the six ({best.name})</dt>
           <dd class="muted">{pct(best.byKind.intent.hit1)}</dd>
         </div>
         <div>
-          <dt>median re-rank, uncached</dt>
+          <dt>re-rank, uncached</dt>
           <dd>{Math.round(ours.latencyMs.median)} ms</dd>
         </div>
+        <div>
+          <dt>per 1,000 searches</dt>
+          <dd>${perThousand}</dd>
+        </div>
       </dl>
-
-      <div class="truth-strip">
-        <span>drop-in react</span><span>no vector db</span><span>one env var</span><span>keys stay server side</span><span
-          >${perThousand} per 1,000 searches</span
-        >
-      </div>
     </section>
 
     <section class="machine" id="benchmarks" aria-labelledby="bench-title">
@@ -246,40 +190,26 @@ const docShape = `{
           <span class="step-num">1</span>
           <div>
             <h3>Add the block</h3>
-            <p>
-              Lands the component, the hook, the lexical index, the server handler and an API route in your shadcn/ui
-              project. Nothing to wrap, nothing to import from npm.
-            </p>
             <div class="cmd">
               <code data-registry-line>{add}</code>
               <button class="copy small" type="button" data-copy-from-registry aria-label="Copy install command"
                 ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
               >
             </div>
+            <p class="fine">
+              Component, hook, keyword index, server handler and API route. Set <code>TYPESAFE_API_KEY</code>; it stays on
+              the server.
+            </p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-num">2</span>
           <div>
-            <h3>Point it at your pages</h3>
-            <p>
-              A document is an id, a title, a url and some text. The indexer turns a folder of Markdown or MDX into one,
-              splitting each page at its headings so results land on the right section.
-            </p>
+            <h3>Feed it documents</h3>
             <Code code={docShape} lang="json" theme="github-light" />
-            <div class="cmd">
-              <code>npx tsx scripts/jev-search-index.ts content/docs /docs</code>
-              <button
-                class="copy small"
-                type="button"
-                data-copy="npx tsx scripts/jev-search-index.ts content/docs /docs"
-                aria-label="Copy indexer command"
-                ><span class="material-symbols-rounded" aria-hidden="true">content_copy</span></button
-              >
-            </div>
             <p class="fine">
-              Set <code>TYPESAFE_API_KEY</code> in your environment. A key comes from
-              <a href="https://typesafe.ai" target="_blank" rel="noopener">typesafe.ai</a>; it never reaches the browser.
+              Or point the bundled indexer at Markdown: <code>npx tsx scripts/jev-search-index.ts content/docs /docs</code>,
+              which splits each page at its headings.
             </p>
           </div>
         </div>
@@ -289,38 +219,12 @@ const docShape = `{
             <h3>Render it</h3>
             <Code code={usage} lang="tsx" theme="github-light" />
             <p class="fine">
-              <code>⌘K</code> opens it anywhere. Pass your own trigger as children, or drive it with <code>open</code>,
-              <code>onOpenChange</code> and <code>initialQuery</code>. The component is styled with plain shadcn tokens, so
-              it inherits your theme; set <code>--jev-accent</code> to brand it.
+              <code>⌘K</code> opens it. Plain shadcn tokens, so it inherits your theme; set <code>--jev-accent</code> to
+              brand it.
             </p>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="machine" aria-labelledby="route-title">
-      <div class="section-head">
-        <div><p class="eyebrow">server</p><h2 id="route-title">The API route</h2></div>
-      </div>
-      <p class="prose-note">
-        <code>createJevSearchHandler</code> returns a plain <code>(Request) =&gt; Response</code> function that speaks the
-        Fetch API and nothing else. It streams NDJSON: a <code>lexical</code> event the moment the keyword pass is done,
-        then a <code>jev</code> event when the model answers. Add <code>?stream=0</code> for a single JSON body.
-      </p>
-      <Tabs labels={["Next.js", "Astro", "Anything else"]} storageKey="route">
-        <div>
-          <Code code={nextRoute} lang="tsx" theme="github-light" />
-          <p class="fine">App Router or Pages Router. Also works as an edge function.</p>
-        </div>
-        <div>
-          <Code code={astroRoute} lang="ts" theme="github-light" />
-          <p class="fine">This site runs exactly that, on the Node adapter.</p>
-        </div>
-        <div>
-          <Code code={anyRoute} lang="ts" theme="github-light" />
-          <p class="fine">Remix, Hono, Deno, Cloudflare Workers: same function, no adapter.</p>
-        </div>
-      </Tabs>
     </section>
 
     <section class="machine" id="how" aria-labelledby="how-title">
@@ -329,36 +233,16 @@ const docShape = `{
         <a class="repo-link" href="https://docs.typesafe.ai/api" target="_blank" rel="noopener">typesafe api ↗</a>
       </div>
       <p class="prose-note">
-        The keyword pass picks twenty candidates and streams them straight to the browser. Those twenty go to TypeSafe in
-        one request, each with a yes/no question attached, plus a single <code>choice</code> across all of them. Jev
-        evaluates the lot in parallel and answers with probabilities, not prose. Below is a real exchange for
-        <code>what do I do when I get a 429</code>, trimmed to three of the twenty candidates.
+        Twenty candidates, a yes/no question each and one <code>choice</code> across them, in a single request. Real
+        exchange for <code>what do I do when I get a 429</code>, trimmed to three candidates.
       </p>
       <Tabs labels={["Request", "Answer"]} storageKey="wire">
-        <div>
-          <Code code={wireRequest} lang="json" theme="github-light" />
-          <p class="fine">
-            Titles, descriptions and a {320}-character excerpt per candidate. Nothing else about your pages leaves the
-            server, and the browser never sees your API key.
-          </p>
-        </div>
-        <div>
-          <Code code={wireAnswer} lang="json" theme="github-light" />
-          <p class="fine">
-            Every number is calibrated, so <code>0.86</code> means what it says and the component can threshold on it.
-            Rows below {0.15} are dropped; <code>answerable</code> drives the “nothing here covers that” message.
-          </p>
-        </div>
+        <div><Code code={wireRequest} lang="json" theme="github-light" /></div>
+        <div><Code code={wireAnswer} lang="json" theme="github-light" /></div>
       </Tabs>
       <p class="fine">
-        In this example the page that actually answers, the Python SDK's <b>Retries</b>, was tenth on keyword score, below
-        three pages Jev scored at {0.06} and under. It took {0.91} of the best-answer probability and moved to first.
-        That reordering is the whole product.
-      </p>
-      <p class="fine">
-        Over this corpus a query averages {cost.meanInputTokens.toLocaleString()} input tokens at $0.042 per million, so
-        about {perDollar.toLocaleString()} uncached searches per dollar. Output tokens are free and repeat queries are
-        cached. If TypeSafe is slow or down the keyword ranking stands and the footer says so.
+        The page that answers, <b>Retries</b>, was tenth on keyword score, below three pages Jev scored at {0.06} and
+        under. It took {0.91} of the best-answer probability and moved to first.
       </p>
     </section>
 
@@ -366,23 +250,19 @@ const docShape = `{
       <summary>Limits, costs, and what gets sent</summary>
       <div class="details-grid">
         <p>
-          <b>Candidate text goes to TypeSafe.</b> Titles, descriptions and the first 320 characters of each of the twenty
-          candidates, over HTTPS. Trim it with <code>excerptLength</code>, or leave <code>content</code> off documents you
-          would rather not send.
+          <b>What leaves your server.</b> Each candidate's title, description and first {320} characters, over HTTPS.
+          Nothing else, and never your API key.
         </p>
         <p>
-          <b>Jev cannot rescue what the first pass missed.</b> It re-ranks candidates, it does not search. A page that never
-          reaches the top {ceiling.candidates} cannot win, which is why the keyword pass is tuned for recall. On this
-          benchmark that ceiling is {pct(ceiling.recall)}, and Jev converts essentially all of it.
+          <b>Jev re-ranks, it does not retrieve.</b> A page outside the top twenty cannot win. That ceiling is
+          {pct(ceiling.recall)} here, and Jev converts all of it.
         </p>
         <p>
-          <b>The cache is in memory.</b> Per process, a thousand queries, no expiry. Serverless platforms will miss it often;
-          put a shared cache in front of the route if that matters.
+          <b>Cost.</b> {cost.meanInputTokens.toLocaleString()} input tokens per uncached query, about ${perThousand} per
+          thousand searches. Output tokens are free.
         </p>
         <p>
-          <b>It costs money per uncached query.</b> {cost.meanInputTokens.toLocaleString()} input tokens on average here,
-          about ${perThousand} per thousand searches. Cheap, not free, and the bill scales with distinct queries rather than
-          with pages. Lower <code>candidates</code> or <code>excerptLength</code> to trade accuracy for spend.
+          <b>The cache is in memory.</b> A thousand queries per process, no expiry. Serverless will miss it often.
         </p>
       </div>
     </details>
@@ -390,9 +270,8 @@ const docShape = `{
     <footer>
       <span>jev-search · MIT</span>
       <span>
-        <a href={repo} target="_blank" rel="noopener">GitHub</a> · <a href="https://typesafe.ai">TypeSafe</a> · sibling of
-        <a href="https://jevql.fly.dev" target="_blank" rel="noopener">jevQL</a>. The demo searches the
-        <a href="https://docs.typesafe.ai" target="_blank" rel="noopener">TypeSafe docs</a>
+        <a href={repo} target="_blank" rel="noopener">GitHub</a> · <a href="https://typesafe.ai">TypeSafe</a> ·
+        <a href="https://jevql.fly.dev" target="_blank" rel="noopener">jevQL</a>
       </span>
     </footer>
   </main>
@@ -406,19 +285,6 @@ const docShape = `{
     for (const el of document.querySelectorAll<HTMLElement>("[data-registry-cmd]")) el.dataset.copy = cmd
 
     function flash(btn: HTMLElement, ok = true) {
-      if (btn.classList.contains("prompt-pill")) {
-        const t = btn.querySelector(".pill-text")!
-        const original = t.innerHTML
-        t.innerHTML = ok
-          ? "<b>Copied</b><small>paste it into your project</small>"
-          : "<b>Copy failed</b><small>select the command in step 1 instead</small>"
-        btn.classList.add("done")
-        setTimeout(() => {
-          t.innerHTML = original
-          btn.classList.remove("done")
-        }, 1600)
-        return
-      }
       const original = btn.innerHTML
       btn.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">${ok ? "check" : "close"}</span>${btn.classList.contains("small") ? "" : " copied"}`
       setTimeout(() => (btn.innerHTML = original), 1200)
@@ -448,100 +314,17 @@ const docShape = `{
     max-width: 760px;
     line-height: 1.7;
   }
-  .lede a,
-  .hero-tag a {
+  .lede a {
     color: inherit;
   }
   .hero {
     padding: 38px 0 26px;
   }
-  .hero-tag {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin: 0 0 18px;
-    font-size: 0.65rem;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .hero-tag a {
-    border-bottom: 2px solid var(--lime);
-    text-decoration: none;
-  }
-  .hero-tag a:hover {
-    background: var(--lime);
-  }
   .hero .lede {
     margin: 26px 0 24px;
   }
-  .install-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin: 26px 0 24px;
-  }
-  .install-cta .prompt-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 9px 22px 9px 9px;
-    background: #fff;
-    text-transform: none;
-    text-align: left;
-    box-shadow: 4px 4px 0 var(--ink);
-  }
-  .install-cta .prompt-pill:hover,
-  .install-cta .prompt-pill.done {
-    background: var(--lime);
-  }
-  .prompt-pill .coins {
-    display: inline-flex;
-  }
-  .prompt-pill .coin {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: #fff;
-    color: var(--ink);
-    margin-left: -9px;
-    box-shadow: 0 0 0 2px #fff;
-  }
-  .prompt-pill .coin:first-child {
-    margin-left: 0;
-  }
-  .prompt-pill:hover .coin {
-    animation: jiggle 450ms ease-in-out calc(var(--i) * 70ms) 1;
-  }
-  @keyframes jiggle {
-    0% { rotate: 0deg; }
-    25% { rotate: -3deg; }
-    55% { rotate: 2.5deg; }
-    100% { rotate: 0deg; }
-  }
-  .prompt-pill .pill-text {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    line-height: 1.1;
-  }
-  .prompt-pill .pill-text b {
-    font: 900 0.92rem/1 ui-monospace, monospace;
-  }
-  .prompt-pill .pill-text small {
-    font: 600 0.64rem/1 ui-monospace, monospace;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .prompt-pill:hover .coin { animation: none; }
+  .hero-cmd {
+    margin: 22px 0;
   }
   .brand {
     display: inline-flex;
@@ -597,7 +380,6 @@ const docShape = `{
     .mast .brand { font-size: 1.25rem; }
     .mast-right { width: auto; flex-direction: row; align-items: center; gap: 8px; }
     .mast .tagline, .mast .repo-link:not(:last-child) { display: none; }
-    .install-cta .prompt-pill { width: 100%; justify-content: flex-start; padding: 8px 12px 8px 8px; font-size: .8rem; }
     .details-grid { padding: 16px; gap: 14px; }
     .copy-btn { display: none; }
   }

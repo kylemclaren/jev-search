@@ -16,9 +16,7 @@ interface SystemResult {
 
 const systems = (bench.systems as SystemResult[]).slice().sort((a, b) => b.hit1 - a.hit1 || b.mrr - a.mrr)
 const ours = systems.find((s) => s.name === "jev-search")!
-const lexical = systems.find((s) => s.name === "jev-search (lexical only)")!
 const rivals = systems.filter((s) => !s.name.startsWith("jev-search"))
-const best = rivals.slice().sort((a, b) => b.hit1 - a.hit1)[0]
 
 // Queries where only jev-search puts the right page first.
 const wins = ours.perQuery
@@ -28,43 +26,12 @@ const wins = ours.perQuery
 
 const pct = (x: number) => `${Math.round(x * 100)}%`
 const ms = (x: number) => (x < 10 ? x.toFixed(2) : Math.round(x).toString())
-const cls = (s: SystemResult) => (s.name === "jev-search" ? "ours" : s.name.startsWith("jev-search") ? "lexical" : "")
 const generated = new Date(bench.generatedAt).toISOString().slice(0, 10)
 const corpus = bench.corpus as { documents: number; pages: number; source: string }
 // How often a library returns nothing at all for a query.
 const blanks = (s: SystemResult) => s.perQuery.filter((q) => q.top.length === 0).length
 const pagefind = systems.find((s) => s.name === "Pagefind")
 ---
-
-<div class="bench-bars">
-  <section>
-    <h3>hit@1 · all {bench.queries.total} queries</h3>
-    {
-      systems.map((s) => (
-        <div class={`bench-row ${cls(s)}`}>
-          <span>{s.name.replace("jev-search (lexical only)", "jev-search · lexical")}</span>
-          <span class="bar"><i style={`width:${Math.max(s.hit1 * 100, 1)}%`} /></span>
-          <em>{pct(s.hit1)}</em>
-        </div>
-      ))
-    }
-  </section>
-  <section>
-    <h3>hit@1 · the {bench.queries.intent} plain-English queries</h3>
-    {
-      systems
-        .slice()
-        .sort((a, b) => b.byKind.intent.hit1 - a.byKind.intent.hit1)
-        .map((s) => (
-          <div class={`bench-row ${cls(s)}`}>
-            <span>{s.name.replace("jev-search (lexical only)", "jev-search · lexical")}</span>
-            <span class="bar"><i style={`width:${Math.max(s.byKind.intent.hit1 * 100, 1)}%`} /></span>
-            <em>{pct(s.byKind.intent.hit1)}</em>
-          </div>
-        ))
-    }
-  </section>
-</div>
 
 <div class="quality-card">
   <div class="quality-heading">
@@ -108,52 +75,25 @@ const pagefind = systems.find((s) => s.name === "Pagefind")
     </table>
   </div>
   <p>
-    {bench.queries.total} labelled queries over every page of the TypeSafe documentation: all {corpus.pages} pages,
-    split at their headings into {corpus.documents} documents. Each library indexes the same documents with comparable
-    field boosts; Pagefind gets real HTML so its own heading weighting applies. Latency is measured in process on{" "}
-    {bench.runtime}; jev-search includes the TypeSafe round trip with the cache off, so it is the cold number. Generated{" "}
-    {generated} with {bench.model}. Rerun it with <code>bun run bench</code>.
+    {bench.queries.total} labelled queries over all {corpus.pages} TypeSafe doc pages, split at headings into{" "}
+    {corpus.documents} documents. Same corpus for every library; Pagefind gets real HTML so its heading weighting
+    applies. jev-search includes the network round trip with the cache off. {generated}, <code>bun run bench</code>.
   </p>
 </div>
 
 {
   pagefind && (
     <p class="fine" style="margin-top:14px">
-      Pagefind requires every query term to appear, which is the right trade for a static keyword index and the wrong one
-      for a question: it returns nothing at all for {blanks(pagefind)} of the {bench.queries.total} queries, and{" "}
-      {pagefind.perQuery.filter((q) => q.kind === "intent" && q.top.length === 0).length} of the {bench.queries.intent}{" "}
-      written as questions.
+      Pagefind requires every query term to appear, so it returns nothing at all for {blanks(pagefind)} of the{" "}
+      {bench.queries.total} queries.
     </p>
   )
 }
 
-<div class="phases" style="margin-top:20px">
-  <div class="phase">
-    <small>the lexical pass alone</small>
-    <strong>{pct(lexical.hit1)}</strong>
-    <span>
-      Level with {best.name} at {pct(best.hit1)}, the best keyword library here. You lose nothing on the first keystroke.
-    </span>
-  </div>
-  <div class="phase">
-    <small>with jev on top</small>
-    <strong>{pct(ours.hit1)}</strong>
-    <span>
-      On questions written the way people ask them, hit@1 goes {pct(lexical.byKind.intent.hit1)} →{" "}
-      {pct(ours.byKind.intent.hit1)}.
-    </span>
-  </div>
-  <div class="phase">
-    <small>what it costs</small>
-    <strong>{ms(ours.latencyMs.median)} ms</strong>
-    <span>Network, once per uncached query, while the visitor already reads keyword results. Then it is cached.</span>
-  </div>
-</div>
-
 {
   wins.length > 0 && (
     <>
-      <p class="fine" style="margin-top:18px">Queries where only jev-search puts the right page first:</p>
+      <p class="fine" style="margin-top:18px">Queries only jev-search gets first:</p>
       <ul class="win-list">
         {wins.map((w) => (
           <li>
