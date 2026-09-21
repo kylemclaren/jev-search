@@ -275,7 +275,7 @@ const docShape = `{
 
     <section class="machine" aria-labelledby="route-title">
       <div class="section-head">
-        <div><p class="eyebrow">the route</p><h2 id="route-title">One handler, any runtime</h2></div>
+        <div><p class="eyebrow">the route</p><h2 id="route-title">The search endpoint, in three frameworks</h2></div>
       </div>
       <p class="prose-note">
         <code>createJevSearchHandler</code> returns a plain <code>(Request) =&gt; Response</code> function that speaks the
@@ -296,70 +296,6 @@ const docShape = `{
           <p class="fine">Remix, Hono, Deno, Cloudflare Workers: same function, no adapter.</p>
         </div>
       </Tabs>
-    </section>
-
-    <section class="machine" id="api" aria-labelledby="api-title">
-      <div class="section-head">
-        <div><p class="eyebrow">api</p><h2 id="api-title">Small surface</h2></div>
-      </div>
-      <div class="api-grid">
-        <div>
-          <p class="eyebrow">&lt;JevSearch /&gt;</p>
-          <table class="api-table">
-            <tbody>
-              <tr><td>endpoint</td><td>string</td><td>Route serving the handler. Default <code>/api/jev-search</code>.</td></tr>
-              <tr><td>placeholder</td><td>string</td><td>Input placeholder and trigger label.</td></tr>
-              <tr><td>suggestions</td><td>string[]</td><td>Example queries shown while the box is empty.</td></tr>
-              <tr><td>hotkey</td><td>string</td><td>Key used with ⌘ / Ctrl. Default <code>k</code>.</td></tr>
-              <tr><td>onSelect</td><td>(hit) =&gt; void</td><td>Navigate yourself, e.g. with a router.</td></tr>
-              <tr><td>open / onOpenChange</td><td>boolean / fn</td><td>Controlled open state.</td></tr>
-              <tr><td>initialQuery</td><td>string</td><td>Pre-fill the box when it opens.</td></tr>
-              <tr><td>brand</td><td>string</td><td>Name shown in the footer status. Default <code>jev</code>.</td></tr>
-              <tr><td>recent</td><td>boolean</td><td>Remember recent searches in localStorage.</td></tr>
-              <tr><td>children</td><td>ReactNode</td><td>Your own trigger element.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <p class="eyebrow">createJevSearchHandler(options)</p>
-          <table class="api-table">
-            <tbody>
-              <tr><td>documents</td><td>SearchDocument[]</td><td>id, title, url, description?, content?, section?, keywords?</td></tr>
-              <tr><td>candidates</td><td>20</td><td>How many lexical hits Jev judges. Accuracy plateaus here.</td></tr>
-              <tr><td>threshold</td><td>0.15</td><td>Drop hits below this relevance once judged.</td></tr>
-              <tr><td>excerptLength</td><td>320</td><td>Body characters sent per candidate.</td></tr>
-              <tr><td>cacheSize</td><td>1000</td><td>Queries kept in memory.</td></tr>
-              <tr><td>timeoutMs</td><td>4000</td><td>Fall back to keyword order after this.</td></tr>
-              <tr><td>relevanceWeight</td><td>0.75</td><td>Blend of per-page relevance and best-answer share.</td></tr>
-              <tr><td>model</td><td>jev-latest</td><td>Or <code>jev-preview</code>, or a pinned version.</td></tr>
-              <tr><td>apiKey / apiUrl</td><td>env</td><td><code>TYPESAFE_API_KEY</code>, <code>TYPESAFE_API_URL</code>.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="phases" style="margin-top:20px">
-        <div class="phase">
-          <small>keys stay home</small>
-          <strong>Server only</strong>
-          <span>
-            The browser talks to your route. Page bodies stay on the server too: the client gets titles, descriptions and
-            scores.
-          </span>
-        </div>
-        <div class="phase">
-          <small>when jev is down</small>
-          <strong>Keyword order stands</strong>
-          <span>A slow or failed call leaves the lexical ranking in place and says so in the footer. Nothing breaks.</span>
-        </div>
-        <div class="phase">
-          <small>yours to edit</small>
-          <strong>Six files</strong>
-          <span>
-            No package to upgrade around. shadcn tokens, one accent variable, <code>data-slot</code> hooks, and
-            <code>lucide-react</code> as the only dependency.
-          </span>
-        </div>
-      </div>
     </section>
 
     <details>
