@@ -342,14 +342,14 @@ const docShape = `{
     padding: 7px 9px 8px;
   }
   .brand span:first-child {
-    background: var(--brand);
-    color: var(--ink);
-  }
-  .brand span:last-child {
     background: var(--ink);
     color: var(--paper);
   }
-  .brand:hover span:first-child {
+  .brand span:last-child {
+    background: var(--brand);
+    color: var(--ink);
+  }
+  .brand:hover span:last-child {
     background: var(--brand-strong);
     color: var(--paper);
   }
