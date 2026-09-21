@@ -1,0 +1,2863 @@
+{
+  "generatedAt": "2026-09-21T07:33:27.456Z",
+  "corpus": {
+    "documents": 104,
+    "source": "jevQL documentation, split by h2"
+  },
+  "queries": {
+    "total": 40,
+    "keyword": 12,
+    "typo": 3,
+    "intent": 25
+  },
+  "model": "jev-latest",
+  "runtime": "bun 1.4.2",
+  "systems": [
+    {
+      "name": "MiniSearch",
+      "version": "7.2.0",
+      "kind": "local",
+      "buildMs": 32.79,
+      "latencyMs": {
+        "median": 0.39,
+        "p95": 1.55
+      },
+      "hit1": 0.475,
+      "hit3": 0.625,
+      "mrr": 0.5756547619047618,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.6666666666666666,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.7583333333333333,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0.3333333333333333,
+          "hit3": 0.3333333333333333,
+          "mrr": 0.3333333333333333,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.4,
+          "hit3": 0.56,
+          "mrr": 0.517047619047619,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "install-upgrading",
+            "introduction-where-next"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "sdk-python-embedded-engine"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-read-only-by-default"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "cli-running-statements",
+            "cli"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration-environment-variables",
+            "configuration-precedence"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": 10,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "cookbook-ticket-triage-5-ship-it-as-a-job",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy-auth",
+            "serve-more-endpoints",
+            "deploy"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy",
+            "deploy-auth",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-endpoints",
+            "deploy",
+            "serve-more-endpoints"
+          ]
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-not-in-v1",
+            "limitations-known-rough-edges"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install",
+            "sql-what-is-rejected-on-purpose",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "serve-how-the-sdks-embed-it",
+            "introduction-what-it-is-not",
+            "cookbook-ticket-triage-5-ship-it-as-a-job"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "cookbook-ticket-triage-5-ship-it-as-a-job",
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-from-your-code",
+            "serve-the-same-documents-from-the-cli",
+            "cookbook-ticket-triage-5-ship-it-as-a-job"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "security-what-is-stored-locally",
+            "security",
+            "security-what-is-sent"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "configuration-the-cache",
+            "security-what-is-stored-locally",
+            "cookbook-ticket-triage-where-to-go-next"
+          ]
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report",
+            "cookbook-ticket-triage-5-ship-it-as-a-job",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go"
+          ]
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "deploy-what-the-node-holds",
+            "deploy",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "introduction-what-it-is-not",
+            "security-what-it-is-not",
+            "cookbook-product-feedback-report-2-which-products-are-breaking"
+          ]
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "deploy-an-open-node",
+            "cookbook-ticket-triage-where-to-go-next",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-4-rank-by-urgency",
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-5-ship-it-as-a-job"
+          ]
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "cookbook-semantic-search-react-1-the-api-route"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "cookbook-ticket-triage-4-rank-by-urgency",
+            "deploy-what-the-node-holds"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "mcp-resource-and-prompt",
+            "mcp-connect"
+          ]
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "deploy",
+            "sdk-go"
+          ]
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-typescript-engine-discovery",
+            "sdk-python-engine-discovery",
+            "sdk-go-notes"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node",
+            "deploy",
+            "deploy-what-the-node-holds"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "install",
+            "cookbook-ticket-triage-where-to-go-next",
+            "cookbook-product-feedback-report-where-to-go-next"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "security-what-is-stored-locally",
+            "security-keys",
+            "security-what-is-sent"
+          ]
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "mcp-read-only-by-default",
+            "mcp-tools",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "cookbook-semantic-search-react-1-the-api-route"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "how-it-works-pass-b-judge",
+            "how-it-works-pass-a-collect"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant",
+            "cookbook-semantic-search-react-2-the-component",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sql-where-a-call-may-appear",
+            "cookbook-ticket-triage-5-ship-it-as-a-job",
+            "how-it-works-pass-a-collect"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fuse.js",
+      "version": "7.5.0",
+      "kind": "local",
+      "buildMs": 3.24,
+      "latencyMs": {
+        "median": 33.82,
+        "p95": 89.88
+      },
+      "hit1": 0.55,
+      "hit3": 0.6,
+      "mrr": 0.5744047619047619,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.6666666666666666,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.736111111111111,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0.6666666666666666,
+          "hit3": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.48,
+          "hit3": 0.48,
+          "mrr": 0.4857142857142857,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "introduction-where-next",
+            "install-upgrading",
+            "install"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-python-embedded-engine",
+            "sdk-python-remote-engine"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-resource-and-prompt",
+            "mcp-read-only-by-default"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "cli",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration-precedence",
+            "configuration-environment-variables"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-2-grade-it",
+            "cookbook-ticket-triage-3-describe-the-teams"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy-auth",
+            "serve-more-endpoints",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "deploy-auth",
+            "deploy",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-not-in-v1",
+            "limitations-known-rough-edges"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "quickstart",
+            "quickstart-next"
+          ]
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "sdk-python-embedded-engine"
+          ]
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "security-what-is-sent"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-what-it-is-not",
+            "introduction-what-it-is-not"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "install-upgrading",
+            "install-requirements",
+            "sdk-python-engine-discovery"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "introduction",
+            "mcp-connect"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security",
+            "security-what-is-sent",
+            "security-what-is-stored-locally"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report-where-to-go-next",
+            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react",
+            "cookbook-semantic-search-react-what-you-need",
+            "cookbook-semantic-search-react-1-the-api-route"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sql-pushdown-rules"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-python-engine-discovery"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-what-is-sent",
+            "cookbook-product-feedback-report-where-to-go-next",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "introduction-what-it-is-not"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "how-it-works",
+            "how-it-works-pass-a-collect",
+            "how-it-works-pass-b-judge"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sql",
+            "sql-row-sources",
+            "sql-functions"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FlexSearch",
+      "version": "0.8.212",
+      "kind": "local",
+      "buildMs": 61.92,
+      "latencyMs": {
+        "median": 0.04,
+        "p95": 0.17
+      },
+      "hit1": 0.275,
+      "hit3": 0.325,
+      "mrr": 0.29583333333333334,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.6666666666666666,
+          "hit3": 0.75,
+          "mrr": 0.7083333333333334,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0.3333333333333333,
+          "hit3": 0.3333333333333333,
+          "mrr": 0.3333333333333333,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.08,
+          "hit3": 0.12,
+          "mrr": 0.09333333333333332,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-requirements",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "install-upgrading",
+            "introduction-where-next"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-python-embedded-engine",
+            "sdk-python-remote-engine"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "cli",
+            "cli-connection"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration",
+            "configuration-precedence"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-what-you-need",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-more-endpoints",
+            "deploy-auth",
+            "deploy"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy",
+            "deploy-auth",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-not-in-v1",
+            "limitations-known-rough-edges"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "install-requirements",
+            "install-upgrading",
+            "install"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbook-product-feedback-report-2-which-products-are-breaking"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "install"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        }
+      ]
+    },
+    {
+      "name": "Lunr",
+      "version": "2.3.9",
+      "kind": "local",
+      "buildMs": 73.51,
+      "latencyMs": {
+        "median": 0.18,
+        "p95": 0.47
+      },
+      "hit1": 0.6,
+      "hit3": 0.775,
+      "mrr": 0.6919047619047618,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.75,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.7916666666666666,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0.3333333333333333,
+          "hit3": 0.3333333333333333,
+          "mrr": 0.3333333333333333,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.56,
+          "hit3": 0.8,
+          "mrr": 0.6870476190476191,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "introduction-where-next",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "serve-how-the-sdks-embed-it",
+            "sdk-python-embedded-engine"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-read-only-by-default"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "introduction-from-your-code",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration-precedence",
+            "configuration-environment-variables"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-2-grade-it",
+            "cookbook-ticket-triage"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-more-endpoints"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy",
+            "deploy-auth",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-endpoints",
+            "serve-more-endpoints",
+            "install"
+          ]
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-not-in-v1",
+            "limitations-known-rough-edges"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install",
+            "introduction-the-one-idea",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-cost-controls",
+            "cookbook-product-feedback-report",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "cookbook-product-feedback-report-what-you-need",
+            "cookbook-semantic-search-react-what-you-need",
+            "cookbook-ticket-triage-what-you-need"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install",
+            "introduction-the-one-idea",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "cli-exit-codes",
+            "introduction-from-your-code",
+            "mcp"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security",
+            "security-keys",
+            "security-what-is-sent"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-what-is-stored-locally",
+            "configuration-the-cache",
+            "security"
+          ]
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "mcp-read-only-by-default",
+            "mcp",
+            "mcp-resource-and-prompt"
+          ]
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "cookbook-ticket-triage-3-describe-the-teams",
+            "mcp",
+            "deploy-what-the-node-holds"
+          ]
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "cookbook-ticket-triage",
+            "sql",
+            "cookbook-ticket-triage-5-ship-it-as-a-job"
+          ]
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "mcp-read-only-by-default",
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-4-rank-by-urgency"
+          ]
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+            "cookbook-product-feedback-report-what-you-need"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react",
+            "cookbook-semantic-search-react-where-to-go-next",
+            "cookbook-semantic-search-react-what-you-need"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "introduction-the-one-idea",
+            "cli-running-statements",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "mcp-connect",
+            "cli-connection",
+            "quickstart"
+          ]
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-go",
+            "cookbook-semantic-search-react-where-to-go-next",
+            "cookbook-ticket-triage-where-to-go-next"
+          ]
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-python-engine-discovery",
+            "sdk-typescript-engine-discovery",
+            "install"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node",
+            "deploy",
+            "deploy-auth"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install-upgrading",
+            "install",
+            "serve-endpoints"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-keys",
+            "security-what-is-stored-locally",
+            "sdk-go-api"
+          ]
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "mcp-tools",
+            "mcp-resource-and-prompt",
+            "cli-typesafe-and-budget"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "cookbook-ticket-triage"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "how-it-works",
+            "how-it-works-pass-a-collect"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant",
+            "security-what-is-sent",
+            "limitations-likely-next"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "sql-where-a-call-may-appear",
+            "cli-running-statements",
+            "sql-functions"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Orama",
+      "version": "3.1.18",
+      "kind": "local",
+      "buildMs": 52.15,
+      "latencyMs": {
+        "median": 1.73,
+        "p95": 4.97
+      },
+      "hit1": 0.4,
+      "hit3": 0.55,
+      "mrr": 0.502251984126984,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.75,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.7916666666666666,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0.3333333333333333,
+          "hit3": 0.3333333333333333,
+          "mrr": 0.3333333333333333,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.24,
+          "hit3": 0.44,
+          "mrr": 0.38360317460317456,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "install-upgrading",
+            "introduction-where-next"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-go",
+            "sdk-typescript"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-read-only-by-default"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "introduction-from-your-code",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration",
+            "configuration-precedence"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "quickstart-next",
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-2-grade-it"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "deploy-auth",
+            "serve-more-endpoints",
+            "deploy"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "deploy-auth",
+            "deploy",
+            "deploy-an-open-node"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-endpoints",
+            "serve-more-endpoints",
+            "install"
+          ]
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-not-in-v1",
+            "limitations-known-rough-edges"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install",
+            "deploy-an-open-node",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "how-it-works",
+            "sql-row-sources",
+            "security-cost-controls"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sql-where-a-call-may-appear",
+            "deploy-auth",
+            "sdk-go-api"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-from-your-code",
+            "cli-exit-codes",
+            "deploy"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-what-is-sent",
+            "mcp-read-only-by-default",
+            "security-what-is-stored-locally"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "configuration-the-cache",
+            "security-what-is-stored-locally",
+            "introduction-where-next"
+          ]
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "mcp-tools",
+            "sdk-go-api",
+            "deploy-auth"
+          ]
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "cli-running-statements",
+            "mcp",
+            "deploy-what-the-node-holds"
+          ]
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "sdk-go-notes",
+            "sql",
+            "introduction-what-it-is-not"
+          ]
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "deploy-an-open-node",
+            "mcp-tools",
+            "cookbook-ticket-triage-where-to-go-next"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "how-it-works-pass-b-judge",
+            "sql-row-sources",
+            "cookbook-ticket-triage"
+          ]
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "deploy-auth",
+            "cookbook-product-feedback-report-1-what-people-complain-about"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "install",
+            "introduction",
+            "cookbook-semantic-search-react"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "introduction-the-one-idea",
+            "deploy-an-open-node",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "serve-queryresult",
+            "mcp-read-only-by-default",
+            "sql-where-a-call-may-appear"
+          ]
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": 9,
+          "top": [
+            "deploy-auth",
+            "sdk-go-api",
+            "sql-where-a-call-may-appear"
+          ]
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "sdk-go-notes",
+            "sdk-python-engine-discovery",
+            "sdk-typescript-engine-discovery"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "sdk-go-notes",
+            "deploy-an-open-node",
+            "deploy"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": 9,
+          "top": [
+            "mcp-tools",
+            "cookbook-ticket-triage-where-to-go-next",
+            "sdk-go"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-keys",
+            "sdk-go-api",
+            "security-what-is-stored-locally"
+          ]
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "mcp-tools",
+            "sdk-go",
+            "cookbook-ticket-triage-where-to-go-next"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 8,
+          "top": [
+            "introduction-what-it-is-not",
+            "introduction",
+            "install"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "mcp",
+            "serve",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant",
+            "configuration-the-cache",
+            "introduction-the-one-idea"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sql-where-a-call-may-appear",
+            "sdk-go-api",
+            "deploy-an-open-node"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "jev-search (lexical only)",
+      "version": "0.1.0",
+      "kind": "local",
+      "buildMs": 6.87,
+      "latencyMs": {
+        "median": 1.33,
+        "p95": 2.8
+      },
+      "hit1": 0.6,
+      "hit3": 0.8,
+      "mrr": 0.6981547619047618,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.8333333333333334,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.8333333333333334,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 1,
+          "hit3": 1,
+          "mrr": 1,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.44,
+          "hit3": 0.76,
+          "mrr": 0.597047619047619,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "introduction-where-next",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-python-types",
+            "sdk-python-engine-discovery"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-read-only-by-default"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "cli-running-statements",
+            "cli"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration",
+            "configuration-precedence"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-ticket-triage-2-grade-it",
+            "cookbook-ticket-triage-3-describe-the-teams"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-types",
+            "sdk-typescript-engine-discovery"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-more-endpoints",
+            "deploy-auth",
+            "deploy"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "deploy-auth",
+            "deploy-an-open-node",
+            "deploy"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-endpoints",
+            "serve-more-endpoints",
+            "deploy"
+          ]
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-known-rough-edges",
+            "limitations-likely-next"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install",
+            "sdk-typescript",
+            "install-upgrading"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "quickstart"
+          ]
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "sdk-python-types"
+          ]
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-cost-controls",
+            "cli-running-statements",
+            "cookbook-semantic-search-react-4-make-it-feel-instant"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbook-semantic-search-react-what-you-need",
+            "cookbook-product-feedback-report-what-you-need",
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "install-requirements"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "introduction-from-your-code",
+            "cli-exit-codes",
+            "serve-errors"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security",
+            "security-what-is-stored-locally",
+            "security-keys"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbook-ticket-triage-where-to-go-next",
+            "configuration-the-cache",
+            "security-what-is-stored-locally"
+          ]
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "mcp-tools",
+            "mcp-read-only-by-default",
+            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
+          ]
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "deploy-what-the-node-holds",
+            "deploy",
+            "deploy-auth"
+          ]
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbook-product-feedback-report-2-which-products-are-breaking",
+            "cookbook-ticket-triage",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
+          ]
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "mcp-tools",
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "mcp-resource-and-prompt"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-4-rank-by-urgency",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+            "cookbook-product-feedback-report-what-you-need"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react",
+            "cookbook-semantic-search-react-where-to-go-next",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "cookbook-product-feedback-report-2-which-products-are-breaking",
+            "sdk-go",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "mcp-connect",
+            "quickstart",
+            "quickstart-next"
+          ]
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "sdk-go"
+          ]
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-python-engine-discovery",
+            "sdk-typescript-engine-discovery",
+            "sdk-go-notes"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node",
+            "deploy-what-the-node-holds",
+            "deploy"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install-upgrading",
+            "install",
+            "serve-endpoints"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "security-what-is-stored-locally",
+            "security-keys",
+            "cookbook-semantic-search-react-1-the-api-route"
+          ]
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "mcp-read-only-by-default",
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "cookbook-semantic-search-react-1-the-api-route"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "how-it-works-pass-a-collect",
+            "how-it-works"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant",
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+            "cookbook-semantic-search-react-2-the-component"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "sql-where-a-call-may-appear",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "cli-running-statements"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "jev-search",
+      "version": "0.1.0",
+      "kind": "remote",
+      "buildMs": 7.9,
+      "latencyMs": {
+        "median": 258.96,
+        "p95": 384.31
+      },
+      "hit1": 0.8,
+      "hit3": 0.85,
+      "mrr": 0.8244047619047619,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.8333333333333334,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.8333333333333334,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 1,
+          "hit3": 1,
+          "mrr": 1,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.76,
+          "hit3": 0.84,
+          "mrr": 0.799047619047619,
+          "n": 25
+        }
+      },
+      "perQuery": [
+        {
+          "query": "install",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "install",
+            "sdk-python",
+            "sdk-typescript"
+          ]
+        },
+        {
+          "query": "homebrew",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "install-upgrading",
+            "introduction-where-next"
+          ]
+        },
+        {
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-python-embedded-engine",
+            "sdk-python-remote-engine"
+          ]
+        },
+        {
+          "query": "mcp",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "mcp",
+            "mcp-connect",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "exit codes",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "cli-exit-codes",
+            "serve-the-same-documents-from-the-cli",
+            "security-cost-controls"
+          ]
+        },
+        {
+          "query": "config file",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "configuration-the-config-file",
+            "configuration",
+            "mcp-connect"
+          ]
+        },
+        {
+          "query": "jev_choice",
+          "kind": "keyword",
+          "rank": null,
+          "top": [
+            "cookbook-ticket-triage-1-route-ten-tickets",
+            "sql-where-a-call-may-appear",
+            "cookbook-ticket-triage"
+          ]
+        },
+        {
+          "query": "typescript",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "sdk-typescript",
+            "sdk-typescript-embedded-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "openapi",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-more-endpoints",
+            "deploy-auth",
+            "deploy"
+          ]
+        },
+        {
+          "query": "bearer token",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "deploy-auth",
+            "sdk-python-remote-engine",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "health check endpoint",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "serve-endpoints",
+            "serve-more-endpoints",
+            "deploy"
+          ]
+        },
+        {
+          "query": "roadmap",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "limitations",
+            "limitations-likely-next",
+            "limitations-not-in-v1"
+          ]
+        },
+        {
+          "query": "instal on linux",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "install",
+            "sdk-typescript",
+            "sdk-python"
+          ]
+        },
+        {
+          "query": "quickstrat",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "quickstart"
+          ]
+        },
+        {
+          "query": "pyhton",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk-python-embedded-engine",
+            "sdk-python-engine-discovery"
+          ]
+        },
+        {
+          "query": "how much does it cost",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cli-the-footer",
+            "security-cost-controls",
+            "cli-running-statements"
+          ]
+        },
+        {
+          "query": "does it need a postgres extension",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-the-one-idea",
+            "cookbook-semantic-search-react-what-you-need",
+            "cookbook-ticket-triage-what-you-need"
+          ]
+        },
+        {
+          "query": "install on mac",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install",
+            "install-upgrading",
+            "sdk-python"
+          ]
+        },
+        {
+          "query": "use it from claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "mcp-connect",
+            "mcp",
+            "introduction-from-your-code"
+          ]
+        },
+        {
+          "query": "what data leaves my machine",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "security-what-is-sent",
+            "security",
+            "security-keys"
+          ]
+        },
+        {
+          "query": "where is the cache stored",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "configuration-the-cache",
+            "security-what-is-stored-locally",
+            "configuration-the-config-file"
+          ]
+        },
+        {
+          "query": "stop a query from spending too much",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "mcp-read-only-by-default",
+            "mcp-tools",
+            "mcp-resource-and-prompt"
+          ]
+        },
+        {
+          "query": "run one shared server for my team",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy",
+            "serve",
+            "deploy-what-the-node-holds"
+          ]
+        },
+        {
+          "query": "which sql is not supported",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "security-what-it-is-not",
+            "introduction-what-it-is-not",
+            "cookbook-product-feedback-report-2-which-products-are-breaking"
+          ]
+        },
+        {
+          "query": "can an agent write to the database",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "mcp-read-only-by-default",
+            "deploy-what-the-node-holds",
+            "mcp-tools"
+          ]
+        },
+        {
+          "query": "sort tickets by how urgent they are",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-4-rank-by-urgency",
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-5-ship-it-as-a-job"
+          ]
+        },
+        {
+          "query": "find reviews that need a response",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+            "cookbook-product-feedback-report"
+          ]
+        },
+        {
+          "query": "build a search box in react",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-2-the-component",
+            "cookbook-semantic-search-react",
+            "cookbook-semantic-search-react-what-you-need"
+          ]
+        },
+        {
+          "query": "why does order by run on the client",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sql-pushdown-rules",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+          ]
+        },
+        {
+          "query": "my first query after connecting",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "quickstart",
+            "introduction-where-next",
+            "quickstart-next"
+          ]
+        },
+        {
+          "query": "use from go without running a server",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-go",
+            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+            "serve-the-same-documents-from-the-cli"
+          ]
+        },
+        {
+          "query": "engine binary not found",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sdk-python-engine-discovery",
+            "sdk-typescript-engine-discovery",
+            "sdk-typescript-embedded-engine"
+          ]
+        },
+        {
+          "query": "public playground with no token",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "deploy-an-open-node",
+            "deploy-auth",
+            "deploy"
+          ]
+        },
+        {
+          "query": "upgrade to the latest version",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "install-upgrading",
+            "install"
+          ]
+        },
+        {
+          "query": "is my api key stored anywhere",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "security-what-is-stored-locally",
+            "configuration-the-config-file",
+            "security-keys"
+          ]
+        },
+        {
+          "query": "send only some columns to the model",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "sql-row-sources",
+            "security",
+            "security-what-is-sent"
+          ]
+        },
+        {
+          "query": "route a webhook ticket that is not in postgres yet",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+            "cookbook-ticket-triage",
+            "cookbook-ticket-triage-1-route-ten-tickets"
+          ]
+        },
+        {
+          "query": "what does the server actually see",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "how-it-works",
+            "how-it-works-pass-a-collect"
+          ]
+        },
+        {
+          "query": "make the results feel instant",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbook-semantic-search-react-4-make-it-feel-instant",
+            "cookbook-semantic-search-react-2-the-component",
+            "sdk-typescript-remote-engine"
+          ]
+        },
+        {
+          "query": "what happens when a statement has no jev call",
+          "kind": "intent",
+          "rank": 7,
+          "top": [
+            "sql-pushdown-rules",
+            "how-it-works-when-order-by-and-limit-stay-on-the-server",
+            "how-it-works-pass-a-collect"
+          ]
+        }
+      ]
+    }
+  ]
+}

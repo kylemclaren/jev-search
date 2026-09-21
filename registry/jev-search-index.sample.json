@@ -1,0 +1,27 @@
+[
+  {
+    "id": "getting-started",
+    "title": "Getting started",
+    "url": "/docs/getting-started",
+    "description": "Install the package and run your first query.",
+    "section": "Docs",
+    "content": "Install with your package manager, set the API key, and call the client. The first request warms the cache.",
+    "keywords": ["install", "setup", "quickstart"]
+  },
+  {
+    "id": "configuration",
+    "title": "Configuration",
+    "url": "/docs/configuration",
+    "description": "Environment variables, config files and precedence.",
+    "section": "Docs",
+    "content": "Settings come from flags, then environment variables, then the config file. Secrets are never written to disk."
+  },
+  {
+    "id": "pricing",
+    "title": "Pricing",
+    "url": "/pricing",
+    "description": "What it costs and how to keep the bill small.",
+    "section": "Company",
+    "content": "Usage is billed per request. Set a monthly budget in the dashboard to cap spend."
+  }
+]

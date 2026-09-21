@@ -1,0 +1,834 @@
+[
+  {
+    "id": "cli",
+    "title": "CLI reference",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli",
+    "description": "Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "jevql [flags] [dbname | postgres://...] jevql serve [--listen 127.0.0.1:7433] [--token SECRET] [dbname | postgres://...] Flags may appear before or after the positional argument, as with psql."
+  },
+  {
+    "id": "cli-connection",
+    "title": "Connection",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#connection",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Flag Meaning -h host -p port -U user -d dbname as psql; PGHOST, PGPORT, PGUSER, PGDATABASE, PGPASSWORD are honoured postgres://... positional a connection URI; DATABASE_URL is used when nothing else is given -w / -W never prompt for a password / always prompt"
+  },
+  {
+    "id": "cli-running-statements",
+    "title": "Running statements",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#running-statements",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Flag Meaning -c \"sql\" run one or more statements and exit -f file run a file and exit stdin piped input is run like -f --explain print the plan and a cost estimate; no TypeSafe calls --timing print elapsed time after each statement -v verbose: collect SQL, batches, tokens, cost"
+  },
+  {
+    "id": "cli-output",
+    "title": "Output",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#output",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Flag Meaning default aligned table like psql --expanded / -x one record per block --csv CSV with header --json an array of objects --json-table one JSON document per statement, the same shape jevql serve returns (protocol) Colour is used only when stdout is a terminal."
+  },
+  {
+    "id": "cli-typesafe-and-budget",
+    "title": "TypeSafe and budget",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#typesafe-and-budget",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Flag Default Meaning --api-key $TYPESAFE_API_KEY never printed --api-url https://api.typesafe.ai/v1/systemone or $TYPESAFE_API_URL --model jev-latest --threshold 0.5 default for jev(); or $JEV_THRESHOLD --batch-size 40 rows per request --concurrency 6 parallel requests --max-rows 2500 abort before any HTTP call if the collect exceeds this; 0 disables --max-chars 0 abort if row objects exceed this many characters --columns a,b columns to send for alias-form calls --cache path ~/.cache/jevql/cache.db --no-cache"
+  },
+  {
+    "id": "cli-meta-commands",
+    "title": "Meta commands",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#meta-commands",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Available in the REPL and in scripts, one per line: Command \\q quit \\timing [on\\ off] toggle timing \\x [on\\ off] expanded output \\d [name] \\dt \\dv \\dn \\l describe, via the catalogs \\set JEV_THRESHOLD 0.7 also JEV_MODEL, JEV_BATCH_SIZE, JEV_MAX_ROWS, TYPESAFE_API_KEY \\cache [stats\\ clear] inspect or empty the answer cache \\explain like --explain for one statement \\i file run a file help the built-in summary Other backslash commands print \"not implemented\" instead of reaching the server."
+  },
+  {
+    "id": "cli-exit-codes",
+    "title": "Exit codes",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#exit-codes",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "Code Meaning 0 ok 1 SQL or usage error 2 TypeSafe API error or a budget guard fired"
+  },
+  {
+    "id": "cli-the-footer",
+    "title": "The footer",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cli#the-footer",
+    "description": "CLI reference · Flags, output formats, meta commands and exit codes.",
+    "section": "Use",
+    "content": "After a jev statement, the REPL (and -v) prints: jev: 129 judged, 4 req, 82 cache hits, 21.0k in tokens, $0.0009, 1.02s judged counts distinct row-and-question pairs, cache hits included. Cost is estimated at $0.042 per million input tokens from the usage the API reports."
+  },
+  {
+    "id": "configuration",
+    "title": "Configuration",
+    "url": "https://jev-pg-dvft.sprites.app/docs/configuration",
+    "description": "Environment variables, the saved config file, the cache, and precedence.",
+    "section": "Use",
+    "content": ""
+  },
+  {
+    "id": "configuration-precedence",
+    "title": "Precedence",
+    "url": "https://jev-pg-dvft.sprites.app/docs/configuration#precedence",
+    "description": "Configuration · Environment variables, the saved config file, the cache, and precedence.",
+    "section": "Use",
+    "content": "Flags win over environment variables, which win over the saved config file, which wins over built-in defaults."
+  },
+  {
+    "id": "configuration-environment-variables",
+    "title": "Environment variables",
+    "url": "https://jev-pg-dvft.sprites.app/docs/configuration#environment-variables",
+    "description": "Configuration · Environment variables, the saved config file, the cache, and precedence.",
+    "section": "Use",
+    "content": "Variable Used for DATABASE_URL connection when no URI, -h/-d flag or PG variable is given PGHOST PGPORT PGUSER PGPASSWORD PGDATABASE PGSSLMODE as psql TYPESAFE_API_KEY the API key TYPESAFE_API_URL endpoint override, for proxies and gateways JEV_THRESHOLD default jev() threshold JEV_MODEL model name JEVQL_CACHE cache file path JEVQL_CONFIG config file path JEVQL_LISTEN JEVQL_TOKEN defaults for jevql serve"
+  },
+  {
+    "id": "configuration-the-config-file",
+    "title": "The config file",
+    "url": "https://jev-pg-dvft.sprites.app/docs/configuration#the-config-file",
+    "description": "Configuration · Environment variables, the saved config file, the cache, and precedence.",
+    "section": "Use",
+    "content": "~/.config/jevql/env holds KEY=VALUE lines. jevql writes it (mode 0600) when you accept the offer on first launch, and reads it at startup, filling in only variables that are not already set. # jevql defaults; environment variables override these. DATABASE_URL=postgres://app:secret@db.internal:5432/app TYPESAFE_API_KEY=tsk_... The file stores the database password and the API key in plain text. Delete it if that is not acceptable and use environment variables or your secret manager instead."
+  },
+  {
+    "id": "configuration-the-cache",
+    "title": "The cache",
+    "url": "https://jev-pg-dvft.sprites.app/docs/configuration#the-cache",
+    "description": "Configuration · Environment variables, the saved config file, the cache, and precedence.",
+    "section": "Use",
+    "content": "Answers are stored in sqlite at ~/.cache/jevql/cache.db, keyed by sha256(model + kind + question + options + canonical_row_json) Canonical JSON has sorted keys, RFC 3339 timestamps in UTC, no whitespace, and NULL columns as null. Two statements that judge the same rows with the same question share answers even if the SQL around them differs. There is no expiry. \\cache clear empties it, --no-cache bypasses it, \\cache shows its size. The file is created with mode 0600 and holds row hashes and answers, not row contents."
+  },
+  {
+    "id": "cookbook-product-feedback-report",
+    "title": "Product feedback report",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report",
+    "description": "Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Star ratings tell you how much people liked something. The text tells you why, and the why is what a product team can act on. This guide reads the reviews table of the demo store (3,000 reviews of 30 products) and turns it into a report that answers three questions a week: what are people complaining about, which products are breaking, and who is waiting for a reply. Every query here is ordinary SQL with one jev_ call in it. Joins, GROUP BY, count(), ORDER BY and LIMIT all still work; jevql runs the plain parts on Postgres and judges only the rows that survive. reviews(id, product_id, customer_id, stars, title, body, created_at) products(id, name, category, price, description, in_stock) customers(id, name, email, city, country, plan, signed_up, notes)"
+  },
+  {
+    "id": "cookbook-product-feedback-report-what-you-need",
+    "title": "What you need",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#what-you-need",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "The CLI for the exploration steps. For the job, the SDK in your language: pip install jevql, npm i jevql, or go get github.com/kylemclaren/jevql/sdk/go. DATABASE_URL and TYPESAFE_API_KEY in the environment. Reviews with some free text. Ratings are optional; they are only used here to narrow what gets judged."
+  },
+  {
+    "id": "cookbook-product-feedback-report-1-what-people-complain-about",
+    "title": "1. What people complain about",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#1-what-people-complain-about",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Ask one question of every unhappy review and count the answers. jev_choice returns one of the options you give it, and a jev_choice column can be grouped like any other. SELECT jev_choice((r.title, r.body), 'What is the main complaint in this review?', ARRAY['quality or durability','shipping or delivery','price or value', 'size or fit','not as described','no complaint']) AS theme, count() FROM reviews r WHERE r.stars now() - interval '90 days' GROUP BY 1 ORDER BY 2 DESC; theme | count -----------------------+------- quality or durability | 124 not as described | 49 no complaint | 31 size or fit | 18 shipping or delivery | 9 price or value | 7 (6 rows) jev: 180 judged, 5 req, 0 cache hits, 33.5k in tokens, $0.0014, 917ms Two things to notice. stars <= 3 and the date range run on Postgres first, so only 238 reviews were collected and, after deduplication, 180 were judged. And \"no complaint\" is on the list on purpose: a three-star review that says \"does the job, nothing more\" should not be forced into a complaint bucket. Give the model an honest way out and the other counts get cleaner. Add p.name to the SELECT and the GROUP BY and the same query becomes a per-product breakdown. It costs nothing extra, because the same reviews are judged with the same question and the cache already holds every answer."
+  },
+  {
+    "id": "cookbook-product-feedback-report-2-which-products-are-breaking",
+    "title": "2. Which products are breaking",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#2-which-products-are-breaking",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "A yes-or-no question in WHERE filters rows, and GROUP BY on top of it makes a leaderboard: SELECT p.name, count() AS complaints FROM reviews r JOIN products p ON p.id = r.product_id WHERE r.created_at > now() - interval '90 days' AND jev((r.title, r.body), 'the product broke, wore out or stopped working') GROUP BY 1 ORDER BY 2 DESC LIMIT 8; name | complaints ---------------------+------------ Hiking backpack 35L | 5 Air fryer XL | 4 Linen bedsheets | 4 Cold brew kit | 4 Trail running shoes | 4 Beard trimmer | 4 Cast iron skillet | 4 Phone tripod | 4 (8 rows) jev: 428 judged, 11 req, 0 cache hits, 36.5k in tokens, $0.0015, 1.47s No star filter this time, and that is deliberate: a four-star review that says \"great until the strap tore\" still counts. That is why it judged 428 reviews instead of 180. When a jev predicate is in WHERE, the LIMIT cannot run on Postgres, because Postgres does not know which rows will pass. jevql collects everything the plain filters allow, judges it, then groups, sorts and limits in the client. The date range is what keeps the collected set small. Run any of these with --explain first. It reports how many rows would be judged and what they would cost, without calling TypeSafe."
+  },
+  {
+    "id": "cookbook-product-feedback-report-3-drill-into-one-product",
+    "title": "3. Drill into one product",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#3-drill-into-one-product",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "For one product, flip the question and ask the happy reviewers what they liked: SELECT jev_choice((r.title, r.body), 'What does the reviewer like most?', ARRAY['how well it works','build quality','price','design or looks','ease of use']) AS likes, count() FROM reviews r JOIN products p ON p.id = r.product_id WHERE p.name = 'Air fryer XL' AND r.stars >= 4 GROUP BY 1 ORDER BY 2 DESC; likes | count -------------------+------- how well it works | 37 build quality | 12 price | 11 design or looks | 3 ease of use | 2 (5 rows) jev: 45 judged, 2 req, 0 cache hits, 7.7k in tokens, $0.0003, 854ms Pair it with the complaint query filtered to the same product and you have both halves of a product page: what to keep and what to fix."
+  },
+  {
+    "id": "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
+    "title": "4. Reviewers who need a reply",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#4-reviewers-who-need-a-reply",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Some reviews are feedback. Others are a customer waiting for someone to get back to them. Join in the customer and pick out the second kind. The third argument raises the threshold to 0.7, so only clear cases make the list: SELECT r.id, c.name AS customer, c.email, p.name AS product, left(r.body, 60) AS body FROM reviews r JOIN products p ON p.id = r.product_id JOIN customers c ON c.id = r.customer_id WHERE r.stars now() - interval '30 days' AND jev((r.title, r.body), 'the reviewer describes a defect or a wrong item and would want the seller to follow up', 0.7) ORDER BY r.created_at DESC; id | customer | product | body ------+-----------------+--------------------------+------------------------------------------------------------- 2581 | Joana Nguyen | Sourdough starter kit | Do not buy the Sourdough starter kit. the stitching came loo 2545 | Noah Costa | Camping stove | Broke after 6 days. the battery fades fast. Avoid. 1050 | Viktor Park | Yoga mat | Not what I expected. the sizing runs small. Support was slow 14 | Viktor Conti | Air fryer XL | Broke after 8 days. the cable is too short. Avoid. 2162 | Rosa Gómez | Cold brew kit | Disappointed. the lid does not seal properly. Considering re ... (37 rows) jev: 48 judged, 2 req, 0 cache hits, 4.3k in tokens, $0.0002, 817ms Only the review text is sent to the model. The join brings the customer's name and email into the result, but they are not part of the (r.title, r.body) source, so they never leave your database."
+  },
+  {
+    "id": "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report",
+    "title": "5. Ship it as a weekly report",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#5-ship-it-as-a-weekly-report",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Three queries, one Markdown document, posted wherever your team reads. The job below runs the mix, the breakage leaderboard and the reply list for the last seven days, and prints what the week cost. Set SLACK_WEBHOOK_URL and it posts the report too. Pick your language; all three were run against the demo store and produce the same document. # report.py: a weekly product feedback report from the reviews table. from jevql import Jevql DAYS = 7 THEMES = [\"quality or durability\", \"shipping or delivery\", \"price or value\", \"size or fit\", \"not as described\", \"no complaint\"] def arr(xs): return \"ARRAY[\" + \", \".join(f\"'{x}'\" for x in xs) + \"]\" MIX = f\"\"\" SELECT jev_choice((r.title, r.body), 'What is the main complaint in this review?', {arr(THEMES)}) AS theme, count() AS n FROM reviews r WHERE r.stars now() - interval '{DAYS} days' GROUP BY 1 ORDER BY 2 DESC\"\"\" BROKEN = f\"\"\" SELECT p.name, count() AS n FROM reviews r JOIN products p ON p.id = r.product_id WHERE r.created_at > now() - interval '{DAYS} days' AND jev((r.title, r.body), 'the product broke, wore out or stopped working') GROUP BY 1 ORDER BY 2 DESC LIMIT 5\"\"\" REPLY = f\"\"\" SELECT r.id, c.name AS customer, c.email, p.name AS product, left(r.body, 80) AS body FROM reviews r JOIN products p ON p.id = r.product_id JOIN customers c ON c.id = r.customer_id WHERE r.stars now() - interval '{DAYS} days' AND jev((r.title, r.body), 'the reviewer describes a defect or a wrong item and would want the seller to follow up', 0.7) ORDER BY r.created_at DESC\"\"\" with Jevql() as db: mix, broken, reply = (db.query(q) for q in (MIX, BROKEN, REPLY)) usd = mix.stats.usd + broken.stats.usd + reply.stats.usd out = [f\"# Product feedback, last {DAYS} days\", \"\", \"## What people complain about\"] out += [f\"- {theme}: {n}\" for theme, n in mix.rows] out += [\"\", \"## Products reported as broken\"] + [f\"- {name}: {n}\" for name, n in broken.rows] out += [\"\", f\"## Reviews that need a reply ({reply.row_count})\"] out += [f\"- #{id} {customer} on {product}: {body}\" for id, customer, email, product, body in reply.rows] out += [\"\", f\"_{mix.stats.judged + broken.stats.judged + reply.stats.judged} reviews judged, ${usd:.4f}_\"] report = \"\\n\".join(out) print(report) if hook := os.environ.get(\"SLACK_WEBHOOK_URL\"): # optional: post it urllib.request.urlopen(urllib.request.Request(hook, json.dumps({\"text\": report}).encode(), {\"Content-Type\": \"application/json\"})) // report.ts: a weekly product feedback report from the reviews table. const DAYS = 7 const THEMES = [\"quality or durability\", \"shipping or delivery\", \"price or value\", \"size or fit\", \"not as described\", \"no complaint\"] const arr = (xs: string[]) => ARRAY[${xs.map((x) => '${x}').join(\", \")}] const MIX = SELECT jev_choice((r.title, r.body), 'What is the main complaint in this review?', ${arr(THEMES)}) AS theme, count() AS n FROM reviews r WHERE r.stars now() - interval '${DAYS} days' GROUP BY 1 ORDER BY 2 DESC const BROKEN = SELECT p.name, count() AS n FROM reviews r JOIN products p ON p.id = r.product_id WHERE r.created_at > now() - interval '${DAYS} days' AND jev((r.title, r.body), 'the product broke, wore out or stopped working') GROUP BY 1 ORDER BY 2 DESC LIMIT 5 const REPLY = SELECT r.id, c.name AS customer, c.email, p.name AS product, left(r.body, 80) AS body FROM reviews r JOIN products p ON p.id = r.product_id JOIN customers c ON c.id = r.customer_id WHERE r.stars now() - interval '${DAYS} days' AND jev((r.title, r.body), 'the reviewer describes a defect or a wrong item and would want the seller to follow up', 0.7) ORDER BY r.created_at DESC const db = new Jevql() const [mix, broken, reply] = await Promise.all([MIX, BROKEN, REPLY].map((q) => db.query(q))) await db.close() const usd = mix.stats.usd + broken.stats.usd + reply.stats.usd const judged = mix.stats.judged + broken.stats.judged + reply.stats.judged const report = [ # Product feedback, last ${DAYS} days, \"\", \"## What people complain about\", ...mix.rows.map(([theme, n]) => - ${theme}: ${n}), \"\", \"## Products reported as broken\", ...broken.rows.map(([name, n]) => - ${name}: ${n}), \"\", ## Reviews that need a reply (${reply.row_count}), ...reply.rows.map(([id, customer, email, product, body]) => - #${id} ${customer} on ${product}: ${body}), \"\", _${judged} reviews judged, $${usd.toFixed(4)}_, ].join(\"\\n\") console.log(report) if (process.env.SLACK_WEBHOOK_URL) // optional: post it await fetch(process.env.SLACK_WEBHOOK_URL, { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: JSON.stringify({ text: report }) }) // report.go: a weekly product feedback report from the reviews table. package main \"bytes\" \"context\" \"encoding/json\" \"fmt\" \"log\" \"net/http\" \"os\" \"strings\" jevql \"github.com/kylemclaren/jevql/sdk/go\" ) const days = 7 var themes = []string{\"quality or durability\", \"shipping or delivery\", \"price or value\", \"size or fit\", \"not as described\", \"no complaint\"} func arr(xs []string) string { return \"ARRAY['\" + strings.Join(xs, \"', '\") + \"']\" } func main() { ctx := context.Background() db, err := jevql.New(ctx, jevql.Options{}) if err != nil { log.Fatal(err) } defer db.Close(ctx) mix := fmt.Sprintf(SELECT jev_choice((r.title, r.body), 'What is the main complaint in this review?', %s) AS theme, count() AS n FROM reviews r WHERE r.stars now() - interval '%d days' GROUP BY 1 ORDER BY 2 DESC, arr(themes), days) broken := fmt.Sprintf(SELECT p.name, count() AS n FROM reviews r JOIN products p ON p.id = r.product_id WHERE r.created_at > now() - interval '%d days' AND jev((r.title, r.body), 'the product broke, wore out or stopped working') GROUP BY 1 ORDER BY 2 DESC LIMIT 5, days) reply := fmt.Sprintf(SELECT r.id, c.name AS customer, c.email, p.name AS product, left(r.body, 80) AS body FROM reviews r JOIN products p ON p.id = r.product_id JOIN customers c ON c.id = r.customer_id WHERE r.stars now() - interval '%d days' AND jev((r.title, r.body), 'the reviewer describes a defect or a wrong item and would want the seller to follow up', 0.7) ORDER BY r.created_at DESC, days) var b strings.Builder usd, judged := 0.0, 0 section := func(title, sql string, line func(r []any) string) { res, err := db.Query(ctx, sql) if err != nil { log.Fatal(err) } usd += res.Stats.USD judged += res.Stats.Judged fmt.Fprintf(&b, \"\\n## %s\\n\", title) for _, r := range res.Rows { fmt.Fprintln(&b, \"- \"+line(r)) } } fmt.Fprintf(&b, \"# Product feedback, last %d days\\n\", days) section(\"What people complain about\", mix, func(r []any) string { return fmt.Sprintf(\"%v: %v\", r[0], r[1]) }) section(\"Products reported as broken\", broken, func(r []any) string { return fmt.Sprintf(\"%v: %v\", r[0], r[1]) }) section(\"Reviews that need a reply\", reply, func(r []any) string { return fmt.Sprintf(\"#%v %v on %v: %v\", r[0], r[1], r[2], r[3], r[4]) }) fmt.Fprintf(&b, \"\\n_%d reviews judged, $%.4f_\\n\", judged, usd) fmt.Print(b.String()) if hook := os.Getenv(\"SLACK_WEBHOOK_URL\"); hook != \"\" { // optional: post it body, _ := json.Marshal(map[string]string{\"text\": b.String()}) http.Post(hook, \"application/json\", bytes.NewReader(body)) } } `markdown Product feedback, last 7 days"
+  },
+  {
+    "id": "cookbook-product-feedback-report-what-people-complain-about",
+    "title": "What people complain about",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#what-people-complain-about",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "quality or durability: 6 size or fit: 4 no complaint: 4 not as described: 2 shipping or delivery: 2"
+  },
+  {
+    "id": "cookbook-product-feedback-report-products-reported-as-broken",
+    "title": "Products reported as broken",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#products-reported-as-broken",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Yoga mat: 2 Puzzle: 1000 pieces: 1 Cast iron skillet: 1 Bike lights set: 1 Cold brew kit: 1"
+  },
+  {
+    "id": "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
+    "title": "Reviews that need a reply (9)",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#reviews-that-need-a-reply-9",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "#46 Cléo Baker on Kids' rain jacket: Terrible. the cable is too short. Asked for a refund and got silence. #2883 Emma Ito on Cold brew kit: Broke after 48 days. it wobbles on my desk. Avoid. #682 Rosa Nguyen on Puzzle: 1000 pieces: Disappointed. the lid does not seal properly. Considering returning it. #2879 Noah Costa on Noise-cancelling earbuds: Terrible. the lid does not seal properly. Asked for a refund and got silence. #2049 Jonas Lindqvist on Cast iron skillet: the stitching came loose. For this price I expected better. #976 Carlos Sato on Puzzle: 1000 pieces: Arrived damaged and customer service made it worse. #2286 Uma Silva on Bike lights set: Arrived damaged and customer service made it worse. #338 Inês Hoffmann on Yoga mat: Terrible. the stitching came loose. Asked for a refund and got silence. #1498 Omar Silva on Yoga mat: the stitching came loose. For this price I expected better. _82 reviews judged, $0.0004_ The first run judged 82 reviews for $0.0004. Run it again next week and only the new reviews are judged: the cache key is the question plus the row content, and last week's reviews have not changed. Widen DAYS` to 30 for a monthly view and you still only pay for reviews the job has not seen."
+  },
+  {
+    "id": "cookbook-product-feedback-report-where-to-go-next",
+    "title": "Where to go next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/product-feedback-report#where-to-go-next",
+    "description": "Product feedback report · Turn a reviews table into a weekly report: what people complain about, which products break, and which reviewers need a reply. Judged SQL, grouped and joined like any other.",
+    "section": "Cookbook",
+    "content": "Add a tone column to the reply list, jev_score((r.title, r.body), 'How angry is the reviewer?', ARRAY['calm','annoyed','furious']), and sort by it so the angriest customers are answered first. Compare the complaint mix across categories: group by p.category and the theme, and see whether \"size or fit\" is an apparel problem or a catalog-wide one. Feed the reply list into the ticket triage job: a review that needs a follow-up is a support ticket that nobody filed. Run the report from a shared node so the whole team shares one cache: Jevql(url=..., token=...). See Deploy a node."
+  },
+  {
+    "id": "cookbook-semantic-search-react",
+    "title": "Semantic search in React",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react",
+    "description": "A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "Left: a keyword search for \"someone wants a refund\" finds nothing, because none of those words appear in the tickets. Right: the same words through jev() find \"Charged twice\", and the panel underneath shows the SQL that ran. You will build a component. The user types something like \"customers who sound like they are about to churn\", the component asks your API, the API turns the request into a jevql query, and the rows come back with what the query cost. The browser never talks to jevql directly. Your API route holds the database URL and the TypeSafe key, and it decides which table and columns are searchable. That keeps the token and the SQL surface on the server."
+  },
+  {
+    "id": "cookbook-semantic-search-react-what-you-need",
+    "title": "What you need",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#what-you-need",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "Node 18+ and a React app with an API route. The example uses a Next.js route handler; an Express handler is shown at the end. npm i jevql. The TypeScript SDK bundles the engine, so nothing else to install. A table to search. The example uses tickets(id, subject, body, status, created_at). Start with explain while you tune the SQL filters. It tells you how many rows a request would judge and what it would cost, without calling TypeSafe."
+  },
+  {
+    "id": "cookbook-semantic-search-react-1-the-api-route",
+    "title": "1. The API route",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#1-the-api-route",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "One handler, one shared Jevql instance, and a tiny allow-list of what can be searched. // app/api/search/route.ts // One engine per server process. It starts on first use and reads // DATABASE_URL and TYPESAFE_API_KEY from the environment. const db = new Jevql() // Only these tables, only these columns. The condition is user input; // the SQL around it is not. const SEARCHABLE = { tickets: { columns: [\"subject\", \"body\"], recent: \"created_at > now() - interval '90 days'\" }, } as const type Table = keyof typeof SEARCHABLE const { table, condition, limit = 20 } = (await req.json()) as { table: Table; condition: string; limit?: number } const spec = SEARCHABLE[table] if (!spec || typeof condition !== \"string\" || condition.length 200) { return NextResponse.json({ error: \"bad request\" }, { status: 400 }) } // The condition goes in as a SQL string literal. Escape single quotes. const q = condition.replace(/'/g, \"''\") // Column-list form: only these columns are sent to TypeSafe, and because // jev() and jev_prob() name the same columns, each row is judged once. const src = (${spec.columns.map((c) => t.${c}).join(\", \")}) const sql = SELECT id, subject, jev_prob(${src}, '${q}') AS relevance FROM ${table} t WHERE t.status = 'open' AND t.${spec.recent} AND jev(${src}, '${q}') ORDER BY relevance DESC LIMIT ${Math.min(Number(limit) || 20, 50)} try { const res = await db.query(sql, { maxRows: 500 }) // never judge more than 500 rows per search return NextResponse.json({ columns: res.columns, rows: res.rows, stats: res.stats, sql }) } catch (e) { if (e instanceof JevqlError && e.code === \"budget\") { return NextResponse.json({ error: \"Too many matching rows to search. Add a filter.\" }, { status: 422 }) } throw e } } Three things worth noticing: The plain predicates (status = 'open', last 90 days) run on Postgres before jevql judges anything. Every row that survives them is sent to TypeSafe, so this is where the bill is decided. jev_prob gives a relevance score to sort by; jev in the outer WHERE drops rows under the threshold (0.5 by default, pass threshold to change it). maxRows: 500 is the safety net. If a request would judge more than that, jevql refuses before making any API call and you get a budget error to turn into a friendly message."
+  },
+  {
+    "id": "cookbook-semantic-search-react-2-the-component",
+    "title": "2. The component",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#2-the-component",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "// components/SemanticSearch.tsx \"use client\" type Row = [id: number, subject: string, relevance: number] type Result = { rows: Row[]; stats: { judged: number; cache_hits: number; usd: number; elapsed_ms: number } | null; sql?: string } const [condition, setCondition] = useState(\"\") const [result, setResult] = useState (null) const [error, setError] = useState (null) const [busy, setBusy] = useState(false) const abort = useRef (null) // Search on submit, not on every keystroke: each search costs money. async function search(e: React.FormEvent) { e.preventDefault() if (condition.trim().length () => abort.current?.abort(), []) return ( setCondition(e.target.value)} placeholder=\"Describe what you are looking for, e.g. customers who sound like they will churn\" aria-label=\"Search condition\" /> {busy ? \"Judging…\" : \"Search\"} {error && {error} } {result && ( <> {result.rows.map(([id, subject, relevance]) => ( {Math.round(relevance 100)}% {subject} ))} {result.rows.length === 0 && No rows matched. } {result.stats && ( {result.stats.judged} rows judged, {result.stats.cache_hits} from cache, ${result.stats.usd.toFixed(4)},{\" \"} {result.stats.elapsed_ms} ms )} {result.sql && ( the SQL that ran {result.sql} )} )} ) } Use it anywhere:"
+  },
+  {
+    "id": "cookbook-semantic-search-react-3-style-it",
+    "title": "3. Style it",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#3-style-it",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "The component ships without styles so it drops into whatever you have. If you want the look from the video (paper, ink, one lime accent), this is the whole stylesheet; import it next to the component or download it. / semantic-search.css: the jevql look. Paper, ink, one lime accent, monospace. / .semantic-search { --ink: #171715; --paper: #f7f6f0; --panel: #fffefa; --line: #c7c5bb; --muted: #66645e; --lime: #d4ff3f; --pink: #ee5ba6; max-width: 720px; margin: 0 auto; padding: 32px 0; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; } .semantic-search form { display: flex; gap: 10px; } .semantic-search input { flex: 1; min-width: 0; border: 1.5px solid var(--ink); border-radius: 0; background: var(--panel); padding: 12px 14px; font: 600 .9rem/1.3 inherit; color: var(--ink); outline: none; } .semantic-search input:focus { box-shadow: 3px 3px 0 var(--ink); } .semantic-search button { border: 1.5px solid var(--ink); border-radius: 0; background: var(--lime); box-shadow: 3px 3px 0 var(--ink); padding: 12px 16px; font: 900 .72rem/1 inherit; text-transform: uppercase; letter-spacing: .04em; color: var(--ink); cursor: pointer; } .semantic-search button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); } .semantic-search button:disabled { opacity: .5; cursor: progress; } .semantic-search ol { list-style: none; margin: 20px 0 0; padding: 0; border: 1.5px solid var(--ink); background: var(--panel); } .semantic-search li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: .95rem; } .semantic-search li:last-child { border-bottom: 0; } .semantic-search .score { min-width: 3.5em; padding: 3px 6px; background: var(--lime); font-size: .72rem; font-weight: 900; text-align: center; } .semantic-search [role=\"alert\"] { margin-top: 16px; border-left: 5px solid var(--pink); background: #ecebe4; padding: 10px 12px; font-size: .85rem; } .semantic-search .footer { margin: 10px 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; } .semantic-search p:not(.footer):not([role=\"alert\"]) { margin-top: 16px; color: var(--muted); font-size: .9rem; } .semantic-search details.sql { margin-top: 12px; border: 1px solid var(--line); background: var(--panel); } .semantic-search details.sql summary { padding: 8px 12px; font-size: .68rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; } .semantic-search details.sql pre { margin: 0; padding: 10px 12px; border-top: 1px solid var(--line); font: 600 .74rem/1.55 inherit; white-space: pre-wrap; }"
+  },
+  {
+    "id": "cookbook-semantic-search-react-4-make-it-feel-instant",
+    "title": "4. Make it feel instant",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#4-make-it-feel-instant",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "Cache. jevql caches every judgement by row content and question. The same search twice costs nothing the second time, and two users asking the same thing share the cache. That is why the footer shows cache_hits. Suggested searches. Offer a few canned conditions as chips (\"angry customer\", \"asks for a refund\", \"mentions a competitor\"). They warm the cache and show people what kind of question works. Do not search on every keystroke. Submit on Enter or after a long debounce. Each distinct condition is a new set of judgements. Show the bill. The stats object is free; surfacing it keeps you honest with yourself about what a feature costs."
+  },
+  {
+    "id": "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
+    "title": "5. The same route in Express, Python and Go",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#5-the-same-route-in-express-python-and-go",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "The route is small enough to carry to any stack. Each version below was run against the demo store; all three answer the same JSON, and all three refuse to judge more than 500 rows. const app = express() const db = new Jevql() app.use(express.json()) app.post(\"/api/search\", async (req, res) => { const q = String(req.body.condition ?? \"\").replace(/'/g, \"''\") if (q.length now() - interval '90 days' AND jev((t.subject, t.body), '${q}') ORDER BY relevance DESC LIMIT 20 try { const out = await db.query(sql, { maxRows: 500 }) res.json({ columns: out.columns, rows: out.rows, stats: out.stats, sql }) } catch (e) { // Always answer with JSON: budget guards are the user's problem, everything else is ours. if (e instanceof JevqlError && e.code === \"budget\") return res.status(422).json({ error: \"Too many matching rows to search. Add a filter.\" }) console.error(e) res.status(502).json({ error: \"Search is unavailable right now. Try again.\" }) } }) app.listen(3000) # api.py: FastAPI route in front of jevql from fastapi import FastAPI, HTTPException from pydantic import BaseModel, Field from dataclasses import asdict from jevql import Jevql, JevqlError app = FastAPI() db = Jevql() # one engine per process; reads DATABASE_URL and TYPESAFE_API_KEY class Search(BaseModel): condition: str = Field(min_length=3, max_length=200) limit: int = Field(default=20, le=50) @app.post(\"/api/search\") def search(s: Search): q = s.condition.replace(\"'\", \"''\") # the condition is a SQL string literal sql = f\"\"\" SELECT id, subject, jev_prob((t.subject, t.body), '{q}') AS relevance FROM tickets t WHERE t.status = 'open' AND t.created_at > now() - interval '90 days' AND jev((t.subject, t.body), '{q}') ORDER BY relevance DESC LIMIT {s.limit}\"\"\" try: res = db.query(sql, max_rows=500) # never judge more than 500 rows per search except JevqlError as e: if e.code == \"budget\": raise HTTPException(422, \"Too many matching rows to search. Add a filter.\") raise return {\"columns\": res.columns, \"rows\": res.rows, \"stats\": asdict(res.stats), \"sql\": sql} FastAPI turns the Field limits into a 422 before the handler runs, so a two-letter condition never reaches jevql. Run it with uvicorn api:app. // main.go: net/http route in front of jevql package main \"context\" \"encoding/json\" \"errors\" \"fmt\" \"log\" \"net/http\" \"os\" \"strings\" jevql \"github.com/kylemclaren/jevql/sdk/go\" ) func main() { ctx := context.Background() db, err := jevql.New(ctx, jevql.Options{DatabaseURL: os.Getenv(\"DATABASE_URL\"), APIKey: os.Getenv(\"TYPESAFE_API_KEY\")}) if err != nil { log.Fatal(err) } defer db.Close(ctx) http.HandleFunc(\"POST /api/search\", func(w http.ResponseWriter, r http.Request) { var in struct { Condition string json:\"condition\" Limit int json:\"limit\" } if json.NewDecoder(r.Body).Decode(&in) != nil || len(in.Condition) 200 { http.Error(w, {\"error\":\"bad request\"}, http.StatusBadRequest) return } if in.Limit 50 { in.Limit = 20 } q := strings.ReplaceAll(in.Condition, \"'\", \"''\") // the condition is a SQL string literal sql := fmt.Sprintf(SELECT id, subject, jev_prob((t.subject, t.body), '%s') AS relevance FROM tickets t WHERE t.status = 'open' AND t.created_at > now() - interval '90 days' AND jev((t.subject, t.body), '%s') ORDER BY relevance DESC LIMIT %d`, q, q, in.Limit) maxRows := 500 // never judge more than 500 rows per search res, err := db.Query(r.Context(), sql, jevql.QueryOptions{MaxRows: &maxRows}) w.Header().Set(\"Content-Type\", \"application/json\") var je jevql.Error if errors.As(err, &je) && je.Code == \"budget\" { w.WriteHeader(http.StatusUnprocessableEntity) json.NewEncoder(w).Encode(map[string]string{\"error\": \"Too many matching rows to search. Add a filter.\"}) return } if err != nil { log.Println(err) w.WriteHeader(http.StatusBadGateway) json.NewEncoder(w).Encode(map[string]string{\"error\": \"Search is unavailable right now. Try again.\"}) return } json.NewEncoder(w).Encode(map[string]any{\"columns\": res.Columns, \"rows\": res.Rows, \"stats\": res.Stats, \"sql\": sql}) }) log.Fatal(http.ListenAndServe(\":3000\", nil)) } The Go SDK is the engine itself, in process: no subprocess, no server. It needs CGO for the parser, the same as building the CLI."
+  },
+  {
+    "id": "cookbook-semantic-search-react-where-to-go-next",
+    "title": "Where to go next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/semantic-search-react#where-to-go-next",
+    "description": "Semantic search in React · A search box that takes a plain-English request and returns rows from Postgres, with a small API route in front of jevql.",
+    "section": "Cookbook",
+    "content": "Swap jev for jev_choice to build a classify box: \"which team should handle this?\" with fixed options. Triage support tickets does exactly that, and grades the result. Point the API route at a shared node instead of an embedded engine: new Jevql({ url, token }). See Deploy a node. For agents rather than people, expose the same table through the MCP server."
+  },
+  {
+    "id": "cookbook-ticket-triage",
+    "title": "Triage support tickets",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage",
+    "description": "Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "Every support queue has the same two questions: who should take this? and what should they take first? Both are judgment calls about text, which is what jev_ functions do. This guide builds a triage step on top of a tickets table, measures how well it routes, and ships it as a scheduled job. Everything below ran against the demo store behind the playground: 2,500 tickets, 845 of them open. The table looks like this: tickets(id, customer_id, subject, body, status, priority, created_at, expected_team) expected_team is the label a human gave each ticket. You will not have that column in production, but if you have any labelled history, keep it around: it is how you find out whether the routing is any good before you trust it."
+  },
+  {
+    "id": "cookbook-ticket-triage-what-you-need",
+    "title": "What you need",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#what-you-need",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "The CLI for the exploration steps. For the job, the SDK in your language: pip install jevql psycopg[binary], npm i jevql pg, or go get github.com/kylemclaren/jevql/sdk/go. DATABASE_URL and TYPESAFE_API_KEY in the environment. A tickets table with a subject and a body. Any names work; the column-list form below names them explicitly."
+  },
+  {
+    "id": "cookbook-ticket-triage-1-route-ten-tickets",
+    "title": "1. Route ten tickets",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#1-route-ten-tickets",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "Start in the CLI with the newest open tickets. jev_choice takes a question and a fixed list of options and returns one of them. SELECT id, left(subject, 40) AS subject, jev_choice((subject, body), 'Which team should handle this ticket?', ARRAY['billing','technical','shipping','sales','product','legal','security']) AS team FROM tickets WHERE status = 'open' ORDER BY created_at DESC LIMIT 10; id | subject | team ------+----------------------------+----------- 216 | Webhook retries | technical 1869 | Invoice PDF broken | technical 1885 | Shipping to IE? | shipping 1930 | Angry: third time asking | product 794 | Delivery left in the rain | shipping 321 | Enterprise pricing? | sales 707 | Discount for nonprofits | sales 2096 | Where is my order 6202? | shipping 1685 | Delivery left in the rain | shipping 1401 | Feature request: dark mode | product (10 rows) Two things to notice. The column-list form (subject, body) sends only those two columns to the model, not the whole row. And because there is no jev call in WHERE, the LIMIT 10 runs on Postgres, so exactly ten tickets are judged. Most of these look right. \"Angry: third time asking\" went to product, which is probably wrong. One row is an anecdote; the next step turns it into a number."
+  },
+  {
+    "id": "cookbook-ticket-triage-2-grade-it",
+    "title": "2. Grade it",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#2-grade-it",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "GROUP BY works on a jev_choice column, so a confusion matrix is one query. Judge every open ticket and count where each label landed: SELECT expected_team, jev_choice((subject, body), 'Which team should handle this ticket?', ARRAY['billing','technical','shipping','sales','product','legal','security']) AS routed, count() FROM tickets WHERE status = 'open' GROUP BY 1, 2 ORDER BY 1, 3 DESC; expected_team | routed | count ---------------+-----------+------- billing | billing | 98 billing | product | 63 billing | technical | 22 legal | legal | 36 product | product | 94 product | sales | 7 sales | sales | 151 security | security | 37 shipping | shipping | 161 shipping | product | 1 technical | technical | 79 technical | product | 67 technical | security | 29 (13 rows) jev: 467 judged, 12 req, 0 cache hits, 88.1k in tokens, $0.0037, 2.83s 656 of 845 tickets landed on their label: 78%. The last line, from -v, says what that cost. 845 tickets became 467 judgements because identical subject and body pairs are judged once, and the whole pass cost under half a cent. The matrix also says where it goes wrong. Billing and technical tickets leak into product. Add the subject to the grouping and the pattern is obvious: \"Angry: third time asking\" (a billing complaint with no billing words in it), \"Refund request\" for a damaged item, \"Invoice PDF broken\". The bare question gives the model nothing to go on except the team names, so it guesses what \"product\" means."
+  },
+  {
+    "id": "cookbook-ticket-triage-3-describe-the-teams",
+    "title": "3. Describe the teams",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#3-describe-the-teams",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "The question is the spec. Say what each team owns, in the question itself: SELECT expected_team, jev_choice((subject, body), 'Which team should handle this ticket? ' 'billing: charges, refunds, invoices, subscriptions and cancellations. ' 'technical: bugs, outages, logins, API, webhooks, accessibility and broken devices. ' 'shipping: delivery, tracking, wrong or late items, shipping destinations. ' 'sales: pricing, quotes, seats, discounts, bulk orders. ' 'product: feature requests, praise, sizing and product questions. ' 'legal: data export, privacy, contracts. ' 'security: vulnerabilities, suspicious activity.', ARRAY['billing','technical','shipping','sales','product','legal','security']) AS routed, count() FROM tickets WHERE status = 'open' GROUP BY 1, 2 ORDER BY 1, 3 DESC; expected_team | routed | count ---------------+-----------+------- billing | billing | 137 billing | technical | 24 billing | shipping | 12 billing | product | 10 legal | legal | 36 product | product | 101 sales | sales | 151 security | security | 37 shipping | shipping | 162 technical | technical | 175 (10 rows) jev: 467 judged, 12 req, 0 cache hits, 89.2k in tokens, $0.0037, 2.21s 799 of 845, or 95%, for the same money. Six of the seven teams are now perfect. What remains is billing, and the remaining misses are defensible: a broken invoice PDF is a technical problem, and a refund for a crushed box has a shipping story in it. Whether those belong to billing is a policy question. Put the policy in the question and the model will follow it. Postgres SQL joins adjacent string literals across lines, so a long question can be written as several quoted lines with no concatenation operator. Keep single quotes out of it, or double them."
+  },
+  {
+    "id": "cookbook-ticket-triage-4-rank-by-urgency",
+    "title": "4. Rank by urgency",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#4-rank-by-urgency",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "The priority column is whatever the customer clicked in the form. jev_score reads the ticket instead. It takes an ordered list of levels and returns a weighted position in that list, so low, normal, high, urgent maps to 0 to 3. SELECT id, priority, left(subject, 40) AS subject, jev_score((subject, body), 'How urgent is this ticket?', ARRAY['low','normal','high','urgent']) AS urgency FROM tickets WHERE status = 'open' AND created_at > now() - interval '7 days' ORDER BY urgency DESC LIMIT 8; id | priority | subject | urgency ------+----------+----------------------------+--------- 1243 | high | API returns 500 on /orders | 2.99 1298 | normal | API returns 500 on /orders | 2.99 1795 | low | Angry: third time asking | 2.98 1930 | high | Angry: third time asking | 2.98 341 | high | Security concern | 2.88 876 | low | Security concern | 2.88 545 | normal | Security concern | 2.88 228 | normal | Cannot log in | 2.72 (8 rows) Ticket 1795 is a customer asking for the third time, filed as low. Ticket 876 is a security report, filed as low. The score puts both near the top regardless of the form field. Sorting by a jev column happens in the client after judging, so the WHERE clause is what keeps this cheap: 35 tickets from the last week, 32 distinct, one request."
+  },
+  {
+    "id": "cookbook-ticket-triage-5-ship-it-as-a-job",
+    "title": "5. Ship it as a job",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#5-ship-it-as-a-job",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "Both answers in one query, written to a routes table, on a schedule. The job uses the SDK for the judged query and your usual Postgres driver for the write, so jevql only ever needs a read-only role. Pick your language; all three were run against the demo store. CREATE TABLE ticket_routes ( ticket_id int PRIMARY KEY REFERENCES tickets, team text NOT NULL, urgency float8 NOT NULL, routed_at timestamptz NOT NULL DEFAULT now() ); # triage.py: route open tickets to a team and rank them by urgency. Run it on a schedule. Answers are cached, so a re-run only pays for new tickets. from jevql import Jevql TEAMS = [\"billing\", \"technical\", \"shipping\", \"sales\", \"product\", \"legal\", \"security\"] ROUTE = ( \"Which team should handle this ticket? \" \"billing: charges, refunds, invoices, subscriptions and cancellations. \" \"technical: bugs, outages, logins, API, webhooks, accessibility and broken devices. \" \"shipping: delivery, tracking, wrong or late items, shipping destinations. \" \"sales: pricing, quotes, seats, discounts, bulk orders. \" \"product: feature requests, praise, sizing and product questions. \" \"legal: data export, privacy, contracts. \" \"security: vulnerabilities, suspicious activity.\" ) URGENCY = [\"low\", \"normal\", \"high\", \"urgent\"] def arr(xs): return \"ARRAY[\" + \", \".join(f\"'{x}'\" for x in xs) + \"]\" SQL = f\"\"\" SELECT id, jev_choice((subject, body), '{ROUTE}', {arr(TEAMS)}) AS team, jev_score((subject, body), 'How urgent is this ticket?', {arr(URGENCY)}) AS urgency FROM tickets WHERE status = 'open' AND created_at > now() - interval '7 days' \"\"\" UPSERT = \"\"\" INSERT INTO ticket_routes (ticket_id, team, urgency) VALUES (%s, %s, %s) ON CONFLICT (ticket_id) DO UPDATE SET team = EXCLUDED.team, urgency = EXCLUDED.urgency, routed_at = now() \"\"\" with Jevql() as db, psycopg.connect(os.environ[\"DATABASE_URL\"]) as pg: res = db.query(SQL) # Postgres filters, Jev judges, rows come back with pg.cursor() as cur: cur.executemany(UPSERT, res.rows) # [id, team, urgency] per row s = res.stats print(f\"{res.row_count} tickets routed; {s.judged} judged, {s.cache_hits} from cache, ${s.usd:.4f}\") $ python triage.py 35 tickets routed; 64 judged, 0 from cache, $0.0004 $ python triage.py 35 tickets routed; 64 judged, 64 from cache, $0.0000 // triage.ts: route open tickets to a team and rank them by urgency. const TEAMS = [\"billing\", \"technical\", \"shipping\", \"sales\", \"product\", \"legal\", \"security\"] const ROUTE = [ \"Which team should handle this ticket?\", \"billing: charges, refunds, invoices, subscriptions and cancellations.\", \"technical: bugs, outages, logins, API, webhooks, accessibility and broken devices.\", \"shipping: delivery, tracking, wrong or late items, shipping destinations.\", \"sales: pricing, quotes, seats, discounts, bulk orders.\", \"product: feature requests, praise, sizing and product questions.\", \"legal: data export, privacy, contracts.\", \"security: vulnerabilities, suspicious activity.\", ].join(\" \") const URGENCY = [\"low\", \"normal\", \"high\", \"urgent\"] const arr = (xs: string[]) => ARRAY[${xs.map((x) => '${x}').join(\", \")}] const SQL = SELECT id, jev_choice((subject, body), '${ROUTE}', ${arr(TEAMS)}) AS team, jev_score((subject, body), 'How urgent is this ticket?', ${arr(URGENCY)}) AS urgency FROM tickets WHERE status = 'open' AND created_at > now() - interval '7 days' const UPSERT = INSERT INTO ticket_routes (ticket_id, team, urgency) VALUES ($1, $2, $3) ON CONFLICT (ticket_id) DO UPDATE SET team = EXCLUDED.team, urgency = EXCLUDED.urgency, routed_at = now() const db = new Jevql() const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL }) const res = await db.query(SQL) // Postgres filters, Jev judges, rows come back for (const [id, team, urgency] of res.rows) await pool.query(UPSERT, [id, team, urgency]) const s = res.stats console.log(${res.row_count} tickets routed; ${s.judged} judged, ${s.cache_hits} from cache, $${s.usd.toFixed(4)}) await db.close() await pool.end() $ bun run triage.ts # or: npx tsx triage.ts 35 tickets routed; 64 judged, 0 from cache, $0.0004 $ bun run triage.ts 35 tickets routed; 64 judged, 64 from cache, $0.0000 The engine and pg both read DATABASE_URL; pg.Pool needs it passed explicitly. // triage.go: route open tickets to a team and rank them by urgency. package main \"context\" \"fmt\" \"log\" \"os\" \"strings\" \"github.com/jackc/pgx/v5\" jevql \"github.com/kylemclaren/jevql/sdk/go\" ) var teams = []string{\"billing\", \"technical\", \"shipping\", \"sales\", \"product\", \"legal\", \"security\"} const route = \"Which team should handle this ticket? \" + \"billing: charges, refunds, invoices, subscriptions and cancellations. \" + \"technical: bugs, outages, logins, API, webhooks, accessibility and broken devices. \" + \"shipping: delivery, tracking, wrong or late items, shipping destinations. \" + \"sales: pricing, quotes, seats, discounts, bulk orders. \" + \"product: feature requests, praise, sizing and product questions. \" + \"legal: data export, privacy, contracts. \" + \"security: vulnerabilities, suspicious activity.\" var urgency = []string{\"low\", \"normal\", \"high\", \"urgent\"} func arr(xs []string) string { return \"ARRAY['\" + strings.Join(xs, \"', '\") + \"']\" } func main() { ctx := context.Background() pg, err := pgx.Connect(ctx, os.Getenv(\"DATABASE_URL\")) if err != nil { log.Fatal(err) } defer pg.Close(ctx) db, err := jevql.New(ctx, jevql.Options{Conn: pg}) // judge over the same connection if err != nil { log.Fatal(err) } defer db.Close(ctx) sql := fmt.Sprintf(SELECT id, jev_choice((subject, body), '%s', %s) AS team, jev_score((subject, body), 'How urgent is this ticket?', %s) AS urgency FROM tickets WHERE status = 'open' AND created_at > now() - interval '7 days', route, arr(teams), arr(urgency)) res, err := db.Query(ctx, sql) // Postgres filters, Jev judges, rows come back if err != nil { log.Fatal(err) } const upsert = INSERT INTO ticket_routes (ticket_id, team, urgency) VALUES ($1, $2, $3) ON CONFLICT (ticket_id) DO UPDATE SET team = EXCLUDED.team, urgency = EXCLUDED.urgency, routed_at = now() for _, r := range res.Rows { // [id, team, urgency] if _, err := pg.Exec(ctx, upsert, r[0], r[1], r[2]); err != nil { log.Fatal(err) } } s := res.Stats fmt.Printf(\"%d tickets routed; %d judged, %d from cache, $%.4f\\n\", len(res.Rows), s.Judged, s.CacheHits, s.USD) } $ go run . 35 tickets routed; 64 judged, 0 from cache, $0.0004 $ go run . 35 tickets routed; 64 judged, 64 from cache, $0.0000 The Go SDK runs in process and can judge over the connection you already hold, so the job needs one Postgres connection, not two. The second run is free. The cache key is the question, the options and the row content, so a ticket is only judged again if its text changes. Widen the window to a month and the job still only pays for tickets it has not seen. Put it in cron, or in whatever runs your nightly jobs, and the routes table is always a few minutes behind the queue. Support staff query ticket_routes like any other table: SELECT t.id, t.subject, r.urgency FROM ticket_routes r JOIN tickets t ON t.id = r.ticket_id WHERE r.team = 'billing' AND t.status = 'open' ORDER BY r.urgency DESC;"
+  },
+  {
+    "id": "cookbook-ticket-triage-6-route-at-intake-without-the-database",
+    "title": "6. Route at intake, without the database",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#6-route-at-intake-without-the-database",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "The same routing works on a ticket that is not in Postgres yet, for example inside the webhook that receives it. judge() takes rows you already hold, uses the same cache, and returns the answer with its probabilities: ticket = {\"subject\": \"Someone else's parcel arrived\", \"body\": \"I got a box addressed to a different customer and my own order is missing. Order 4411.\"} r = db.judge(ROUTE, [ticket], kind=\"choice\", options=TEAMS) r.answers[0].choice # \"shipping\" r.answers[0].probabilities # {\"shipping\": 1, \"billing\": 0, ...} u = db.judge(\"How urgent is this ticket?\", [ticket], kind=\"score\", options=URGENCY) u.answers[0].score # 1.71, between normal and high const ticket = { subject: \"Someone else's parcel arrived\", body: \"I got a box addressed to a different customer and my own order is missing. Order 4411.\" } const r = await db.judge({ question: ROUTE, kind: \"choice\", options: TEAMS, rows: [ticket] }) r.answers[0].choice // \"shipping\" r.answers[0].probabilities // { shipping: 1, billing: 0, ... } const u = await db.judge({ question: \"How urgent is this ticket?\", kind: \"score\", options: URGENCY, rows: [ticket] }) u.answers[0].score // 1.71, between normal and high ticket := map[string]any{\"subject\": \"Someone else's parcel arrived\", \"body\": \"I got a box addressed to a different customer and my own order is missing. Order 4411.\"} r, err := db.Judge(ctx, jevql.JudgeRequest{Question: route, Kind: \"choice\", Options: teams, Rows: []map[string]any{ticket}}) r.Answers[0].Choice // \"shipping\" r.Answers[0].Probabilities // map[shipping:1 billing:0 ...] u, err := db.Judge(ctx, jevql.JudgeRequest{Question: \"How urgent is this ticket?\", Kind: \"score\", Options: urgency, Rows: []map[string]any{ticket}}) u.Answers[0].Score // 1.71, between normal and high Same questions, same options, so the intake path and the nightly job agree with each other and share one cache."
+  },
+  {
+    "id": "cookbook-ticket-triage-where-to-go-next",
+    "title": "Where to go next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/cookbook/ticket-triage#where-to-go-next",
+    "description": "Triage support tickets · Route open tickets to the right team with jev_choice, rank them by urgency with jev_score, grade the routing against labelled data, and ship it as a nightly job.",
+    "section": "Cookbook",
+    "content": "Add a third call for tone: jev_score((subject, body), 'How angry is the customer?', ARRAY['calm','annoyed','furious']), and route anything furious to a human first. Keep grading. Store the team that actually resolved each ticket, and re-run the confusion matrix from step 2 against it every month. When it drifts, the fix is in the question. Run the job against a shared node instead of an embedded engine so the whole team shares one cache: Jevql(url=..., token=...). See Deploy a node. Let an agent do the triage conversationally over MCP. It gets the same query tool and the same cache."
+  },
+  {
+    "id": "deploy",
+    "title": "Deploy a node",
+    "url": "https://jev-pg-dvft.sprites.app/docs/deploy",
+    "description": "Run jevql serve as a shared service for one Postgres, with a bearer token, on Fly.io or any container host.",
+    "section": "Integrate",
+    "content": "A node is jevql serve in a container: one HTTP API and one MCP endpoint in front of one Postgres, with a shared answer cache. Clients only need the URL and a token. Launch it on Fly.io From a clone of the repository, fly launch reads deploy/fly.toml, asks for a name and region, creates the app and the cache volume, and deploys: git clone https://github.com/kylemclaren/jevql && cd jevql fly launch --config deploy/fly.toml --no-deploy fly secrets set DATABASE_URL='postgres://user:pass@host:5432/db' \\ TYPESAFE_API_KEY='tsk_...' \\ JEVQL_TOKEN=\"$(openssl rand -hex 32)\" fly deploy Fly terminates TLS at its edge, so the token only travels over HTTPS. The volume declared in the config keeps the answer cache across deploys. Or any container host docker build -f deploy/Dockerfile -t jevql . docker run -p 8080:8080 -v jevql_data:/data \\ -e DATABASE_URL=... -e TYPESAFE_API_KEY=... -e JEVQL_TOKEN=... jevql Put it behind TLS. jevql serve refuses a non-loopback address without a token unless you pass --insecure. Use it curl -H \"Authorization: Bearer $JEVQL_TOKEN\" https:// .fly.dev/v1/health const db = new Jevql({ url: \"https:// .fly.dev\", token: process.env.JEVQL_TOKEN }) db = Jevql(url=\"https:// .fly.dev\", token=os.environ[\"JEVQL_TOKEN\"]) MCP clients connect to https:// .fly.dev/mcp with the same bearer token. The full API is at /openapi.json."
+  },
+  {
+    "id": "deploy-auth",
+    "title": "Auth",
+    "url": "https://jev-pg-dvft.sprites.app/docs/deploy#auth",
+    "description": "Deploy a node · Run jevql serve as a shared service for one Postgres, with a bearer token, on Fly.io or any container host.",
+    "section": "Integrate",
+    "content": "One bearer token per node, set with JEVQL_TOKEN or --token. Everything except /openapi.json requires it. The token is compared in constant time. There is no per-user auth in v1; put an identity-aware proxy in front if you need one."
+  },
+  {
+    "id": "deploy-an-open-node",
+    "title": "An open node",
+    "url": "https://jev-pg-dvft.sprites.app/docs/deploy#an-open-node",
+    "description": "Deploy a node · Run jevql serve as a shared service for one Postgres, with a bearer token, on Fly.io or any container host.",
+    "section": "Integrate",
+    "content": "A demo or a public playground does not want a token. Set JEVQL_INSECURE=1 (or pass --insecure) and the node answers anyone. Pair it with the other knobs so an open node stays cheap and read-only: JEVQL_INSECURE=1 serve without a bearer token JEVQL_CORS=https://example.com,https://other.example origins allowed to call the API from a browser ( for any) JEVQL_RATE_LIMIT=60 requests per minute per client IP; excess gets 429 with code rate JEVQL_MAX_ROWS=300 cap on rows judged by one query; more returns 402 with code budget a read-only database role the only thing that stops a DELETE The public playground at jevql.fly.dev/playground runs exactly this: a node with no token, a reader role, a rate limit and a row cap. Its settings drawer lets you point the playground at your own node instead."
+  },
+  {
+    "id": "deploy-what-the-node-holds",
+    "title": "What the node holds",
+    "url": "https://jev-pg-dvft.sprites.app/docs/deploy#what-the-node-holds",
+    "description": "Deploy a node · Run jevql serve as a shared service for one Postgres, with a bearer token, on Fly.io or any container host.",
+    "section": "Integrate",
+    "content": "DATABASE_URL the one Postgres it serves; read-only credentials are a good idea TYPESAFE_API_KEY held server-side; clients never see it /data/cache.db the shared answer cache on the volume JEVQL_ALLOW_CACHE_ADMIN=1 enables GET/DELETE /v1/cache --allow-writes lets MCP tools run non-SELECT statements (off by default) Every client with the token can run any SQL the database user is allowed to run. Give the node a read-only role unless you want writes."
+  },
+  {
+    "id": "how-it-works",
+    "title": "How it works",
+    "url": "https://jev-pg-dvft.sprites.app/docs/how-it-works",
+    "description": "The two-pass execution in detail, and what the server actually sees.",
+    "section": "Use",
+    "content": "Take this statement: SELECT name, jev_prob(people, 'the name is European') AS p FROM people WHERE country = 'PT' AND jev(people, 'could work from home') ORDER BY p DESC LIMIT 10;"
+  },
+  {
+    "id": "how-it-works-pass-a-collect",
+    "title": "Pass A: collect",
+    "url": "https://jev-pg-dvft.sprites.app/docs/how-it-works#pass-a-collect",
+    "description": "How it works · The two-pass execution in detail, and what the server actually sees.",
+    "section": "Use",
+    "content": "jevql parses the statement with libpg_query and finds every jev_ call. For each it resolves the first argument to a FROM alias and the columns that alias contributes. It then rewrites: jev(people, ...) is removed from WHERE. country = 'PT' stays. The SELECT list gains people.id AS __jev_s0_0, people.name AS __jev_s0_1, ... so the row object can be built. Your own columns follow, so name keeps its name. ORDER BY p and LIMIT 10 depend on a judgement, so they are dropped from the server statement. Postgres receives: SELECT people.id AS __jev_s0_0, people.name AS __jev_s0_1, / ... / name FROM people WHERE country = 'PT' If the row count exceeds --max-rows, jevql stops here with exit code 2. No HTTP call has been made."
+  },
+  {
+    "id": "how-it-works-pass-b-judge",
+    "title": "Pass B: judge",
+    "url": "https://jev-pg-dvft.sprites.app/docs/how-it-works#pass-b-judge",
+    "description": "How it works · The two-pass execution in detail, and what the server actually sees.",
+    "section": "Use",
+    "content": "Each row becomes a canonical JSON object. Duplicate objects are collapsed. Each distinct object is looked up in the cache; misses are grouped by question and packed --batch-size at a time into requests like: { \"model\": \"jev-latest\", \"state\": { \"condition\": \"could work from home\", \"rows\": [ {\"i\": 0, \"row\": {\"bio\": \"...\", \"job_title\": \"Staff engineer\", \"name\": \"Ada\"}}, {\"i\": 1, \"row\": {\"bio\": \"...\", \"job_title\": \"Line cook\", \"name\": \"Ravi\"}} ] }, \"questions\": { \"row_0\": {\"type\": \"noul\", \"instructions\": \"Does the row in rows with \\\"i\\\": 0 satisfy the condition? ...\"}, \"row_1\": {\"type\": \"noul\", \"instructions\": \"...\"} } } Requests run on a worker pool of --concurrency. Ctrl-C cancels everything in flight. Answers are written back to the cache."
+  },
+  {
+    "id": "how-it-works-pass-c-project",
+    "title": "Pass C: project",
+    "url": "https://jev-pg-dvft.sprites.app/docs/how-it-works#pass-c-project",
+    "description": "How it works · The two-pass execution in detail, and what the server actually sees.",
+    "section": "Use",
+    "content": "In the client: jev() becomes p >= threshold and filters rows; jev_prob becomes a column; ORDER BY p DESC sorts; LIMIT 10 cuts. GROUP BY with aggregates is computed here too. The result is printed as a psql table with a footer of what it cost."
+  },
+  {
+    "id": "how-it-works-when-order-by-and-limit-stay-on-the-server",
+    "title": "When ORDER BY and LIMIT stay on the server",
+    "url": "https://jev-pg-dvft.sprites.app/docs/how-it-works#when-order-by-and-limit-stay-on-the-server",
+    "description": "How it works · The two-pass execution in detail, and what the server actually sees.",
+    "section": "Use",
+    "content": "Only when the collected rows are exactly the final rows: there is no jev predicate, no GROUP BY, and the sort key is not a judgement. Then SELECT name, jev_prob(people, 'x') AS p FROM people ORDER BY name LIMIT 10 sends ORDER BY name LIMIT 10 to Postgres and judges ten rows, not the whole table."
+  },
+  {
+    "id": "install",
+    "title": "Install",
+    "url": "https://jev-pg-dvft.sprites.app/docs/install",
+    "description": "Get the jevql binary onto your machine.",
+    "section": "Start",
+    "content": "jevql is a single static binary for macOS and Linux. Pick whichever route suits you. brew install kylemclaren/tap/jevql The tap serves prebuilt binaries for Apple Silicon, Intel Macs and Linux. Upgrade with brew upgrade jevql. curl -fsSL https://jevql.fly.dev/install.sh | sh Detects your OS and architecture, downloads the matching release, verifies its sha256 against checksums.txt, and installs to /usr/local/bin or ~/.local/bin. Set JEVQL_VERSION to pin a version and JEVQL_INSTALL_DIR to choose the directory. CGO_ENABLED=1 go install github.com/kylemclaren/jevql/cmd/jevql@latest Needs Go 1.25+ and a C compiler: the Postgres parser is compiled from libpg_query. The first build takes about a minute. Download jevql_ _ _ .tar.gz from the releases page, verify it against checksums.txt, and put the jevql binary on your PATH. Check it worked: jevql --version"
+  },
+  {
+    "id": "install-requirements",
+    "title": "Requirements",
+    "url": "https://jev-pg-dvft.sprites.app/docs/install#requirements",
+    "description": "Install · Get the jevql binary onto your machine.",
+    "section": "Start",
+    "content": "A PostgreSQL you can already connect to. Any version a modern psql speaks to is fine; jevql was tested against 17. A TypeSafe API key for jev queries. Plain SQL works without one."
+  },
+  {
+    "id": "install-upgrading",
+    "title": "Upgrading",
+    "url": "https://jev-pg-dvft.sprites.app/docs/install#upgrading",
+    "description": "Install · Get the jevql binary onto your machine.",
+    "section": "Start",
+    "content": "Homebrew and the shell script always fetch the latest release. Go users rerun go install. Your cache and config are kept across versions; the cache key includes the model name, so a model change simply misses the cache."
+  },
+  {
+    "id": "introduction",
+    "title": "Introduction",
+    "url": "https://jev-pg-dvft.sprites.app/docs/introduction",
+    "description": "What jevql is, what it is not, and the one idea behind it.",
+    "section": "Start",
+    "content": "jevql adds one extra family of SQL functions to any PostgreSQL you can already connect to. Use it from the command line, from a shared HTTP node, from an agent over MCP, or from the Go, TypeScript and Python SDKs: SELECT name, city, jev_prob(people, 'could work from home') AS p FROM people WHERE jev(people, 'could work from home') AND country = 'PT' ORDER BY p DESC LIMIT 20; jev(people, 'could work from home') is a yes/no judgement about each row, made by TypeSafe's Jev model. Everything else in that statement is ordinary SQL, and that is exactly what Postgres receives. The judgement happens in the client."
+  },
+  {
+    "id": "introduction-the-one-idea",
+    "title": "The one idea",
+    "url": "https://jev-pg-dvft.sprites.app/docs/introduction#the-one-idea",
+    "description": "Introduction · What jevql is, what it is not, and the one idea behind it.",
+    "section": "Start",
+    "content": "Postgres cannot evaluate jev(), so jevql runs a statement in two passes: 1. Collect. The statement is parsed with libpg_query, the real Postgres parser. Every jev_ term is stripped, the columns needed to describe each row are added, and the rest is sent to the server. Indexed filters such as country = 'PT' stay on the server where they belong. 2. Judge. The rows that come back are packed into batches and sent to TypeSafe with one question per row. Identical rows are judged once. Answers are cached locally in sqlite, so the second run costs nothing. 3. Project. Booleans, probabilities, choices and scores are attached in the client, then filter, group, sort and limit are applied and a psql table is printed. There is no extension, no CREATE EXTENSION, no proxy in front of Postgres. If you can connect with psql, you can use jevql. Managed databases work."
+  },
+  {
+    "id": "introduction-what-it-is-not",
+    "title": "What it is not",
+    "url": "https://jev-pg-dvft.sprites.app/docs/introduction#what-it-is-not",
+    "description": "Introduction · What jevql is, what it is not, and the one idea behind it.",
+    "section": "Start",
+    "content": "It is not a Postgres extension. jev() exists only inside jevql and its SDKs. An application that sends WHERE jev(...) through a normal driver gets \"function does not exist\". It is not free of data movement. The row contents you judge are sent to TypeSafe over HTTPS. Read Security before pointing it at real data. It is not magic. Every jev query scans everything your SQL filters let through. Put cheap predicates first, and use --explain to see the cost before you pay it."
+  },
+  {
+    "id": "introduction-from-your-code",
+    "title": "From your code",
+    "url": "https://jev-pg-dvft.sprites.app/docs/introduction#from-your-code",
+    "description": "Introduction · What jevql is, what it is not, and the one idea behind it.",
+    "section": "Start",
+    "content": "The same engine is available as libraries. Go links it in process; the TypeScript and Python packages bundle the engine and start a private one on localhost, or point at a shared jevql serve. rows, err := client.QueryMaps(ctx, \"SELECT name FROM people WHERE jev(people, 'could work from home')\") const db = new Jevql() const rows = await db.queryObjects(\"SELECT name FROM people WHERE jev(people, 'could work from home')\") with Jevql() as db: rows = db.query_dicts(\"SELECT name FROM people WHERE jev(people, 'could work from home')\") See Go, TypeScript and Python."
+  },
+  {
+    "id": "introduction-where-next",
+    "title": "Where next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/introduction#where-next",
+    "description": "Introduction · What jevql is, what it is not, and the one idea behind it.",
+    "section": "Start",
+    "content": "Homebrew, a one-line script, Go, or a tarball. Connect, load sample data, run your first jev query. Every jev_ function and where it may appear. Go in process; TypeScript and Python over a local server."
+  },
+  {
+    "id": "limitations",
+    "title": "Limitations and roadmap",
+    "url": "https://jev-pg-dvft.sprites.app/docs/limitations",
+    "description": "What v1 declines to do, and what is likely next.",
+    "section": "Reference",
+    "content": ""
+  },
+  {
+    "id": "limitations-not-in-v1",
+    "title": "Not in v1",
+    "url": "https://jev-pg-dvft.sprites.app/docs/limitations#not-in-v1",
+    "description": "Limitations and roadmap · What v1 declines to do, and what is likely next.",
+    "section": "Reference",
+    "content": "jev_ in CTEs, subqueries, HAVING, window functions, DISTINCT, set operations. OR jev(...). Split the query, or rewrite as jev() with a broader condition. Comparing probabilities in WHERE. Use jev(src, 'condition', 0.7). Aggregates other than count, sum, avg, min, max alongside jev. FETCH FIRST ... WITH TIES, FOR UPDATE. Judging a subquery or CTE alias. The source must be a base table in FROM. Cache expiry. Clear it by hand."
+  },
+  {
+    "id": "limitations-known-rough-edges",
+    "title": "Known rough edges",
+    "url": "https://jev-pg-dvft.sprites.app/docs/limitations#known-rough-edges",
+    "description": "Limitations and roadmap · What v1 declines to do, and what is likely next.",
+    "section": "Reference",
+    "content": "Column-list form needs two or more columns. jev((name), ...) parses as a plain column reference; write ROW(name). GROUP BY output ordering follows first appearance unless you add ORDER BY. The macOS Intel binary is built on GitHub's Intel runners; report anything odd."
+  },
+  {
+    "id": "limitations-likely-next",
+    "title": "Likely next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/limitations#likely-next",
+    "description": "Limitations and roadmap · What v1 declines to do, and what is likely next.",
+    "section": "Reference",
+    "content": "Expiry and size limits for the cache. OR jev(...) by judging the union and filtering in the client, behind an explicit flag because of cost. Streaming results for jevql serve. A Postgres wire proxy, so unmodified applications can send WHERE jev(...). Deliberately not in this repository yet."
+  },
+  {
+    "id": "mcp",
+    "title": "MCP server",
+    "url": "https://jev-pg-dvft.sprites.app/docs/mcp",
+    "description": "Let agents query your Postgres semantically over the Model Context Protocol.",
+    "section": "Integrate",
+    "content": "jevql mcp exposes the engine as an MCP server, so Claude Code, Claude Desktop, Cursor and any other MCP client can run jev queries, estimate their cost, judge rows and browse the catalog. The same server is mounted at /mcp on jevql serve, for agents that connect over HTTP."
+  },
+  {
+    "id": "mcp-connect",
+    "title": "Connect",
+    "url": "https://jev-pg-dvft.sprites.app/docs/mcp#connect",
+    "description": "MCP server · Let agents query your Postgres semantically over the Model Context Protocol.",
+    "section": "Integrate",
+    "content": "Connection and TypeSafe settings come from the usual places: DATABASE_URL, PG, TYPESAFE_API_KEY, or the saved config file. Claude Code claude mcp add jevql -- jevql mcp Claude Desktop (claude_desktop_config.json) { \"mcpServers\": { \"jevql\": { \"command\": \"jevql\", \"args\": [\"mcp\"], \"env\": { \"DATABASE_URL\": \"postgres://...\", \"TYPESAFE_API_KEY\": \"tsk_...\" } } } } Cursor (.cursor/mcp.json) { \"mcpServers\": { \"jevql\": { \"command\": \"jevql\", \"args\": [\"mcp\"] } } } Remote, over HTTP. Run jevql serve --token secret (or the deployed node) and point the client at https://host/mcp with Authorization: Bearer secret. The transport is streamable HTTP, stateless."
+  },
+  {
+    "id": "mcp-tools",
+    "title": "Tools",
+    "url": "https://jev-pg-dvft.sprites.app/docs/mcp#tools",
+    "description": "MCP server · Let agents query your Postgres semantically over the Model Context Protocol.",
+    "section": "Integrate",
+    "content": "Tool What it does query Runs a SELECT. Plain SQL passes through; jev(), jev_prob(), jev_choice() and jev_score() judge rows. Returns columns, rows and stats (tokens, USD). Accepts threshold and max_rows. explain The collect SQL Postgres will run, rows surviving the filters, batches, and an estimate of tokens and USD. No TypeSafe call. judge Judges objects you pass in rows with one question (noul, choice or score). No database involved; answers are cached. list_tables Tables, views and materialized views on the connected database. describe_table Columns, types, nullability, defaults and indexes of one table, like \\d. Examples of what an agent sends: { \"name\": \"query\", \"arguments\": { \"sql\": \"SELECT subject FROM tickets WHERE jev(tickets, 'is asking for a refund') AND status = 'open'\" } } { \"name\": \"explain\", \"arguments\": { \"sql\": \"SELECT FROM emails WHERE jev(emails, 'is a newsletter')\" } } { \"name\": \"judge\", \"arguments\": { \"question\": \"is urgent\", \"rows\": [ { \"subject\": \"Site down\" }, { \"subject\": \"Logo feedback\" } ] } } { \"name\": \"describe_table\", \"arguments\": { \"name\": \"tickets\" } } Errors come back as tool errors with the same codes as the REST API (sql, budget, api), so the agent can read them and adjust."
+  },
+  {
+    "id": "mcp-resource-and-prompt",
+    "title": "Resource and prompt",
+    "url": "https://jev-pg-dvft.sprites.app/docs/mcp#resource-and-prompt",
+    "description": "MCP server · Let agents query your Postgres semantically over the Model Context Protocol.",
+    "section": "Integrate",
+    "content": "Resource jevql://sql-surface: a Markdown reference of the jev functions, where they may appear and what is rejected. Clients can attach it to context. Prompt semantic-query: takes a plain-language request and an optional table and instructs the model to write a jevql SELECT that keeps cheap filters in SQL and calls explain first when the estimate is large."
+  },
+  {
+    "id": "mcp-read-only-by-default",
+    "title": "Read-only by default",
+    "url": "https://jev-pg-dvft.sprites.app/docs/mcp#read-only-by-default",
+    "description": "MCP server · Let agents query your Postgres semantically over the Model Context Protocol.",
+    "section": "Integrate",
+    "content": "The server rejects anything that is not a SELECT. Start it with jevql mcp --allow-writes if an agent should be able to run DML or DDL through it. --max-rows caps the rows any single query may collect, which bounds what an agent can spend per call. Whatever the agent selects is sent to TypeSafe when a jev function is involved. Give the server a role that can only see the tables you are willing to judge."
+  },
+  {
+    "id": "quickstart",
+    "title": "Quick start",
+    "url": "https://jev-pg-dvft.sprites.app/docs/quickstart",
+    "description": "Connect, load a sample table, and run your first judgement.",
+    "section": "Start",
+    "content": "Launch it jevql With nothing configured, jevql asks for a database URL and a TypeSafe API key (hidden input) and offers to save them to ~/.config/jevql/env with mode 0600. Next time it just connects. If you prefer environment variables, it reads the same ones psql does plus two of its own: jevql Load some rows Any table will do. If you want the sample data from the repository: curl -fsSL https://raw.githubusercontent.com/kylemclaren/jevql/main/testdata/people.sql | jevql That creates people, cities and tickets with a dozen rows each. Plain SQL passes straight through, so this is just psql behaviour. Ask a question SELECT name, job_title FROM people WHERE jev(people, 'could work from home'); name | job_title ---------------+------------------------- Ada Fernandes | Staff software engineer Miguel Costa | Technical writer Tom Baker | Customer support lead (3 rows) jev: 12 judged, 1 req, 0 cache hits, 2.1k in tokens, $0.0001, 2.57s The footer tells you what it cost. Run the same statement again and you will see 12 cache hits, 0 req. Look before you leap jevql --explain -c \"SELECT name FROM people WHERE jev(people, 'could work from home')\" --explain prints the SQL Postgres will run, how many rows survive the SQL filters, and a token and dollar estimate. It makes no TypeSafe calls. jev() takes the FROM alias as its first argument: people here, or p if you wrote FROM people p. Every column of that relation goes into the judgement. To send less, list columns explicitly: jev((name, job_title), '...')."
+  },
+  {
+    "id": "quickstart-next",
+    "title": "Next",
+    "url": "https://jev-pg-dvft.sprites.app/docs/quickstart#next",
+    "description": "Quick start · Connect, load a sample table, and run your first judgement.",
+    "section": "Start",
+    "content": "SQL surface for jev_prob, jev_choice, jev_score and friends. CLI reference for flags, formats and meta commands."
+  },
+  {
+    "id": "sdk-go",
+    "title": "Go SDK",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-go",
+    "description": "Run jev-enabled SQL in process from Go, using the same engine as the CLI.",
+    "section": "Integrate",
+    "content": "The Go SDK is the engine itself. It imports the parser, rewriter, cache and TypeSafe client from the module, so there is no server and no subprocess. go get github.com/kylemclaren/jevql/sdk/go package main \"context\" \"fmt\" \"os\" jevql \"github.com/kylemclaren/jevql/sdk/go\" ) func main() { ctx := context.Background() client, err := jevql.New(ctx, jevql.Options{ DatabaseURL: os.Getenv(\"DATABASE_URL\"), // or Conn: an existing pgx.Conn APIKey: os.Getenv(\"TYPESAFE_API_KEY\"), }) if err != nil { panic(err) } defer client.Close(ctx) rows, err := client.QueryMaps(ctx, \"SELECT name, jev_prob(people, 'could work from home') AS p FROM people WHERE country = 'PT' ORDER BY p DESC LIMIT 5\") if err != nil { panic(err) } for _, r := range rows { fmt.Println(r[\"name\"], r[\"p\"]) } }"
+  },
+  {
+    "id": "sdk-go-api",
+    "title": "API",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-go#api",
+    "description": "Go SDK · Run jev-enabled SQL in process from Go, using the same engine as the CLI.",
+    "section": "Integrate",
+    "content": "New(ctx, Options) connects (or wraps Options.Conn) and opens the cache Query(ctx, sql, opts...) returns Result with Columns, Rows [][]any, Tag, Jev, Stats QueryMaps(ctx, sql, opts...) rows as []map[string]any Explain(ctx, sql) the plan and cost estimate; no TypeSafe calls CacheClear(ctx) empties the answer cache Close(ctx) closes the cache and the connection if the client opened it QueryOptions{Threshold: &t, MaxRows: &n} overrides per call. Options mirrors the CLI flags: Model, Threshold, BatchSize, Concurrency, MaxRows, MaxChars, Columns, CachePath, NoCache, Logf. Unset fields fall back to DATABASE_URL, TYPESAFE_API_KEY, TYPESAFE_API_URL and JEV_THRESHOLD, then to the CLI defaults."
+  },
+  {
+    "id": "sdk-go-errors",
+    "title": "Errors",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-go#errors",
+    "description": "Go SDK · Run jev-enabled SQL in process from Go, using the same engine as the CLI.",
+    "section": "Integrate",
+    "content": "Failures are jevql.Error with a Code of sql, budget or api, wrapping the underlying error: var je jevql.Error if errors.As(err, &je) && je.Code == \"budget\" { // raise MaxRows or narrow the query }"
+  },
+  {
+    "id": "sdk-go-notes",
+    "title": "Notes",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-go#notes",
+    "description": "Go SDK · Run jev-enabled SQL in process from Go, using the same engine as the CLI.",
+    "section": "Integrate",
+    "content": "A client serialises calls on its connection. Create one per goroutine, or share one and accept the serialisation. Because the SDK links libpg_query, building needs CGO and a C compiler, the same as the CLI. Values in Rows are JSON-friendly: int64/float64, string, bool, nil, RFC 3339 strings for timestamps."
+  },
+  {
+    "id": "sdk-python",
+    "title": "Python SDK",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python",
+    "description": "A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "pip install jevql That is the whole install. The wheel for your platform carries the jevql engine; the package itself is standard library only."
+  },
+  {
+    "id": "sdk-python-embedded-engine",
+    "title": "Embedded engine",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python#embedded-engine",
+    "description": "Python SDK · A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "from jevql import Jevql, JevqlError with Jevql() as db: # starts a private engine on localhost on first use res = db.query( \"SELECT name, jev_prob(people, 'could work from home') AS p FROM people WHERE country = 'PT' ORDER BY p DESC LIMIT 5\", threshold=0.6, ) res.columns # [\"name\", \"p\"] res.rows # [[\"Miguel Costa\", 0.94], ...] res.stats.usd # 0.00005 for row in db.query_dicts(\"SELECT FROM tickets WHERE jev(tickets, 'is about billing')\"): print(row[\"subject\"]) Leaving the with block, calling close(), or exiting the interpreter stops the engine. It reads DATABASE_URL, PG, TYPESAFE_API_KEY, TYPESAFE_API_URL and JEV_THRESHOLD from the environment, like the CLI. Override with keyword arguments: Jevql(database_url=\"postgres://...\", api_key=\"tsk_...\", model=\"jev-latest\", threshold=0.5, max_rows=2500, cache_path=\"~/.cache/jevql/cache.db\")"
+  },
+  {
+    "id": "sdk-python-remote-engine",
+    "title": "Remote engine",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python#remote-engine",
+    "description": "Python SDK · A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "db = Jevql(url=\"https://jev.internal\", token=os.environ[\"JEVQL_TOKEN\"]) Run the shared engine with jevql serve --listen 0.0.0.0:7433 --token secret behind your own TLS proxy."
+  },
+  {
+    "id": "sdk-python-engine-discovery",
+    "title": "Engine discovery",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python#engine-discovery",
+    "description": "Python SDK · A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "engine_path=, then JEVQL_ENGINE_PATH, then the binary bundled in the wheel, then jevql on PATH. If none exists, JevqlError with code transport tells you how to install one."
+  },
+  {
+    "id": "sdk-python-errors",
+    "title": "Errors",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python#errors",
+    "description": "Python SDK · A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "try: db.query(\"SELECT FROM nope\") except JevqlError as e: print(e.code, e.status, e) # \"sql\", 400, 'relation \"nope\" does not exist' code is one of sql, budget, api, auth, internal, transport."
+  },
+  {
+    "id": "sdk-python-types",
+    "title": "Types",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-python#types",
+    "description": "Python SDK · A self-contained client for Python 3.9+. The engine ships inside the wheel.",
+    "section": "Integrate",
+    "content": "QueryResult, Stats and Explain are dataclasses with from_dict. QueryResult.dicts() zips columns and rows."
+  },
+  {
+    "id": "sdk-typescript",
+    "title": "TypeScript SDK",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript",
+    "description": "A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "npm i jevql That is the whole install. The package has no runtime dependencies and pulls in a small platform package with the jevql engine for your OS and CPU (@jevql/engine-darwin-arm64, -darwin-x64, -linux-x64, -linux-arm64). Node 18+ or Bun."
+  },
+  {
+    "id": "sdk-typescript-embedded-engine",
+    "title": "Embedded engine",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript#embedded-engine",
+    "description": "TypeScript SDK · A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "const db = new Jevql() // starts a private engine on localhost on first use const res = await db.query( \"SELECT name, jev_prob(people, 'could work from home') AS p FROM people WHERE country = 'PT' ORDER BY p DESC LIMIT 5\", { threshold: 0.6 }, ) res.columns // [\"name\", \"p\"] res.rows // [[\"Miguel Costa\", 0.94], ...] res.stats // { judged: 6, requests: 1, cache_hits: 0, usd: 0.00005, ... } const tickets = await db.queryObjects(\"SELECT FROM tickets WHERE jev(tickets, 'is about billing')\") await db.close() // stops the engine; it also stops when your process exits The engine reads DATABASE_URL, PG, TYPESAFE_API_KEY, TYPESAFE_API_URL and JEV_THRESHOLD from your environment, exactly like the CLI. Pass options to override: new Jevql({ databaseUrl: \"postgres://...\", apiKey: process.env.TYPESAFE_API_KEY, model: \"jev-latest\", threshold: 0.5, maxRows: 2500, cachePath: \"~/.cache/jevql/cache.db\", // or noCache: true enginePath: \"/opt/jevql/bin/jevql\", // rarely needed, see below })"
+  },
+  {
+    "id": "sdk-typescript-remote-engine",
+    "title": "Remote engine",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript#remote-engine",
+    "description": "TypeScript SDK · A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "For a team, run one engine and share its cache: jevql serve --listen 0.0.0.0:7433 --token secret # behind your own TLS proxy const db = new Jevql({ url: \"https://jev.internal\", token: process.env.JEVQL_TOKEN }) Same methods, same result shapes."
+  },
+  {
+    "id": "sdk-typescript-engine-discovery",
+    "title": "Engine discovery",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript#engine-discovery",
+    "description": "TypeScript SDK · A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "The embedded mode finds the binary in this order: enginePath, the JEVQL_ENGINE_PATH environment variable, the bundled platform package, then jevql on your PATH. If none exists you get a JevqlError with code transport naming the install commands."
+  },
+  {
+    "id": "sdk-typescript-errors",
+    "title": "Errors",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript#errors",
+    "description": "TypeScript SDK · A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "Every failure is a JevqlError with code (sql, budget, api, auth, internal, transport) and, for HTTP responses, status: try { await db.query(\"SELECT FROM nope\") } catch (e) { if (e instanceof JevqlError && e.code === \"sql\") console.error(e.message) }"
+  },
+  {
+    "id": "sdk-typescript-types",
+    "title": "Types",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sdk-typescript#types",
+    "description": "TypeScript SDK · A self-contained client for Node and Bun. The engine ships inside the package.",
+    "section": "Integrate",
+    "content": "QueryResult, Stats, Explain and JevqlOptions are exported. rows is unknown[][]; queryObjects returns Record []."
+  },
+  {
+    "id": "security",
+    "title": "Security and honesty",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security",
+    "description": "What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "Every column of the judged alias, or the columns you list, is sent over HTTPS to the TypeSafe API. Do not use jevql on data you cannot share with TypeSafe. Use jev((col, ...), ...) or --columns to send the minimum."
+  },
+  {
+    "id": "security-what-is-sent",
+    "title": "What is sent",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security#what-is-sent",
+    "description": "Security and honesty · What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "Only the rows that survive your SQL filters, only the columns of the judged source, as JSON. Nothing else about the schema or the query is sent. --explain shows the exact collect SQL and how many rows it returns without making any API call."
+  },
+  {
+    "id": "security-what-is-stored-locally",
+    "title": "What is stored locally",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security#what-is-stored-locally",
+    "description": "Security and honesty · What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "~/.cache/jevql/cache.db: sha256 keys derived from row contents, and the answers. Mode 0600. Not encrypted. \\cache clear deletes everything. ~/.config/jevql/env: only if you accept the offer on first launch. Holds the database URL (with password) and API key in plain text, mode 0600. The REPL history at ~/.cache/jevql/history."
+  },
+  {
+    "id": "security-keys",
+    "title": "Keys",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security#keys",
+    "description": "Security and honesty · What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "The API key comes from --api-key, TYPESAFE_API_KEY, the prompt, or the config file. It is never printed and never logged, including with -v. TYPESAFE_API_URL lets you route through a proxy that injects credentials, so the key need not exist on the machine at all."
+  },
+  {
+    "id": "security-cost-controls",
+    "title": "Cost controls",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security#cost-controls",
+    "description": "Security and honesty · What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "--max-rows (default 2500) aborts before any HTTP call when the collect is too large. Exit code 2. --max-chars does the same by payload size. The footer and -v report tokens and dollars from the usage the API returns; the price used is $0.042 per million input tokens."
+  },
+  {
+    "id": "security-what-it-is-not",
+    "title": "What it is not",
+    "url": "https://jev-pg-dvft.sprites.app/docs/security#what-it-is-not",
+    "description": "Security and honesty · What leaves your machine, what is stored, and what jevql will not do.",
+    "section": "Reference",
+    "content": "Not a Postgres extension. The server never learns jev(); applications sending it through a driver will fail until they go through jevql, an SDK, or a real extension. Not a wire-compatible psql for GUI tools. Not a sampler. A jev query judges every row the SQL lets through. Cheap predicates first."
+  },
+  {
+    "id": "serve",
+    "title": "jevql serve and the protocol",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve",
+    "description": "The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "jevql serve runs the same executor as the CLI behind a tiny JSON API. It is what the TypeScript and Python SDKs talk to. By default they start a private one themselves; run it by hand when you want one shared engine, one connection and one warm cache for a whole team. jevql serve --listen 127.0.0.1:7433 --token secret Connection and TypeSafe settings come from the usual flags, environment variables and config file. --token (or JEVQL_TOKEN) requires Authorization: Bearer on every request. It is meant for localhost. It does not speak TLS and it has one bearer token. Put a real proxy in front of it before exposing it anywhere else."
+  },
+  {
+    "id": "serve-endpoints",
+    "title": "Endpoints",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#endpoints",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "GET /v1/health {\"ok\": true, \"version\": \"0.1.0\", \"model\": \"jev-latest\"} POST /v1/query {\"sql\": \"SELECT name FROM people WHERE jev(people, 'could work from home')\", \"threshold\": 0.7, \"explain\": false, \"max_rows\": 500} Only sql is required. threshold and max_rows override the server defaults for that request. explain: true returns the plan without calling TypeSafe."
+  },
+  {
+    "id": "serve-queryresult",
+    "title": "QueryResult",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#queryresult",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "{ \"columns\": [\"name\", \"p\"], \"rows\": [[\"Ada Fernandes\", 0.93], [\"Miguel Costa\", 0.94]], \"row_count\": 2, \"tag\": \"SELECT 2\", \"jev\": true, \"stats\": {\"collect_rows\": 6, \"judged\": 6, \"requests\": 1, \"cache_hits\": 0, \"input_tokens\": 1200, \"output_tokens\": 40, \"usd\": 0.00005, \"elapsed_ms\": 1350}, \"explain\": null } tag is the Postgres command tag, so row-less statements return INSERT 0 1 or CREATE TABLE with empty columns. stats is null for plain SQL. Values use the same canonical encoding as the cache: numbers as numbers, timestamps as RFC 3339 strings, bytea as base64, json columns as nested JSON."
+  },
+  {
+    "id": "serve-more-endpoints",
+    "title": "More endpoints",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#more-endpoints",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "The complete contract is served by every engine at GET /openapi.json as an OpenAPI 3.1 document. In short: POST /v1/explain takes the same body as /v1/query and returns the Explain object only. No TypeSafe calls. POST /v1/judge judges rows you already hold, with no database involved: {\"question\": \"is about billing\", \"kind\": \"noul\", \"rows\": [{\"subject\": \"Charged twice\"}, {\"subject\": \"API returns 500\"}]} {\"answers\": [{\"p\": 0.93, \"pass\": true, \"confidence\": 0.93}, {\"p\": 0.04, \"pass\": false, \"confidence\": 0.96}], \"stats\": {\"judged\": 2, \"requests\": 1, \"cache_hits\": 0, \"usd\": 0.00002, \"...\": \"...\"}} kind is noul (default), choice with options, or score with ordered options; answers then carry choice and probabilities, or score and norm. Identical rows are judged once, and answers share the cache with SQL queries. --max-rows and --max-chars apply. GET /v1/cache and DELETE /v1/cache report and clear the answer cache. They return 403 unless the server enables cache admin. GET /v1/schema/tables lists user relations; GET /v1/schema/tables/{name} describes one, with columns and indexes, like \\d."
+  },
+  {
+    "id": "serve-errors",
+    "title": "Errors",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#errors",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "{\"error\": \"relation \\\"nope\\\" does not exist\", \"code\": \"sql\"} Status Code When 400 sql parse, rewrite or Postgres error 402 budget --max-rows or --max-chars fired; nothing was sent to TypeSafe 502 api TypeSafe returned an error 401 auth bad or missing bearer token 403 auth feature disabled on this server (cache admin) 404 sql relation not found (schema endpoints)"
+  },
+  {
+    "id": "serve-how-the-sdks-embed-it",
+    "title": "How the SDKs embed it",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#how-the-sdks-embed-it",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "An SDK starts jevql serve --listen 127.0.0.1:0 --token --ready-json --parent-pid . The engine picks a free loopback port, prints one JSON line with the address, and exits by itself if the host process disappears. The SDK finds the binary via JEVQL_ENGINE_PATH, its bundled platform package, or PATH. Full contract in sdk/PROTOCOL.md."
+  },
+  {
+    "id": "serve-the-same-documents-from-the-cli",
+    "title": "The same documents from the CLI",
+    "url": "https://jev-pg-dvft.sprites.app/docs/serve#the-same-documents-from-the-cli",
+    "description": "jevql serve and the protocol · The local HTTP transport the SDKs use, and the JSON documents it speaks.",
+    "section": "Integrate",
+    "content": "jevql --json-table -c \"SELECT 1; SELECT name FROM people WHERE jev(people, 'x')\" prints one QueryResult per statement, one per line. Errors go to stderr as text, with exit code 1 for SQL and 2 for API or budget errors. The SDKs' CLI transport wraps exactly this, which is handy for scripts and notebooks where you do not want a server."
+  },
+  {
+    "id": "sql",
+    "title": "SQL surface",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql",
+    "description": "Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "All functions take a row source as their first argument and a question as their second."
+  },
+  {
+    "id": "sql-row-sources",
+    "title": "Row sources",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql#row-sources",
+    "description": "SQL surface · Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "Form Sends jev(people, ...) every column of the people relation (or alias) in FROM jev(p, ...) same, for FROM people p jev((name, bio), ...) only those expressions, as a JSON object keyed by column name Alias form refuses tables with bytea columns unless you narrow the columns with the list form or --columns name,bio. NULLs are sent as null. Timestamps are RFC 3339 in UTC."
+  },
+  {
+    "id": "sql-functions",
+    "title": "Functions",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql#functions",
+    "description": "SQL surface · Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "Call Returns jev(src, 'condition') boolean, p >= threshold jev(src, 'condition', 0.7) boolean with an explicit threshold jev_prob(src, 'condition') float8 in 0..1, the calibrated probability jev_choice(src, 'question', ARRAY['a','b']) text, the chosen option jev_score(src, 'question', ARRAY['lo','mid','hi']) float8, weighted index into the levels jev_score_norm(src, 'question', ARRAY[...]) float8 in 0..1 jev_confidence(src, 'q' [, 'noul' \\ 'choice' \\ 'score', ARRAY[...]]) float8 jev_eval(src, 'q' [, kind, ARRAY[...]]) the raw answer as JSON Threshold precedence: explicit third argument, then --threshold, then JEV_THRESHOLD, then 0.5. Calls that share a row source, question and options are judged once. jev(p, 'x') and jev_prob(p, 'x') in the same statement cost one judgement per row."
+  },
+  {
+    "id": "sql-where-a-call-may-appear",
+    "title": "Where a call may appear",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql#where-a-call-may-appear",
+    "description": "SQL surface · Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "WHERE. jev() as an AND term, including NOT jev(): WHERE jev(t, 'is urgent') AND status = 'open' WHERE NOT jev(e, 'is a newsletter') AND received > now() - interval '1 day' SELECT list. Any function, as the whole expression, with or without an alias: SELECT subject, jev_choice(t, 'which team?', ARRAY['billing','technical']) AS team FROM tickets t ORDER BY. By alias, position or the expression itself: ORDER BY p DESC -- alias of jev_prob(...) ORDER BY jev_prob(people, 'x') GROUP BY. With count(), count(x), sum, avg, min, max. Aggregation happens in the client, so sum and avg need numeric columns: SELECT jev_choice(t, 'which team?', ARRAY['billing','technical','sales']) AS team, count() FROM tickets t WHERE status = 'open' GROUP BY 1 ORDER BY 2 DESC; Joins. Judge one or several aliases: SELECT p.name, c.country FROM people p JOIN cities c ON c.name = p.city WHERE jev(p, 'could work from home') AND c.country = 'PT';"
+  },
+  {
+    "id": "sql-what-is-rejected-on-purpose",
+    "title": "What is rejected, on purpose",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql#what-is-rejected-on-purpose",
+    "description": "SQL surface · Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "jevql errors with a specific message rather than guessing: Statement Why jev_ in INSERT, UPDATE, DELETE, DDL only SELECT is supported jev_ inside a CTE or subquery run the inner query with jevql instead HAVING jev_(...), or any HAVING with jev present not in v1 window functions over jev_ not in v1 ... OR jev(...) every row would need judging; split the query jev_prob(...) > 0.7 in WHERE write jev(src, 'condition', 0.7) round(jev_prob(...), 2) jev must be the whole SELECT expression SELECT DISTINCT, UNION, FETCH ... WITH TIES not in v1 alias-form on a table with bytea narrow the columns first"
+  },
+  {
+    "id": "sql-pushdown-rules",
+    "title": "Pushdown rules",
+    "url": "https://jev-pg-dvft.sprites.app/docs/sql#pushdown-rules",
+    "description": "SQL surface · Every jev function, its arguments, and where it may appear in a statement.",
+    "section": "Use",
+    "content": "ORDER BY, LIMIT and OFFSET are sent to Postgres only when the collected rows are exactly the final rows: no jev predicate in WHERE, no GROUP BY, and no jev sort key. Then LIMIT 10 judges ten rows. Otherwise they run in the client after judging, and --max-rows caps the collected set."
+  }
+]
