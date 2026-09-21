@@ -732,9 +732,17 @@
   align-items: center;
   gap: 10px;
   border: 1.5px solid var(--ink);
-  background: var(--brand);
+  border-left-width: 5px;
+  border-left-color: var(--brand);
+  background: #fff;
   padding: 11px 12px;
   margin: 0 0 10px;
+}
+.cmd::before {
+  content: "$";
+  flex: none;
+  color: var(--muted);
+  font: 800 0.72rem/1.4 ui-monospace, monospace;
 }
 .cmd code {
   flex: 1;
@@ -749,4 +757,7 @@
   background: #fff;
   box-shadow: 2px 2px 0 var(--ink);
   padding: 7px 8px;
+}
+.cmd button:hover {
+  background: var(--highlight);
 }
