@@ -148,9 +148,9 @@ const docShape = `{
       <a class="brand" href="./"><Mark /> jev-search</a>
       <div class="mast-right">
         <span class="tagline">React component and server route</span>
-        <a class="repo-link" href="#how">how it works</a>
         <a class="repo-link" href="#benchmarks">benchmarks</a>
         <a class="repo-link" href="#install">install</a>
+        <a class="repo-link" href="#how">how it works</a>
         <a class="repo-link" href={repo} target="_blank" rel="noopener" aria-label="GitHub repository (opens in a new tab)">
           <svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"
             ><path
@@ -223,45 +223,6 @@ const docShape = `{
           >${perThousand} per 1,000 searches</span
         >
       </div>
-    </section>
-
-    <section class="machine" id="how" aria-labelledby="how-title">
-      <div class="section-head">
-        <div><p class="eyebrow">how it works</p><h2 id="how-title">The TypeSafe request and answer</h2></div>
-        <a class="repo-link" href="https://docs.typesafe.ai/api" target="_blank" rel="noopener">typesafe api ↗</a>
-      </div>
-      <p class="prose-note">
-        The keyword pass picks twenty candidates and streams them straight to the browser. Those twenty go to TypeSafe in
-        one request, each with a yes/no question attached, plus a single <code>choice</code> across all of them. Jev
-        evaluates the lot in parallel and answers with probabilities, not prose. Below is a real exchange for
-        <code>what do I do when I get a 429</code>, trimmed to three of the twenty candidates.
-      </p>
-      <Tabs labels={["Request", "Answer"]} storageKey="wire">
-        <div>
-          <Code code={wireRequest} lang="json" theme="github-light" />
-          <p class="fine">
-            Titles, descriptions and a {320}-character excerpt per candidate. Nothing else about your pages leaves the
-            server, and the browser never sees your API key.
-          </p>
-        </div>
-        <div>
-          <Code code={wireAnswer} lang="json" theme="github-light" />
-          <p class="fine">
-            Every number is calibrated, so <code>0.86</code> means what it says and the component can threshold on it.
-            Rows below {0.15} are dropped; <code>answerable</code> drives the “nothing here covers that” message.
-          </p>
-        </div>
-      </Tabs>
-      <p class="fine">
-        In this example the page that actually answers, the Python SDK's <b>Retries</b>, was tenth on keyword score, below
-        three pages Jev scored at {0.06} and under. It took {0.91} of the best-answer probability and moved to first.
-        That reordering is the whole product.
-      </p>
-      <p class="fine">
-        Over this corpus a query averages {cost.meanInputTokens.toLocaleString()} input tokens at $0.042 per million, so
-        about {perDollar.toLocaleString()} uncached searches per dollar. Output tokens are free and repeat queries are
-        cached. If TypeSafe is slow or down the keyword ranking stands and the footer says so.
-      </p>
     </section>
 
     <section class="machine" id="benchmarks" aria-labelledby="bench-title">
@@ -360,6 +321,45 @@ const docShape = `{
           <p class="fine">Remix, Hono, Deno, Cloudflare Workers: same function, no adapter.</p>
         </div>
       </Tabs>
+    </section>
+
+    <section class="machine" id="how" aria-labelledby="how-title">
+      <div class="section-head">
+        <div><p class="eyebrow">how it works</p><h2 id="how-title">The TypeSafe request and answer</h2></div>
+        <a class="repo-link" href="https://docs.typesafe.ai/api" target="_blank" rel="noopener">typesafe api ↗</a>
+      </div>
+      <p class="prose-note">
+        The keyword pass picks twenty candidates and streams them straight to the browser. Those twenty go to TypeSafe in
+        one request, each with a yes/no question attached, plus a single <code>choice</code> across all of them. Jev
+        evaluates the lot in parallel and answers with probabilities, not prose. Below is a real exchange for
+        <code>what do I do when I get a 429</code>, trimmed to three of the twenty candidates.
+      </p>
+      <Tabs labels={["Request", "Answer"]} storageKey="wire">
+        <div>
+          <Code code={wireRequest} lang="json" theme="github-light" />
+          <p class="fine">
+            Titles, descriptions and a {320}-character excerpt per candidate. Nothing else about your pages leaves the
+            server, and the browser never sees your API key.
+          </p>
+        </div>
+        <div>
+          <Code code={wireAnswer} lang="json" theme="github-light" />
+          <p class="fine">
+            Every number is calibrated, so <code>0.86</code> means what it says and the component can threshold on it.
+            Rows below {0.15} are dropped; <code>answerable</code> drives the “nothing here covers that” message.
+          </p>
+        </div>
+      </Tabs>
+      <p class="fine">
+        In this example the page that actually answers, the Python SDK's <b>Retries</b>, was tenth on keyword score, below
+        three pages Jev scored at {0.06} and under. It took {0.91} of the best-answer probability and moved to first.
+        That reordering is the whole product.
+      </p>
+      <p class="fine">
+        Over this corpus a query averages {cost.meanInputTokens.toLocaleString()} input tokens at $0.042 per million, so
+        about {perDollar.toLocaleString()} uncached searches per dollar. Output tokens are free and repeat queries are
+        cached. If TypeSafe is slow or down the keyword ranking stands and the footer says so.
+      </p>
     </section>
 
     <details>
