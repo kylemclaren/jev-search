@@ -113,7 +113,7 @@ const docShape = `{
 <Layout>
   <main class="page">
     <header class="mast">
-      <a class="brand" href="./">jev-<mark>search</mark></a>
+      <a class="brand" href="./" aria-label="jevsearch"><span>jev</span><span>search</span></a>
       <a class="gh-link" href={repo} target="_blank" rel="noopener" aria-label="GitHub repository (opens in a new tab)">
         <svg viewBox="0 0 16 16" width="19" height="19" aria-hidden="true"
           ><path
@@ -261,7 +261,7 @@ const docShape = `{
     </details>
 
     <footer>
-      <span>jev-search · MIT</span>
+      <span>jevsearch · MIT</span>
       <span>
         <a href={repo} target="_blank" rel="noopener">GitHub</a> · <a href="https://typesafe.ai">TypeSafe</a> ·
         <a href="https://jevql.fly.dev" target="_blank" rel="noopener">jevQL</a>
@@ -321,19 +321,24 @@ const docShape = `{
   }
   .brand {
     display: inline-flex;
-    align-items: baseline;
-    font: 900 1.5rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-    letter-spacing: -0.08em;
+    align-items: stretch;
+    font: 900 1.32rem/1 Arial, Helvetica, sans-serif;
+    letter-spacing: -0.055em;
     text-decoration: none;
-    color: var(--ink);
+    text-transform: lowercase;
   }
-  .brand mark {
+  .brand span {
+    padding: 7px 9px 8px;
+  }
+  .brand span:first-child {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .brand span:last-child {
     background: var(--lime);
     color: var(--ink);
-    padding: 0 0.1em 0.04em;
-    box-decoration-break: clone;
   }
-  .brand:hover mark {
+  .brand:hover span:last-child {
     background: var(--pink);
   }
   .gh-link {
@@ -381,7 +386,8 @@ const docShape = `{
   .details-grid p { margin: 0; }
   @media (max-width: 750px) {
     .mast { flex-direction: row; align-items: center; justify-content: space-between; padding-bottom: 10px; }
-    .mast .brand { font-size: 1.3rem; }
+    .mast .brand { font-size: 1.12rem; }
+    .mast .brand span { padding: 6px 7px 7px; }
     .details-grid { padding: 16px; gap: 14px; }
     .copy-btn { display: none; }
   }
