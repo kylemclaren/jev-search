@@ -414,7 +414,7 @@ mark {
 }
 .hit-main a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--brand-strong);
+  text-decoration-color: var(--highlight);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
