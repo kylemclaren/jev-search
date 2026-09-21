@@ -145,23 +145,23 @@
    the registry component looks native here without a single class changing. */
 :root {
   --background: #f7f6f0;
-  --foreground: #171715;
+  --foreground: #1e1e1edb;
   --card: #fffefa;
-  --card-foreground: #171715;
+  --card-foreground: #1e1e1edb;
   --popover: #fffefa;
-  --popover-foreground: #171715;
-  --primary: #171715;
+  --popover-foreground: #1e1e1edb;
+  --primary: #1e1e1edb;
   --primary-foreground: #f7f6f0;
   --secondary: #ecebe4;
-  --secondary-foreground: #171715;
+  --secondary-foreground: #1e1e1edb;
   --muted: #ecebe4;
   --muted-foreground: #66645e;
-  --accent: #ee5ba6;
-  --accent-foreground: #171715;
+  --accent: #f386a1;
+  --accent-foreground: #1e1e1edb;
   --destructive: #b42318;
   --border: #c7c5bb;
-  --input: #171715;
-  --ring: #171715;
+  --input: #1e1e1edb;
+  --ring: #1e1e1edb;
   --radius: 0;
-  --jev-accent: #ee5ba6;
+  --jev-accent: #f386a1;
 }

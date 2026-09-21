@@ -1,9 +1,14 @@
 /* Theme roles. Pink leads; the yellow-green is the secondary highlight.
    openjev.css is vendored and writes var(--lime) / var(--pink) throughout, so
-   those names are pointed at the roles rather than renamed at ~40 call sites. */
+   those names are pointed at the roles rather than renamed at ~40 call sites.
+
+   --brand and --ink are typesafe.ai's own values: the pink it fills sections
+   with, and the colour of its "193.6x Faster" heading, alpha included. */
 :root {
-  --brand: #ee5ba6;
+  --brand: #f386a1;
+  --brand-strong: #d45bb6;
   --highlight: #d4ff3f;
+  --ink: #1e1e1edb;
   --lime: var(--brand);
   --pink: var(--highlight);
 }
