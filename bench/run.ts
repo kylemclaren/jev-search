@@ -8,19 +8,30 @@
  * Hit@1, Hit@3, MRR@10 and per-query latency. Results land in
  * bench/results.json, which the website and README read.
  */
-import { readFileSync, writeFileSync } from "node:fs"
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
 import MiniSearch from "minisearch"
 import Fuse from "fuse.js"
 import FlexSearch from "flexsearch"
 import lunr from "lunr"
+import * as pagefind from "pagefind"
 import { create as oramaCreate, insertMultiple as oramaInsert, search as oramaSearch } from "@orama/orama"
-import { buildIndex, lexicalSearch, type SearchDocument } from "../lib/jev-search-core"
-import { createJevSearch } from "../lib/jev-search-server"
+import { buildIndex, lexicalSearch, type SearchDocument } from "../src/lib/jev-search-core"
+import { createJevSearch } from "../src/lib/jev-search-server"
 
 type Query = { kind: "keyword" | "typo" | "intent"; query: string; expect: string[] }
-const docs = JSON.parse(readFileSync(new URL("../lib/jev-search-index.json", import.meta.url), "utf8")) as SearchDocument[]
+const docs = JSON.parse(readFileSync(new URL("../src/lib/jev-search-index.json", import.meta.url), "utf8")) as SearchDocument[]
 const queries = JSON.parse(readFileSync(new URL("./queries.json", import.meta.url), "utf8")) as Query[]
+const byId = new Map(docs.map((d) => [d.id, d]))
+const unknown = queries.flatMap((q) => q.expect.filter((id) => !byId.has(id)))
+if (unknown.length > 0) {
+  console.error(`bench: ${unknown.length} expected ids are not in the corpus:\n  ${unknown.join("\n  ")}`)
+  process.exit(1)
+}
+
 const LIMIT = 10
+const CANDIDATES = 20
 const ROUNDS = Number(process.env.BENCH_ROUNDS ?? 20)
 
 interface System {
@@ -33,6 +44,7 @@ interface System {
 
 const v = (pkg: string) => (JSON.parse(readFileSync(new URL(`../node_modules/${pkg}/package.json`, import.meta.url), "utf8")) as { version: string }).version
 const norm = (q: string) => q.replace(/[^\p{L}\p{N}_\s]/gu, " ")
+const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 
 /* ---------- systems ---------- */
 let mini: MiniSearch<SearchDocument>
@@ -40,6 +52,10 @@ let fuse: Fuse<SearchDocument>
 let flex: InstanceType<typeof FlexSearch.Document>
 let lun: lunr.Index
 let orama: Awaited<ReturnType<typeof oramaCreate>>
+const jevTokens: number[] = []
+let pagefindDir = ""
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let pagefindSearch: any
 let ours: ReturnType<typeof buildIndex>
 let jev: ReturnType<typeof createJevSearch>
 
@@ -132,6 +148,38 @@ const systems: System[] = [
     },
   },
   {
+    name: "Pagefind",
+    version: v("pagefind"),
+    kind: "local",
+    async build() {
+      pagefindDir = mkdtempSync(join(tmpdir(), "pagefind-"))
+      const { index } = await pagefind.createIndex({})
+      if (!index) throw new Error("pagefind: could not create an index")
+      // Pagefind is built for static sites, so give it what it expects: real
+      // HTML, where its automatic weighting can favour the heading.
+      for (const d of docs) {
+        await index.addHTMLFile({
+          url: d.id,
+          content: `<!DOCTYPE html><html lang="en"><head><title>${esc(d.title)}</title></head><body><main data-pagefind-body><h1>${esc(
+            d.title,
+          )}</h1><p>${esc(d.description ?? "")}</p><p>${esc((d.keywords ?? []).join(" "))}</p><div>${esc(d.content ?? "")}</div></main></body></html>`,
+        })
+      }
+      await index.writeFiles({ outputPath: pagefindDir })
+      pagefindSearch = await import(`${pagefindDir}/pagefind.js`)
+      await pagefindSearch.options({ excerptLength: 0 })
+    },
+    async search(q) {
+      const res = await pagefindSearch.search(q)
+      // Pagefind returns handles; you call data() to get the record, which is
+      // what any real integration does before rendering a row.
+      const top = await Promise.all(res.results.slice(0, LIMIT).map((r: { data: () => Promise<{ url: string }> }) => r.data()))
+      // Pagefind computes the result url from the source path, so the id comes
+      // back as a path. The last segment is what we passed in.
+      return top.map((d) => d.url.replace(/^.*\//, "").replace(/\.html$/, ""))
+    },
+  },
+  {
     name: "jev-search (lexical only)",
     version: "0.1.0",
     kind: "local",
@@ -149,6 +197,7 @@ const systems: System[] = [
     },
     async search(q) {
       const r = await jev.search(q)
+      jevTokens.push(r.jev.inputTokens)
       return r.jev.hits.slice(0, LIMIT).map((h) => h.id)
     },
   },
@@ -232,11 +281,28 @@ for (const sys of systems) {
 
 const out = {
   generatedAt: new Date().toISOString(),
-  corpus: { documents: docs.length, source: "jevQL documentation, split by h2" },
+  corpus: {
+    documents: docs.length,
+    pages: new Set(docs.map((d) => d.url.split("#")[0])).size,
+    source: "every page of the TypeSafe documentation (docs.typesafe.ai), split by heading",
+  },
   queries: { total: queries.length, keyword: queries.filter((q) => q.kind === "keyword").length, typo: queries.filter((q) => q.kind === "typo").length, intent: queries.filter((q) => q.kind === "intent").length },
   model: "jev-latest",
+  // The ceiling jev-search can reach: how often the keyword pass puts a correct
+  // document in the candidate pool at all. Jev re-ranks, it does not retrieve.
+  candidateRecall: (() => {
+    const idx = buildIndex(docs)
+    const hit = queries.filter((q) => lexicalSearch(idx, q.query, { limit: CANDIDATES }).some((h) => q.expect.includes(h.id))).length
+    return { candidates: CANDIDATES, recall: hit / queries.length }
+  })(),
+  cost: {
+    meanInputTokens: jevTokens.length ? Math.round(jevTokens.reduce((a, b) => a + b, 0) / jevTokens.length) : 0,
+    usdPerMillionInputTokens: 0.042,
+  },
   runtime: `bun ${process.versions.bun ?? "?"}`,
   systems: results,
 }
 writeFileSync(new URL("./results.json", import.meta.url), JSON.stringify(out, null, 2) + "\n")
+await pagefind.close().catch(() => {})
+if (pagefindDir) rmSync(pagefindDir, { recursive: true, force: true })
 console.log(`\nwrote bench/results.json`)

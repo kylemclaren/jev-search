@@ -1,15 +1,15 @@
 /**
  * Build lib/jev-search-index.json from a folder of Markdown / MDX files.
  *
- *   bunx tsx scripts/jev-search-index.ts [contentDir] [urlPrefix] [outFile]
+ *   bunx tsx scripts/jev-search-index.ts [contentDir] [urlPrefix] [outFile] [--trailing-slash]
  *
- * Defaults: content/docs  /docs  lib/jev-search-index.json
+ * Defaults: content/docs  /docs  src/lib/jev-search-index.json (or lib/ when src/ is absent)
  *
  * Each file becomes one document; each `##` heading becomes another with a
  * `#slug` anchor, so searches land on the right part of a long page. Front
  * matter `title`, `description`, `section` and `keywords` are honoured.
  */
-import { readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from "node:fs"
 import { join, relative, dirname, extname, basename } from "node:path"
 
 /** Mirrors SearchDocument in lib/jev-search-core.ts; inlined so this script has no imports beyond node. */
@@ -23,7 +23,11 @@ interface SearchDocument {
   keywords?: string[]
 }
 
-const [contentDir = "content/docs", urlPrefix = "/docs", outFile = "lib/jev-search-index.json"] = process.argv.slice(2)
+const flags = new Set(process.argv.slice(2).filter((a) => a.startsWith("--")))
+const positional = process.argv.slice(2).filter((a) => !a.startsWith("--"))
+const trailingSlash = flags.has("--trailing-slash")
+const defaultOut = existsSync("src") ? "src/lib/jev-search-index.json" : "lib/jev-search-index.json"
+const [contentDir = "content/docs", urlPrefix = "/docs", outFile = defaultOut] = positional
 
 function walk(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
@@ -75,7 +79,8 @@ for (const file of walk(contentDir)) {
   const base = basename(rel, extname(rel))
   const dir = dirname(rel)
   const path = base === "index" ? dir : join(dir, base)
-  const url = `${urlPrefix}/${path === "." ? "" : path}`.replace(/([^:])\/\/+/g, "$1/").replace(/\/$/, "") || urlPrefix
+  let url = `${urlPrefix}/${path === "." ? "" : path}`.replace(/([^:])\/\/+/g, "$1/").replace(/\/$/, "") || urlPrefix
+  if (trailingSlash) url += "/"
   const title = data.title ?? base
   const section = data.section
   const keywords = data.keywords ? data.keywords.replace(/^\[|\]$/g, "").split(",").map((s) => s.trim()).filter(Boolean) : undefined

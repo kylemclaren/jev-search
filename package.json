@@ -3,52 +3,49 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "typecheck": "tsc --noEmit -p .",
+    "dev": "astro dev",
+    "build": "shadcn build && astro build",
+    "preview": "astro preview",
+    "start": "sh scripts/start.sh",
+    "typecheck": "astro check",
     "registry:build": "shadcn build",
     "index": "tsx scripts/jev-search-index.ts",
-    "bench": "bun run bench/run.ts"
+    "bench": "bun run bench/run.ts",
+    "index:typesafe": "bun run scripts/index-typesafe-docs.ts"
   },
   "dependencies": {
-    "@base-ui/react": "^1.8.0",
-    "class-variance-authority": "^0.7.1",
+    "@astrojs/node": "^11.1.6",
+    "@astrojs/react": "^6.0.6",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "astro-og-canvas": "^0.13.2",
     "clsx": "^2.1.1",
     "cn": "^0.3.0",
     "lucide-react": "^1.47.0",
-    "next": "16.3.5",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "tailwind-merge": "^3.7.0",
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@orama/orama": "^3.1.18",
-    "@tailwindcss/postcss": "^4",
     "@types/lunr": "^2.3.7",
-    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.5",
     "flexsearch": "^0.8.212",
     "fuse.js": "^7.5.0",
     "lunr": "^2.3.9",
     "minisearch": "^7.2.0",
+    "pagefind": "^1.5.2",
     "shadcn": "^4.21.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
-    "typescript": "^5"
+    "typescript": "~6"
   },
   "packageManager": "bun@1.4.2",
-  "ignoreScripts": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "trustedDependencies": [
-    "sharp",
-    "unrs-resolver"
-  ]
+  "engines": {
+    "node": ">=22.12.0"
+  }
 }

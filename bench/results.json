@@ -1,68 +1,88 @@
 {
-  "generatedAt": "2026-09-21T07:33:27.456Z",
+  "generatedAt": "2026-09-21T08:54:23.303Z",
   "corpus": {
-    "documents": 104,
-    "source": "jevQL documentation, split by h2"
+    "documents": 443,
+    "pages": 109,
+    "source": "every page of the TypeSafe documentation (docs.typesafe.ai), split by heading"
   },
   "queries": {
-    "total": 40,
+    "total": 41,
     "keyword": 12,
     "typo": 3,
-    "intent": 25
+    "intent": 26
   },
   "model": "jev-latest",
+  "candidateRecall": {
+    "candidates": 20,
+    "recall": 0.8292682926829268
+  },
+  "cost": {
+    "meanInputTokens": 6169,
+    "usdPerMillionInputTokens": 0.042
+  },
   "runtime": "bun 1.4.2",
   "systems": [
     {
       "name": "MiniSearch",
       "version": "7.2.0",
       "kind": "local",
-      "buildMs": 32.79,
+      "buildMs": 130.49,
       "latencyMs": {
-        "median": 0.39,
-        "p95": 1.55
+        "median": 2.11,
+        "p95": 8.63
       },
-      "hit1": 0.475,
-      "hit3": 0.625,
-      "mrr": 0.5756547619047618,
+      "hit1": 0.34146341463414637,
+      "hit3": 0.4634146341463415,
+      "mrr": 0.4384436701509872,
       "byKind": {
         "keyword": {
-          "hit1": 0.6666666666666666,
+          "hit1": 0.75,
           "hit3": 0.8333333333333334,
-          "mrr": 0.7583333333333333,
+          "mrr": 0.8333333333333334,
           "n": 12
         },
         "typo": {
           "hit1": 0.3333333333333333,
-          "hit3": 0.3333333333333333,
-          "mrr": 0.3333333333333333,
+          "hit3": 0.6666666666666666,
+          "mrr": 0.5833333333333334,
           "n": 3
         },
         "intent": {
-          "hit1": 0.4,
-          "hit3": 0.56,
-          "mrr": 0.517047619047619,
-          "n": 25
+          "hit1": 0.15384615384615385,
+          "hit3": 0.2692307692307692,
+          "mrr": 0.2394688644688645,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-noul",
+            "primitives-noul-reading-a-noul",
+            "primitives-noul-noul-in-the-cookbooks"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": null,
+          "rank": 1,
           "top": [
-            "install-upgrading",
-            "introduction-where-next"
+            "primitives-choice",
+            "primitives-advanced-structured-choice-options",
+            "sdk-javascript-api-functions-choice"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "primitives-advanced-structured-score-levels",
+            "primitives-score",
+            "primitives-score-writing-good-levels"
           ]
         },
         {
@@ -71,370 +91,378 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "sdk-python-embedded-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-read-only-by-default"
+            "sdk-javascript",
+            "sdk",
+            "sdk-javascript-quickstart"
           ]
         },
         {
-          "query": "exit codes",
+          "query": "rate limits",
+          "kind": "keyword",
+          "rank": 4,
+          "top": [
+            "sdk-python-api-exceptions",
+            "sdk-javascript-api-classes-ratelimiterror",
+            "cookbooks-pre-parsed-value-extraction-cookbook-two-limits"
+          ]
+        },
+        {
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "cli-exit-codes",
-            "cli-running-statements",
-            "cli"
+            "agent-skill",
+            "cookbooks-skill-suggestion",
+            "introduction-quickstart-vibe-it-the-agent-skill"
           ]
         },
         {
-          "query": "config file",
+          "query": "confidence",
+          "kind": "keyword",
+          "rank": 4,
+          "top": [
+            "patterns-confidence-routing",
+            "cookbooks-classification-using-confidence",
+            "cookbooks-date-extraction-cookbook-confidence-to-route-on"
+          ]
+        },
+        {
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "configuration-the-config-file",
-            "configuration-environment-variables",
-            "configuration-precedence"
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-confidence-routing"
           ]
         },
         {
-          "query": "jev_choice",
-          "kind": "keyword",
-          "rank": 10,
-          "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "cookbook-ticket-triage-5-ship-it-as-a-job",
-            "cookbook-ticket-triage-1-route-ten-tickets"
-          ]
-        },
-        {
-          "query": "typescript",
+          "query": "state",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail"
           ]
         },
         {
-          "query": "openapi",
+          "query": "smart home demo",
           "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos-smart-home-how-it-works",
+            "demos-smart-home-run-it-yourself"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "models-customizing-jev"
+          ]
+        },
+        {
+          "query": "cofidence",
+          "kind": "typo",
+          "rank": 4,
+          "top": [
+            "patterns-confidence-routing",
+            "cookbooks-function-calling-read-the-confidence",
+            "cookbooks-classification-using-confidence"
+          ]
+        },
+        {
+          "query": "primatives",
+          "kind": "typo",
           "rank": 2,
           "top": [
-            "deploy-auth",
-            "serve-more-endpoints",
-            "deploy"
+            "introduction-typesafe-primitives",
+            "primitives",
+            "primitives-what-comes-back"
           ]
         },
         {
-          "query": "bearer token",
-          "kind": "keyword",
-          "rank": 2,
-          "top": [
-            "deploy",
-            "deploy-auth",
-            "deploy-an-open-node"
-          ]
-        },
-        {
-          "query": "health check endpoint",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "serve-endpoints",
-            "deploy",
-            "serve-more-endpoints"
-          ]
-        },
-        {
-          "query": "roadmap",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "limitations",
-            "limitations-not-in-v1",
-            "limitations-known-rough-edges"
-          ]
-        },
-        {
-          "query": "instal on linux",
+          "query": "pyton sdk",
           "kind": "typo",
           "rank": 1,
           "top": [
-            "install",
-            "sql-what-is-rejected-on-purpose",
-            "install-upgrading"
+            "sdk-python",
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk"
           ]
-        },
-        {
-          "query": "quickstrat",
-          "kind": "typo",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "pyhton",
-          "kind": "typo",
-          "rank": null,
-          "top": []
         },
         {
           "query": "how much does it cost",
           "kind": "intent",
+          "rank": null,
+          "top": [
+            "demos-smart-home-how-it-works",
+            "cookbooks-llm-guardrails-define-the-guardrails",
+            "cookbooks-llm-guardrails"
+          ]
+        },
+        {
+          "query": "how many requests per minute can I make",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-autoresearch-feature-discovery",
+            "cookbooks-consistency-choice-cookbook-how-we-ask",
+            "cookbooks-classifying-rag-passages-build-the-prompt-from-the-accepted-evidence"
+          ]
+        },
+        {
+          "query": "how big can the state be",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "concepts-state",
+            "primitives-ask-multiple-questions-together"
+          ]
+        },
+        {
+          "query": "what do I do when I get a 429",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-autoresearch-feature-discovery",
+            "cookbooks-classifying-rag-passages-build-the-prompt-from-the-accepted-evidence",
+            "cookbooks-classification-using-confidence-return-the-group-when-sure-its-division-when-not"
+          ]
+        },
+        {
+          "query": "my api key is being rejected",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-quickstart-call-it-the-api",
+            "cookbooks-skill-suggestion-step-3-rank-the-whole-roster",
+            "primitives-choice-request-structure"
+          ]
+        },
+        {
+          "query": "pick one option from a list",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-clients-async",
+            "primitives-choice-a-more-complex-example",
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "rate something on a scale",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-autoresearch-feature-discovery",
+            "cookbooks-skill-suggestion-step-2-score-the-agent-on-its-own",
+            "primitives-choice-a-more-complex-example"
+          ]
+        },
+        {
+          "query": "ask a yes or no question",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-types-questions",
+            "cookbooks-autoresearch-feature-discovery",
+            "primitives-noul-reading-a-noul"
+          ]
+        },
+        {
+          "query": "ask several questions in one call",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-ask-multiple-questions-together",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "primitives-ask-for-one-snap-judgment-per-question"
+          ]
+        },
+        {
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-types-responses",
+            "cookbooks-autoresearch-feature-discovery",
+            "cookbooks-consistency-choice-cookbook-let-uncertain-probabilities-produce-an-uncertain-decision"
+          ]
+        },
+        {
+          "query": "can I fine tune it on my data",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-llm-guardrails-look-at-one-decision-in-full",
+            "cookbooks-skill-suggestion-step-2-score-the-agent-on-its-own",
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-llm-guardrails-look-at-one-decision-in-full",
+            "cookbooks-llm-guardrails-screen-every-message",
+            "cookbooks-autoformat-what-changes-for-you"
+          ]
+        },
+        {
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-how-to-build-with-system-one-design-a-system-one-workflow",
+            "concepts-how-to-build-with-system-one-putting-it-all-together",
+            "cookbooks-classifying-rag-passages-route-each-passage-in-code"
+          ]
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-hierarchical-classification-results",
+            "cookbooks-hierarchical-classification-implement-greedy-and-beam-search",
+            "cookbooks-hierarchical-classification-load-and-visualize-the-example-hierarchies"
+          ]
+        },
+        {
+          "query": "stop an llm from saying something harmful",
+          "kind": "intent",
+          "rank": 8,
+          "top": [
+            "concepts-system-one-how-it-differs-from-an-llm",
+            "cookbooks-llm-guardrails-screen-every-message",
+            "cookbooks-llm-guardrails-define-the-guardrails"
+          ]
+        },
+        {
+          "query": "pull dates out of messy text",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "cookbooks-date-extraction-cookbook-the-questions",
+            "cookbooks-sde-cascade-step-2-extract-with-the-mini-model-text-mode",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code"
+          ]
+        },
+        {
+          "query": "check whether a citation is real",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-citation-check-check-every-citation",
+            "cookbooks-citation-check",
+            "cookbooks-citation-check-load-the-source-and-the-citations"
+          ]
+        },
+        {
+          "query": "send a support ticket to the right team",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "primitives-choice-a-more-complex-example",
+            "patterns-fan-out-example-support-ticket-triage",
+            "concepts-how-to-build-with-system-one-putting-it-all-together"
+          ]
+        },
+        {
+          "query": "set it up in claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "agent-skill-installation",
+            "agent-skill-common-issues",
+            "cookbooks-classifying-rag-passages-route-each-passage-in-code"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-semantic-find-what-the-scores-mean",
+            "confidence-confidence-is-derived-from-the-probabilities",
+            "cookbooks-classification-using-confidence"
+          ]
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
           "rank": 7,
           "top": [
-            "serve-how-the-sdks-embed-it",
-            "introduction-what-it-is-not",
-            "cookbook-ticket-triage-5-ship-it-as-a-job"
+            "cookbooks-llm-guardrails-screen-every-message",
+            "concepts-use-case-map-example-automation-use-cases",
+            "cookbooks-llm-guardrails-turn-the-assessment-into-a-decision"
           ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-sde-cascade-step-2-extract-with-the-mini-model-text-mode",
+            "cookbooks-sde-cascade-appendix-a-what-makes-a-good-verifier-signal",
+            "cookbooks-skill-suggestion-what-the-results-show"
+          ]
+        },
+        {
+          "query": "try it without writing code",
+          "kind": "intent",
+          "rank": 8,
+          "top": [
+            "primitives-noul-writing-a-noul-question",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code",
+            "primitives-score-writing-good-levels"
+          ]
+        },
+        {
+          "query": "put json inside a question",
           "kind": "intent",
           "rank": 6,
           "top": [
-            "cookbook-ticket-triage-5-ship-it-as-a-job",
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
+            "cookbooks-autoresearch-feature-discovery",
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-questions"
           ]
         },
         {
-          "query": "install on mac",
+          "query": "how do I read what comes back",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-what-comes-back",
+            "cookbooks-autoresearch-feature-discovery",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence"
           ]
         },
         {
-          "query": "use it from claude code",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "introduction-from-your-code",
-            "serve-the-same-documents-from-the-cli",
-            "cookbook-ticket-triage-5-ship-it-as-a-job"
-          ]
-        },
-        {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "security-what-is-stored-locally",
-            "security",
-            "security-what-is-sent"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
+          "query": "why probabilities instead of generated text",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "configuration-the-cache",
-            "security-what-is-stored-locally",
-            "cookbook-ticket-triage-where-to-go-next"
-          ]
-        },
-        {
-          "query": "stop a query from spending too much",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report",
-            "cookbook-ticket-triage-5-ship-it-as-a-job",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go"
-          ]
-        },
-        {
-          "query": "run one shared server for my team",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "deploy-what-the-node-holds",
-            "deploy",
-            "deploy-an-open-node"
-          ]
-        },
-        {
-          "query": "which sql is not supported",
-          "kind": "intent",
-          "rank": 4,
-          "top": [
-            "introduction-what-it-is-not",
-            "security-what-it-is-not",
-            "cookbook-product-feedback-report-2-which-products-are-breaking"
-          ]
-        },
-        {
-          "query": "can an agent write to the database",
-          "kind": "intent",
-          "rank": 6,
-          "top": [
-            "deploy-an-open-node",
-            "cookbook-ticket-triage-where-to-go-next",
-            "mcp-tools"
-          ]
-        },
-        {
-          "query": "sort tickets by how urgent they are",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-ticket-triage-4-rank-by-urgency",
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-5-ship-it-as-a-job"
-          ]
-        },
-        {
-          "query": "find reviews that need a response",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
-            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
-          ]
-        },
-        {
-          "query": "build a search box in react",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-semantic-search-react",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "cookbook-semantic-search-react-1-the-api-route"
-          ]
-        },
-        {
-          "query": "why does order by run on the client",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "cookbook-ticket-triage-4-rank-by-urgency",
-            "deploy-what-the-node-holds"
-          ]
-        },
-        {
-          "query": "my first query after connecting",
-          "kind": "intent",
-          "rank": 5,
-          "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "mcp-resource-and-prompt",
-            "mcp-connect"
-          ]
-        },
-        {
-          "query": "use from go without running a server",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "deploy",
-            "sdk-go"
-          ]
-        },
-        {
-          "query": "engine binary not found",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "sdk-typescript-engine-discovery",
-            "sdk-python-engine-discovery",
-            "sdk-go-notes"
-          ]
-        },
-        {
-          "query": "public playground with no token",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "deploy-an-open-node",
-            "deploy",
-            "deploy-what-the-node-holds"
-          ]
-        },
-        {
-          "query": "upgrade to the latest version",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "install",
-            "cookbook-ticket-triage-where-to-go-next",
-            "cookbook-product-feedback-report-where-to-go-next"
-          ]
-        },
-        {
-          "query": "is my api key stored anywhere",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "security-what-is-stored-locally",
-            "security-keys",
-            "security-what-is-sent"
-          ]
-        },
-        {
-          "query": "send only some columns to the model",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "mcp-read-only-by-default",
-            "mcp-tools",
-            "cookbook-ticket-triage-1-route-ten-tickets"
-          ]
-        },
-        {
-          "query": "route a webhook ticket that is not in postgres yet",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "cookbook-semantic-search-react-1-the-api-route"
-          ]
-        },
-        {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": 6,
-          "top": [
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "how-it-works-pass-b-judge",
-            "how-it-works-pass-a-collect"
-          ]
-        },
-        {
-          "query": "make the results feel instant",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant",
-            "cookbook-semantic-search-react-2-the-component",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
-          ]
-        },
-        {
-          "query": "what happens when a statement has no jev call",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "sql-where-a-call-may-appear",
-            "cookbook-ticket-triage-5-ship-it-as-a-job",
-            "how-it-works-pass-a-collect"
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions"
           ]
         }
       ]
@@ -443,53 +471,63 @@
       "name": "Fuse.js",
       "version": "7.5.0",
       "kind": "local",
-      "buildMs": 3.24,
+      "buildMs": 9.76,
       "latencyMs": {
-        "median": 33.82,
-        "p95": 89.88
+        "median": 244.83,
+        "p95": 610.24
       },
-      "hit1": 0.55,
-      "hit3": 0.6,
-      "mrr": 0.5744047619047619,
+      "hit1": 0.3902439024390244,
+      "hit3": 0.4634146341463415,
+      "mrr": 0.4325880758807588,
       "byKind": {
         "keyword": {
-          "hit1": 0.6666666666666666,
+          "hit1": 0.8333333333333334,
           "hit3": 0.8333333333333334,
-          "mrr": 0.736111111111111,
+          "mrr": 0.8530092592592592,
           "n": 12
         },
         "typo": {
           "hit1": 0.6666666666666666,
-          "hit3": 0.6666666666666666,
-          "mrr": 0.6666666666666666,
+          "hit3": 1,
+          "mrr": 0.8333333333333334,
           "n": 3
         },
         "intent": {
-          "hit1": 0.48,
-          "hit3": 0.48,
-          "mrr": 0.4857142857142857,
-          "n": 25
+          "hit1": 0.15384615384615385,
+          "hit3": 0.23076923076923078,
+          "mrr": 0.19230769230769232,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-noul",
+            "cookbooks-consistency-noul-cookbook",
+            "sdk-javascript-api-interfaces-noulresponse"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": 3,
+          "rank": 1,
           "top": [
-            "introduction-where-next",
-            "install-upgrading",
-            "install"
+            "primitives-choice",
+            "sdk-javascript-api-interfaces-choiceresponse",
+            "sdk-javascript-api-interfaces-choicequestion"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 8,
+          "top": [
+            "primitives-advanced-structured-score-levels",
+            "primitives-advanced",
+            "primitives-advanced-structured-choice-options"
           ]
         },
         {
@@ -498,119 +536,118 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-python-embedded-engine",
-            "sdk-python-remote-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-python-api-constants"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-resource-and-prompt",
-            "mcp-read-only-by-default"
+            "sdk-javascript",
+            "sdk-javascript-documentation",
+            "sdk-javascript-quickstart"
           ]
         },
         {
-          "query": "exit codes",
+          "query": "rate limits",
+          "kind": "keyword",
+          "rank": 9,
+          "top": [
+            "sdk-javascript-api-classes-ratelimiterror",
+            "sdk-python-api-exceptions",
+            "cookbooks-pre-parsed-value-extraction-cookbook-two-limits"
+          ]
+        },
+        {
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "cli-exit-codes",
-            "cli",
-            "cli-running-statements"
+            "agent-skill",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "agent-skill-installation"
           ]
         },
         {
-          "query": "config file",
+          "query": "confidence",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "configuration-the-config-file",
-            "configuration-precedence",
-            "configuration-environment-variables"
+            "confidence",
+            "patterns-confidence-routing",
+            "cookbooks-function-calling-read-the-confidence"
           ]
         },
         {
-          "query": "jev_choice",
-          "kind": "keyword",
-          "rank": null,
-          "top": [
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-2-grade-it",
-            "cookbook-ticket-triage-3-describe-the-teams"
-          ]
-        },
-        {
-          "query": "typescript",
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-confidence-routing"
           ]
         },
         {
-          "query": "openapi",
+          "query": "state",
           "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "concepts-state",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value"
+          ]
+        },
+        {
+          "query": "smart home demo",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos-smart-home-how-it-works",
+            "demos-smart-home-run-it-yourself"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "patterns-the-patterns"
+          ]
+        },
+        {
+          "query": "cofidence",
+          "kind": "typo",
+          "rank": 1,
+          "top": [
+            "confidence",
+            "patterns-confidence-routing",
+            "cookbooks-function-calling-read-the-confidence"
+          ]
+        },
+        {
+          "query": "primatives",
+          "kind": "typo",
           "rank": 2,
           "top": [
-            "deploy-auth",
-            "serve-more-endpoints",
-            "cookbook-ticket-triage-1-route-ten-tickets"
+            "introduction-typesafe-primitives",
+            "primitives",
+            "primitives-what-comes-back"
           ]
         },
         {
-          "query": "bearer token",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "deploy-auth",
-            "deploy",
-            "deploy-an-open-node"
-          ]
-        },
-        {
-          "query": "health check endpoint",
-          "kind": "keyword",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "roadmap",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "limitations",
-            "limitations-not-in-v1",
-            "limitations-known-rough-edges"
-          ]
-        },
-        {
-          "query": "instal on linux",
-          "kind": "typo",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "quickstrat",
-          "kind": "typo",
-          "rank": 1,
-          "top": [
-            "quickstart",
-            "quickstart-next"
-          ]
-        },
-        {
-          "query": "pyhton",
+          "query": "pyton sdk",
           "kind": "typo",
           "rank": 1,
           "top": [
             "sdk-python",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "sdk-python-embedded-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-javascript"
           ]
         },
         {
@@ -618,199 +655,221 @@
           "kind": "intent",
           "rank": null,
           "top": [
-            "security-what-is-sent"
+            "cookbooks-consistency-choice-cookbook-probability-std-dev",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "cookbooks-classifying-rag-passages"
           ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "how many requests per minute can I make",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "security-what-it-is-not",
-            "introduction-what-it-is-not"
+            "models-current-models",
+            "cookbooks-autoformat",
+            "cookbooks-rerank-typesafe-re-ranking-with-typesafe"
           ]
         },
         {
-          "query": "install on mac",
+          "query": "how big can the state be",
           "kind": "intent",
-          "rank": 7,
+          "rank": null,
           "top": [
-            "install-upgrading",
-            "install-requirements",
-            "sdk-python-engine-discovery"
+            "concepts-state",
+            "cookbooks-classification-using-confidence-the-filings"
           ]
         },
         {
-          "query": "use it from claude code",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "mcp",
-            "introduction",
-            "mcp-connect"
-          ]
-        },
-        {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security",
-            "security-what-is-sent",
-            "security-what-is-stored-locally"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
+          "query": "what do I do when I get a 429",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "stop a query from spending too much",
+          "query": "my api key is being rejected",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "run one shared server for my team",
+          "query": "pick one option from a list",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-choice",
+            "primitives-choice-a-more-complex-example",
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call"
+          ]
+        },
+        {
+          "query": "rate something on a scale",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-autoresearch-feature-discovery-pointing-it-at-your-own-data",
+            "cookbooks-classifying-rag-passages-load-the-docs-corpus",
+            "introduction"
+          ]
+        },
+        {
+          "query": "ask a yes or no question",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-entity-alignment-ask-one-score-question-and-three-noul-questions-per-candidate-pair",
+            "primitives-noul",
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call"
+          ]
+        },
+        {
+          "query": "ask several questions in one call",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-parallel-questions",
+            "cookbooks-parallel-questions-ask-two-ways-5-times-each",
+            "cookbooks-parallel-questions-batching-doesn-t-change-the-answers"
+          ]
+        },
+        {
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-llm-guardrails-turn-the-assessment-into-a-decision",
+            "cookbooks-consistency-noul-cookbook",
+            "cookbooks-autoresearch-feature-discovery-what-the-questions-see"
+          ]
+        },
+        {
+          "query": "can I fine tune it on my data",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "which sql is not supported",
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-skill-suggestion-step-3-rank-the-whole-roster"
+          ]
+        },
+        {
+          "query": "does it work in japanese",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "can an agent write to the database",
+          "query": "make my search results better",
           "kind": "intent",
           "rank": null,
           "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database"
+            "concepts-use-case-map-example-task-categories"
           ]
         },
         {
-          "query": "sort tickets by how urgent they are",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "find reviews that need a response",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report-where-to-go-next",
-            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
-          ]
-        },
-        {
-          "query": "build a search box in react",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-semantic-search-react",
-            "cookbook-semantic-search-react-what-you-need",
-            "cookbook-semantic-search-react-1-the-api-route"
-          ]
-        },
-        {
-          "query": "why does order by run on the client",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "sql-pushdown-rules"
-          ]
-        },
-        {
-          "query": "my first query after connecting",
+          "query": "stop an llm from saying something harmful",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "use from go without running a server",
+          "query": "pull dates out of messy text",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "engine binary not found",
+          "query": "check whether a citation is real",
           "kind": "intent",
-          "rank": 1,
+          "rank": null,
           "top": [
-            "sdk-python-engine-discovery"
+            "cookbooks-skill-suggestion-step-3-rank-the-whole-roster"
           ]
         },
         {
-          "query": "public playground with no token",
+          "query": "send a support ticket to the right team",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "deploy-an-open-node"
+            "patterns-fan-out-example-support-ticket-triage",
+            "primitives-choice-request-structure",
+            "concepts-use-case-map-example-automation-use-cases"
           ]
         },
         {
-          "query": "upgrade to the latest version",
+          "query": "set it up in claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "agent-skill-installation",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "primitives-noul-request-structure"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "patterns-confidence-routing",
+            "patterns-confidence-routing-example-voice-banking-commands"
+          ]
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-rerank-typesafe-re-ranking-with-typesafe"
+          ]
+        },
+        {
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-citation-check-setup",
+            "models-listing-models",
+            "confidence-three-paths-for-using-confidence-in-your-code"
+          ]
+        },
+        {
+          "query": "try it without writing code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-classification-using-confidence-open-it-in-the-playground",
+            "cookbooks-date-extraction-cookbook-open-it-in-the-typesafe-playground",
+            "confidence"
+          ]
+        },
+        {
+          "query": "put json inside a question",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-typesafe-primitives",
+            "model-jaggedness-jev-1-13-generation",
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "is my api key stored anywhere",
+          "query": "why probabilities instead of generated text",
           "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "send only some columns to the model",
-          "kind": "intent",
-          "rank": 1,
+          "rank": 2,
           "top": [
-            "security-what-is-sent",
-            "cookbook-product-feedback-report-where-to-go-next",
-            "cookbook-ticket-triage-1-route-ten-tickets"
-          ]
-        },
-        {
-          "query": "route a webhook ticket that is not in postgres yet",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "introduction-what-it-is-not"
-          ]
-        },
-        {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "how-it-works",
-            "how-it-works-pass-a-collect",
-            "how-it-works-pass-b-judge"
-          ]
-        },
-        {
-          "query": "make the results feel instant",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant"
-          ]
-        },
-        {
-          "query": "what happens when a statement has no jev call",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "sql",
-            "sql-row-sources",
-            "sql-functions"
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions"
           ]
         }
       ]
@@ -819,52 +878,63 @@
       "name": "FlexSearch",
       "version": "0.8.212",
       "kind": "local",
-      "buildMs": 61.92,
+      "buildMs": 296.99,
       "latencyMs": {
-        "median": 0.04,
-        "p95": 0.17
+        "median": 0.16,
+        "p95": 0.55
       },
-      "hit1": 0.275,
-      "hit3": 0.325,
-      "mrr": 0.29583333333333334,
+      "hit1": 0.2682926829268293,
+      "hit3": 0.34146341463414637,
+      "mrr": 0.2967479674796748,
       "byKind": {
         "keyword": {
-          "hit1": 0.6666666666666666,
-          "hit3": 0.75,
-          "mrr": 0.7083333333333334,
+          "hit1": 0.8333333333333334,
+          "hit3": 0.9166666666666666,
+          "mrr": 0.875,
           "n": 12
         },
         "typo": {
-          "hit1": 0.3333333333333333,
-          "hit3": 0.3333333333333333,
-          "mrr": 0.3333333333333333,
+          "hit1": 0,
+          "hit3": 0,
+          "mrr": 0,
           "n": 3
         },
         "intent": {
-          "hit1": 0.08,
-          "hit3": 0.12,
-          "mrr": 0.09333333333333332,
-          "n": 25
+          "hit1": 0.038461538461538464,
+          "hit3": 0.11538461538461539,
+          "mrr": 0.0641025641025641,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "install",
-            "install-requirements",
-            "install-upgrading"
+            "primitives-noul",
+            "primitives-noul-noul-in-the-cookbooks",
+            "primitives-advanced-structured-noul-criteria"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "primitives-choice",
+            "primitives-advanced-structured-choice-options",
+            "sdk-javascript-api-functions-choice"
+          ]
+        },
+        {
+          "query": "score levels",
           "kind": "keyword",
           "rank": null,
           "top": [
-            "install-upgrading",
-            "introduction-where-next"
+            "primitives-advanced-structured-score-levels",
+            "primitives-advanced",
+            "primitives-advanced-structured-choice-options"
           ]
         },
         {
@@ -873,112 +943,104 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-python-embedded-engine",
-            "sdk-python-remote-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-python-api-constants"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-tools"
+            "sdk-javascript",
+            "sdk-javascript-documentation",
+            "sdk-javascript-quickstart"
           ]
         },
         {
-          "query": "exit codes",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "cli-exit-codes",
-            "cli",
-            "cli-connection"
-          ]
-        },
-        {
-          "query": "config file",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "configuration-the-config-file",
-            "configuration",
-            "configuration-precedence"
-          ]
-        },
-        {
-          "query": "jev_choice",
-          "kind": "keyword",
-          "rank": null,
-          "top": [
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-what-you-need",
-            "cookbook-ticket-triage-1-route-ten-tickets"
-          ]
-        },
-        {
-          "query": "typescript",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
-          ]
-        },
-        {
-          "query": "openapi",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "serve-more-endpoints",
-            "deploy-auth",
-            "deploy"
-          ]
-        },
-        {
-          "query": "bearer token",
+          "query": "rate limits",
           "kind": "keyword",
           "rank": 2,
           "top": [
-            "deploy",
-            "deploy-auth",
-            "deploy-an-open-node"
+            "sdk-python-api-exceptions",
+            "models-current-models",
+            "api-errors"
           ]
         },
         {
-          "query": "health check endpoint",
+          "query": "agent skill",
           "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "agent-skill",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "agent-skill-common-issues"
+          ]
+        },
+        {
+          "query": "confidence",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "confidence",
+            "confidence-confidence-is-derived-from-the-probabilities",
+            "cookbooks-date-extraction-cookbook-confidence-to-route-on"
+          ]
+        },
+        {
+          "query": "intent routing",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "cookbooks-skill-suggestion-what-s-next"
+          ]
+        },
+        {
+          "query": "state",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "cookbooks-consistency-choice-cookbook-the-state-a-borderline-user-post-as-json"
+          ]
+        },
+        {
+          "query": "smart home demo",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos-smart-home-how-it-works",
+            "demos-smart-home-run-it-yourself"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "patterns-the-patterns"
+          ]
+        },
+        {
+          "query": "cofidence",
+          "kind": "typo",
           "rank": null,
           "top": []
         },
         {
-          "query": "roadmap",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "limitations",
-            "limitations-not-in-v1",
-            "limitations-known-rough-edges"
-          ]
-        },
-        {
-          "query": "instal on linux",
-          "kind": "typo",
-          "rank": 1,
-          "top": [
-            "install"
-          ]
-        },
-        {
-          "query": "quickstrat",
+          "query": "primatives",
           "kind": "typo",
           "rank": null,
           "top": []
         },
         {
-          "query": "pyhton",
+          "query": "pyton sdk",
           "kind": "typo",
           "rank": null,
           "top": []
@@ -987,163 +1049,194 @@
           "query": "how much does it cost",
           "kind": "intent",
           "rank": null,
-          "top": []
+          "top": [
+            "cookbooks-llm-guardrails-define-the-guardrails",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "primitives-noul-reading-a-noul"
+          ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "how many requests per minute can I make",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "install on mac",
+          "query": "how big can the state be",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "what do I do when I get a 429",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "my api key is being rejected",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pick one option from a list",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-next-steps",
+            "primitives-advanced-structured-choice-options",
+            "cookbooks-autoformat"
+          ]
+        },
+        {
+          "query": "rate something on a scale",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-score-writing-good-levels",
+            "cookbooks-llm-guardrails-define-the-guardrails"
+          ]
+        },
+        {
+          "query": "ask a yes or no question",
           "kind": "intent",
           "rank": 3,
           "top": [
-            "install-requirements",
-            "install-upgrading",
-            "install"
+            "sdk-python-api-types-questions",
+            "cookbooks-autoresearch-feature-discovery",
+            "primitives-noul"
           ]
         },
         {
-          "query": "use it from claude code",
+          "query": "ask several questions in one call",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "cookbooks-autoformat-pass-2-classifying-blocks",
+            "cookbooks-parallel-questions",
+            "primitives-ask-multiple-questions-together"
+          ]
+        },
+        {
+          "query": "when should a human review the answer",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "what data leaves my machine",
+          "query": "can I fine tune it on my data",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "where is the cache stored",
+          "query": "do you train on my requests",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "stop a query from spending too much",
+          "query": "does it work in japanese",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "run one shared server for my team",
+          "query": "make my search results better",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "which sql is not supported",
+          "query": "stop an llm from saying something harmful",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "can an agent write to the database",
+          "query": "pull dates out of messy text",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "sort tickets by how urgent they are",
+          "query": "check whether a citation is real",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "find reviews that need a response",
+          "query": "send a support ticket to the right team",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "build a search box in react",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "why does order by run on the client",
+          "query": "set it up in claude code",
           "kind": "intent",
           "rank": null,
           "top": [
-            "cookbook-product-feedback-report-2-which-products-are-breaking"
+            "agent-skill-common-issues"
           ]
         },
         {
-          "query": "my first query after connecting",
+          "query": "what does confidence actually mean",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "use from go without running a server",
+          "query": "screen job applicants",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "engine binary not found",
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "try it without writing code",
           "kind": "intent",
           "rank": null,
           "top": []
         },
         {
-          "query": "public playground with no token",
+          "query": "put json inside a question",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-how-to-build-with-system-one-design-a-system-one-workflow",
+            "cookbooks-skill-suggestion-step-2-score-the-agent-on-its-own"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-classifying-rag-passages-route-each-passage-in-code",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "cookbooks-rerank-typesafe-re-ranking-with-typesafe"
+          ]
+        },
+        {
+          "query": "why probabilities instead of generated text",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "deploy-an-open-node"
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-building-prod-not-god",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions"
           ]
-        },
-        {
-          "query": "upgrade to the latest version",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "install"
-          ]
-        },
-        {
-          "query": "is my api key stored anywhere",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "send only some columns to the model",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "route a webhook ticket that is not in postgres yet",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database"
-          ]
-        },
-        {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "make the results feel instant",
-          "kind": "intent",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "what happens when a statement has no jev call",
-          "kind": "intent",
-          "rank": null,
-          "top": []
         }
       ]
     },
@@ -1151,52 +1244,63 @@
       "name": "Lunr",
       "version": "2.3.9",
       "kind": "local",
-      "buildMs": 73.51,
+      "buildMs": 382.28,
       "latencyMs": {
-        "median": 0.18,
-        "p95": 0.47
+        "median": 0.72,
+        "p95": 1.98
       },
-      "hit1": 0.6,
-      "hit3": 0.775,
-      "mrr": 0.6919047619047618,
+      "hit1": 0.4146341463414634,
+      "hit3": 0.5853658536585366,
+      "mrr": 0.5310975609756097,
       "byKind": {
         "keyword": {
           "hit1": 0.75,
-          "hit3": 0.8333333333333334,
-          "mrr": 0.7916666666666666,
+          "hit3": 1,
+          "mrr": 0.8472222222222222,
           "n": 12
         },
         "typo": {
-          "hit1": 0.3333333333333333,
+          "hit1": 0,
           "hit3": 0.3333333333333333,
-          "mrr": 0.3333333333333333,
+          "mrr": 0.16666666666666666,
           "n": 3
         },
         "intent": {
-          "hit1": 0.56,
-          "hit3": 0.8,
-          "mrr": 0.6870476190476191,
-          "n": 25
+          "hit1": 0.3076923076923077,
+          "hit3": 0.4230769230769231,
+          "mrr": 0.4272435897435898,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-noul",
+            "primitives-noul-noul-in-the-cookbooks",
+            "primitives-noul-reading-a-noul"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": null,
+          "rank": 1,
           "top": [
-            "introduction-where-next",
-            "install-upgrading"
+            "primitives-choice",
+            "primitives-advanced-structured-choice-options",
+            "sdk-javascript-api-functions-choice"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "primitives-advanced-structured-score-levels",
+            "primitives-score-writing-good-levels",
+            "primitives-score-structured-level-descriptions"
           ]
         },
         {
@@ -1205,368 +1309,370 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "serve-how-the-sdks-embed-it",
-            "sdk-python-embedded-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-read-only-by-default"
+            "sdk-javascript",
+            "sdk",
+            "sdk-python"
           ]
         },
         {
-          "query": "exit codes",
+          "query": "rate limits",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "cookbooks-pre-parsed-value-extraction-cookbook-two-limits",
+            "sdk-python-api-exceptions",
+            "models-current-models"
+          ]
+        },
+        {
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "cli-exit-codes",
-            "introduction-from-your-code",
-            "cli-running-statements"
+            "agent-skill",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "cookbooks-skill-suggestion"
           ]
         },
         {
-          "query": "config file",
+          "query": "confidence",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "patterns-confidence-routing",
+            "cookbooks-date-extraction-cookbook-confidence-to-route-on",
+            "confidence"
+          ]
+        },
+        {
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "configuration-the-config-file",
-            "configuration-precedence",
-            "configuration-environment-variables"
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-confidence-routing"
           ]
         },
         {
-          "query": "jev_choice",
+          "query": "state",
           "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail"
+          ]
+        },
+        {
+          "query": "smart home demo",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos-available-demos",
+            "demos-smart-home-run-it-yourself"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "primitives-score"
+          ]
+        },
+        {
+          "query": "cofidence",
+          "kind": "typo",
           "rank": null,
-          "top": [
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-2-grade-it",
-            "cookbook-ticket-triage"
-          ]
+          "top": []
         },
         {
-          "query": "typescript",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
-          ]
+          "query": "primatives",
+          "kind": "typo",
+          "rank": null,
+          "top": []
         },
         {
-          "query": "openapi",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "serve-more-endpoints"
-          ]
-        },
-        {
-          "query": "bearer token",
-          "kind": "keyword",
+          "query": "pyton sdk",
+          "kind": "typo",
           "rank": 2,
           "top": [
-            "deploy",
-            "deploy-auth",
-            "deploy-an-open-node"
+            "sdk",
+            "sdk-python",
+            "sdk-javascript"
           ]
-        },
-        {
-          "query": "health check endpoint",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "serve-endpoints",
-            "serve-more-endpoints",
-            "install"
-          ]
-        },
-        {
-          "query": "roadmap",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "limitations",
-            "limitations-not-in-v1",
-            "limitations-known-rough-edges"
-          ]
-        },
-        {
-          "query": "instal on linux",
-          "kind": "typo",
-          "rank": 1,
-          "top": [
-            "install",
-            "introduction-the-one-idea",
-            "install-upgrading"
-          ]
-        },
-        {
-          "query": "quickstrat",
-          "kind": "typo",
-          "rank": null,
-          "top": []
-        },
-        {
-          "query": "pyhton",
-          "kind": "typo",
-          "rank": null,
-          "top": []
         },
         {
           "query": "how much does it cost",
           "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security-cost-controls",
-            "cookbook-product-feedback-report",
-            "cli-running-statements"
-          ]
-        },
-        {
-          "query": "does it need a postgres extension",
-          "kind": "intent",
-          "rank": 7,
-          "top": [
-            "cookbook-product-feedback-report-what-you-need",
-            "cookbook-semantic-search-react-what-you-need",
-            "cookbook-ticket-triage-what-you-need"
-          ]
-        },
-        {
-          "query": "install on mac",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "install",
-            "introduction-the-one-idea",
-            "install-upgrading"
-          ]
-        },
-        {
-          "query": "use it from claude code",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "cli-exit-codes",
-            "introduction-from-your-code",
-            "mcp"
-          ]
-        },
-        {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security",
-            "security-keys",
-            "security-what-is-sent"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security-what-is-stored-locally",
-            "configuration-the-cache",
-            "security"
-          ]
-        },
-        {
-          "query": "stop a query from spending too much",
-          "kind": "intent",
           "rank": null,
           "top": [
-            "mcp-read-only-by-default",
-            "mcp",
-            "mcp-resource-and-prompt"
+            "cookbooks-autoformat-cost-and-latency",
+            "cookbooks-parallel-questions-the-only-difference-cost-and-speed",
+            "cookbooks-llm-guardrails"
           ]
         },
         {
-          "query": "run one shared server for my team",
-          "kind": "intent",
-          "rank": 6,
-          "top": [
-            "cookbook-ticket-triage-3-describe-the-teams",
-            "mcp",
-            "deploy-what-the-node-holds"
-          ]
-        },
-        {
-          "query": "which sql is not supported",
+          "query": "how many requests per minute can I make",
           "kind": "intent",
           "rank": 5,
           "top": [
-            "cookbook-ticket-triage",
-            "sql",
-            "cookbook-ticket-triage-5-ship-it-as-a-job"
+            "concepts-how-to-build-with-system-one-what-makes-system-one-composable",
+            "cookbooks-sde-cascade-appendix-a-what-makes-a-good-verifier-signal",
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call"
           ]
         },
         {
-          "query": "can an agent write to the database",
+          "query": "how big can the state be",
           "kind": "intent",
-          "rank": 1,
+          "rank": null,
           "top": [
-            "mcp-read-only-by-default",
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "mcp-tools"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "cookbooks-sde-cascade"
           ]
         },
         {
-          "query": "sort tickets by how urgent they are",
+          "query": "what do I do when I get a 429",
           "kind": "intent",
-          "rank": 1,
+          "rank": 5,
           "top": [
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-4-rank-by-urgency"
+            "confidence",
+            "primitives-advanced-structured-choice-options",
+            "cookbooks-llm-guardrails-screen-every-message"
           ]
         },
         {
-          "query": "find reviews that need a response",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
-            "cookbook-product-feedback-report-what-you-need"
-          ]
-        },
-        {
-          "query": "build a search box in react",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-semantic-search-react",
-            "cookbook-semantic-search-react-where-to-go-next",
-            "cookbook-semantic-search-react-what-you-need"
-          ]
-        },
-        {
-          "query": "why does order by run on the client",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "introduction-the-one-idea",
-            "cli-running-statements",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server"
-          ]
-        },
-        {
-          "query": "my first query after connecting",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "mcp-connect",
-            "cli-connection",
-            "quickstart"
-          ]
-        },
-        {
-          "query": "use from go without running a server",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "sdk-go",
-            "cookbook-semantic-search-react-where-to-go-next",
-            "cookbook-ticket-triage-where-to-go-next"
-          ]
-        },
-        {
-          "query": "engine binary not found",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "sdk-python-engine-discovery",
-            "sdk-typescript-engine-discovery",
-            "install"
-          ]
-        },
-        {
-          "query": "public playground with no token",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "deploy-an-open-node",
-            "deploy",
-            "deploy-auth"
-          ]
-        },
-        {
-          "query": "upgrade to the latest version",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "install-upgrading",
-            "install",
-            "serve-endpoints"
-          ]
-        },
-        {
-          "query": "is my api key stored anywhere",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security-keys",
-            "security-what-is-stored-locally",
-            "sdk-go-api"
-          ]
-        },
-        {
-          "query": "send only some columns to the model",
+          "query": "my api key is being rejected",
           "kind": "intent",
           "rank": 6,
           "top": [
-            "mcp-tools",
-            "mcp-resource-and-prompt",
-            "cli-typesafe-and-budget"
+            "sdk-python-api",
+            "api",
+            "introduction-quickstart-call-it-the-api"
           ]
         },
         {
-          "query": "route a webhook ticket that is not in postgres yet",
+          "query": "pick one option from a list",
           "kind": "intent",
-          "rank": 2,
+          "rank": 8,
           "top": [
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "cookbook-ticket-triage"
+            "primitives-advanced-structured-choice-options",
+            "models-listing-models",
+            "cookbooks-pre-parsed-value-extraction-cookbook-email-pick-the-right-address-by-role"
           ]
         },
         {
-          "query": "what does the server actually see",
+          "query": "rate something on a scale",
           "kind": "intent",
-          "rank": 2,
+          "rank": 6,
           "top": [
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "how-it-works",
-            "how-it-works-pass-a-collect"
+            "confidence-thresholds-scale-with-risk",
+            "primitives-score-writing-good-levels",
+            "primitives-score-request-structure"
           ]
         },
         {
-          "query": "make the results feel instant",
+          "query": "ask a yes or no question",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
+            "cookbooks-consistency-noul-cookbook-how-we-ask",
+            "primitives-noul-writing-a-noul-question"
+          ]
+        },
+        {
+          "query": "ask several questions in one call",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant",
-            "security-what-is-sent",
-            "limitations-likely-next"
+            "primitives-ask-multiple-questions-together",
+            "primitives-ask-for-one-snap-judgment-per-question",
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call"
           ]
         },
         {
-          "query": "what happens when a statement has no jev call",
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-consistency-noul-cookbook",
+            "cookbooks-consistency-noul-cookbook-the-rubric-14-noul-questions",
+            "cookbooks-consistency-noul-cookbook-allow-an-uncertain-decision-instead-of-forcing-yes-or-no"
+          ]
+        },
+        {
+          "query": "can I fine tune it on my data",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "models-data-handling",
+            "cookbooks-sde-cascade-step-1-the-data",
+            "cookbooks-autoresearch-feature-discovery-pointing-it-at-your-own-data"
+          ]
+        },
+        {
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-the-problems-with-rlhf"
+          ]
+        },
+        {
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "demos-smart-home-how-it-works",
+            "sdk-python-usage",
+            "primitives-noul-writing-a-noul-question"
+          ]
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-hierarchical-classification-results",
+            "cookbooks-rerank-typesafe-what-is-fast-search",
+            "cookbooks-semantic-find"
+          ]
+        },
+        {
+          "query": "stop an llm from saying something harmful",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbooks-llm-guardrails",
+            "concepts-system-one-how-it-differs-from-an-llm",
+            "cookbooks-llm-guardrails-define-the-guardrails"
+          ]
+        },
+        {
+          "query": "pull dates out of messy text",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbooks-date-extraction-cookbook",
+            "model-jaggedness-jev-1-13-date-and-time-comparison",
+            "cookbooks-date-extraction-cookbook-the-questions"
+          ]
+        },
+        {
+          "query": "check whether a citation is real",
           "kind": "intent",
           "rank": 2,
           "top": [
-            "sql-where-a-call-may-appear",
-            "cli-running-statements",
-            "sql-functions"
+            "cookbooks-citation-check-check-every-citation",
+            "cookbooks-citation-check",
+            "cookbooks-citation-check-load-the-source-and-the-citations"
+          ]
+        },
+        {
+          "query": "send a support ticket to the right team",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "patterns-fan-out-example-support-ticket-triage",
+            "models-language-support",
+            "cookbooks-citation-check-verify-whether-the-source-supports-the-claim"
+          ]
+        },
+        {
+          "query": "set it up in claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "agent-skill",
+            "agent-skill-common-issues",
+            "agent-skill-installation"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "confidence",
+            "cookbooks-semantic-find-what-the-scores-mean",
+            "confidence-confidence-is-derived-from-the-probabilities"
+          ]
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-llm-guardrails-screen-every-message",
+            "patterns-composite-scoring-example-resume-screening",
+            "sdk"
+          ]
+        },
+        {
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "models-listing-models",
+            "models-current-models",
+            "models"
+          ]
+        },
+        {
+          "query": "try it without writing code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "introduction-quickstart-try-it-the-playground",
+            "primitives-noul-writing-a-noul-question",
+            "cookbooks-function-calling-write-the-spec"
+          ]
+        },
+        {
+          "query": "put json inside a question",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "concepts-how-to-build-with-system-one-putting-it-all-together",
+            "concepts-system-one-fast-judgments-inside-a-larger-workflow",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-what-comes-back",
+            "cookbooks-autoformat-where-the-join-thresholds-come-from",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence"
+          ]
+        },
+        {
+          "query": "why probabilities instead of generated text",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "model-jaggedness-jev-1-13-generation",
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-three-post-training-approaches"
           ]
         }
       ]
@@ -1575,52 +1681,63 @@
       "name": "Orama",
       "version": "3.1.18",
       "kind": "local",
-      "buildMs": 52.15,
+      "buildMs": 241.24,
       "latencyMs": {
-        "median": 1.73,
-        "p95": 4.97
+        "median": 5.18,
+        "p95": 13.64
       },
-      "hit1": 0.4,
-      "hit3": 0.55,
-      "mrr": 0.502251984126984,
+      "hit1": 0.3902439024390244,
+      "hit3": 0.5609756097560976,
+      "mrr": 0.4818041037553232,
       "byKind": {
         "keyword": {
-          "hit1": 0.75,
-          "hit3": 0.8333333333333334,
-          "mrr": 0.7916666666666666,
+          "hit1": 0.8333333333333334,
+          "hit3": 0.9166666666666666,
+          "mrr": 0.861111111111111,
           "n": 12
         },
         "typo": {
-          "hit1": 0.3333333333333333,
-          "hit3": 0.3333333333333333,
-          "mrr": 0.3333333333333333,
+          "hit1": 1,
+          "hit3": 1,
+          "mrr": 1,
           "n": 3
         },
         "intent": {
-          "hit1": 0.24,
-          "hit3": 0.44,
-          "mrr": 0.38360317460317456,
-          "n": 25
+          "hit1": 0.11538461538461539,
+          "hit3": 0.34615384615384615,
+          "mrr": 0.24694749694749693,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
-          "rank": 1,
+          "rank": 3,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "sdk-javascript-api-interfaces-noulresponse",
+            "sdk-javascript-api-interfaces-noulquestion",
+            "primitives-noul"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": null,
+          "rank": 1,
           "top": [
-            "install-upgrading",
-            "introduction-where-next"
+            "primitives-choice",
+            "sdk-javascript-api-functions-choice",
+            "sdk-javascript-api-interfaces-choiceresponse"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "primitives-score",
+            "primitives-advanced-structured-score-levels",
+            "primitives-score-structured-level-descriptions"
           ]
         },
         {
@@ -1629,370 +1746,763 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-go",
-            "sdk-typescript"
+            "sdk",
+            "sdk-javascript"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-read-only-by-default"
+            "sdk-javascript",
+            "sdk-javascript-documentation",
+            "sdk"
           ]
         },
         {
-          "query": "exit codes",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "cli-exit-codes",
-            "introduction-from-your-code",
-            "cli-running-statements"
-          ]
-        },
-        {
-          "query": "config file",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "configuration-the-config-file",
-            "configuration",
-            "configuration-precedence"
-          ]
-        },
-        {
-          "query": "jev_choice",
+          "query": "rate limits",
           "kind": "keyword",
           "rank": null,
           "top": [
-            "quickstart-next",
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-2-grade-it"
+            "sdk-javascript-api-classes-ratelimiterror",
+            "cookbooks-pre-parsed-value-extraction-cookbook-two-limits",
+            "sdk-javascript-api-classes-ratelimiterror-constructors"
           ]
         },
         {
-          "query": "typescript",
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
+            "agent-skill",
+            "cookbooks-skill-suggestion",
+            "agent-skill-installation"
           ]
         },
         {
-          "query": "openapi",
-          "kind": "keyword",
-          "rank": 2,
-          "top": [
-            "deploy-auth",
-            "serve-more-endpoints",
-            "deploy"
-          ]
-        },
-        {
-          "query": "bearer token",
+          "query": "confidence",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "deploy-auth",
-            "deploy",
-            "deploy-an-open-node"
+            "confidence",
+            "patterns-confidence-routing",
+            "cookbooks-function-calling-read-the-confidence"
           ]
         },
         {
-          "query": "health check endpoint",
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "serve-endpoints",
-            "serve-more-endpoints",
-            "install"
+            "patterns-intent-routing",
+            "patterns-confidence-routing",
+            "patterns-intent-routing-example-customer-service-routing"
           ]
         },
         {
-          "query": "roadmap",
+          "query": "state",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "limitations",
-            "limitations-not-in-v1",
-            "limitations-known-rough-edges"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail"
           ]
         },
         {
-          "query": "instal on linux",
+          "query": "smart home demo",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos",
+            "demos-available-demos"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "models-customizing-jev"
+          ]
+        },
+        {
+          "query": "cofidence",
           "kind": "typo",
           "rank": 1,
           "top": [
-            "install",
-            "deploy-an-open-node",
-            "install-upgrading"
+            "confidence",
+            "cookbooks-classification-using-confidence",
+            "cookbooks-function-calling-read-the-confidence"
           ]
         },
         {
-          "query": "quickstrat",
+          "query": "primatives",
           "kind": "typo",
-          "rank": null,
-          "top": []
+          "rank": 1,
+          "top": [
+            "primitives",
+            "introduction-typesafe-primitives",
+            "primitives-ask-for-one-snap-judgment-per-question"
+          ]
         },
         {
-          "query": "pyhton",
+          "query": "pyton sdk",
           "kind": "typo",
-          "rank": null,
-          "top": []
+          "rank": 1,
+          "top": [
+            "sdk-python",
+            "sdk",
+            "sdk-javascript"
+          ]
         },
         {
           "query": "how much does it cost",
           "kind": "intent",
-          "rank": 3,
+          "rank": null,
           "top": [
-            "how-it-works",
-            "sql-row-sources",
-            "security-cost-controls"
+            "demos-smart-home-how-it-works",
+            "cookbooks-autoformat-cost-and-latency",
+            "cookbooks-skill-suggestion-what-the-results-show"
           ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "how many requests per minute can I make",
           "kind": "intent",
           "rank": null,
           "top": [
-            "sql-where-a-call-may-appear",
-            "deploy-auth",
-            "sdk-go-api"
-          ]
-        },
-        {
-          "query": "install on mac",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
-          ]
-        },
-        {
-          "query": "use it from claude code",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "introduction-from-your-code",
-            "cli-exit-codes",
-            "deploy"
-          ]
-        },
-        {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security-what-is-sent",
-            "mcp-read-only-by-default",
-            "security-what-is-stored-locally"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "configuration-the-cache",
-            "security-what-is-stored-locally",
-            "introduction-where-next"
-          ]
-        },
-        {
-          "query": "stop a query from spending too much",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "mcp-tools",
-            "sdk-go-api",
-            "deploy-auth"
-          ]
-        },
-        {
-          "query": "run one shared server for my team",
-          "kind": "intent",
-          "rank": 5,
-          "top": [
-            "cli-running-statements",
-            "mcp",
-            "deploy-what-the-node-holds"
-          ]
-        },
-        {
-          "query": "which sql is not supported",
-          "kind": "intent",
-          "rank": 5,
-          "top": [
-            "sdk-go-notes",
-            "sql",
-            "introduction-what-it-is-not"
-          ]
-        },
-        {
-          "query": "can an agent write to the database",
-          "kind": "intent",
-          "rank": null,
-          "top": [
-            "deploy-an-open-node",
-            "mcp-tools",
-            "cookbook-ticket-triage-where-to-go-next"
-          ]
-        },
-        {
-          "query": "sort tickets by how urgent they are",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "how-it-works-pass-b-judge",
-            "sql-row-sources",
-            "cookbook-ticket-triage"
-          ]
-        },
-        {
-          "query": "find reviews that need a response",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "deploy-auth",
-            "cookbook-product-feedback-report-1-what-people-complain-about"
-          ]
-        },
-        {
-          "query": "build a search box in react",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "install",
+            "model-jaggedness-jev-1-13-indirection",
             "introduction",
-            "cookbook-semantic-search-react"
+            "introduction-machine-learning-primer"
           ]
         },
         {
-          "query": "why does order by run on the client",
+          "query": "how big can the state be",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-state",
+            "cookbooks-consistency-choice-cookbook-how-we-ask",
+            "cookbooks-consistency-noul-cookbook-how-we-ask"
+          ]
+        },
+        {
+          "query": "what do I do when I get a 429",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction-machine-learning-primer",
+            "sdk-python-api-clients-async",
+            "model-jaggedness-jev-1-13-indirection"
+          ]
+        },
+        {
+          "query": "my api key is being rejected",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-javascript-api-classes-apiconnectionerror-extended-by",
+            "sdk-javascript-api-classes-typesafeerror-extended-by",
+            "sdk-python-api"
+          ]
+        },
+        {
+          "query": "pick one option from a list",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-responses",
+            "primitives-advanced"
+          ]
+        },
+        {
+          "query": "rate something on a scale",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-responses",
+            "cookbooks-consistency-choice-cookbook-plot-decision-agreement-with-an-uncertain-outcome"
+          ]
+        },
+        {
+          "query": "ask a yes or no question",
+          "kind": "intent",
+          "rank": 3,
+          "top": [
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-questions",
+            "primitives-noul"
+          ]
+        },
+        {
+          "query": "ask several questions in one call",
+          "kind": "intent",
+          "rank": 9,
+          "top": [
+            "introduction",
+            "sdk-javascript-api-interfaces-questions-indexable",
+            "model-jaggedness-jev-1-13-indirection"
+          ]
+        },
+        {
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-api-types-responses",
+            "sdk-python-api-clients-async",
+            "api-answer-types"
+          ]
+        },
+        {
+          "query": "can I fine tune it on my data",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-semantic-find-step-1-tag-every-line-with-an-id",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code",
+            "introduction"
+          ]
+        },
+        {
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-javascript-documentation",
+            "legal-legal-documents",
+            "cookbooks-semantic-find-try-it-on-your-own-document"
+          ]
+        },
+        {
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "introduction",
+            "agent-skill-installation",
+            "sdk-javascript-api-interfaces-questions-indexable"
+          ]
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-hierarchical-classification-results",
+            "cookbooks-skill-suggestion-caching-results",
+            "cookbooks-semantic-find"
+          ]
+        },
+        {
+          "query": "stop an llm from saying something harmful",
           "kind": "intent",
           "rank": 4,
           "top": [
-            "introduction-the-one-idea",
-            "deploy-an-open-node",
-            "cli-running-statements"
+            "sdk-python-api-types-responses",
+            "introduction-machine-learning-primer",
+            "api-answer-types"
           ]
         },
         {
-          "query": "my first query after connecting",
+          "query": "pull dates out of messy text",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbooks-date-extraction-cookbook",
+            "cookbooks-autoresearch-feature-discovery-next-steps",
+            "cookbooks-date-extraction-cookbook-confidence-to-route-on"
+          ]
+        },
+        {
+          "query": "check whether a citation is real",
+          "kind": "intent",
+          "rank": 6,
+          "top": [
+            "sdk-python-api-clients-async",
+            "cookbooks-citation-check-check-every-citation",
+            "sdk-python-api-types-responses"
+          ]
+        },
+        {
+          "query": "send a support ticket to the right team",
+          "kind": "intent",
+          "rank": 4,
+          "top": [
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-responses",
+            "sdk-javascript-api-classes-apipromise"
+          ]
+        },
+        {
+          "query": "set it up in claude code",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "agent-skill-installation",
+            "introduction",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "patterns-confidence-routing",
+            "confidence",
+            "cookbooks-rerank-typesafe-what-s-next"
+          ]
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-llm-guardrails-screen-every-message",
+            "patterns-composite-scoring-example-resume-screening",
+            "cookbooks-llm-guardrails-the-same-probabilities-different-decisions"
+          ]
+        },
+        {
+          "query": "what is the model bad at",
           "kind": "intent",
           "rank": 7,
           "top": [
-            "serve-queryresult",
-            "mcp-read-only-by-default",
-            "sql-where-a-call-may-appear"
+            "models-listing-models",
+            "models-current-models",
+            "models"
           ]
         },
         {
-          "query": "use from go without running a server",
-          "kind": "intent",
-          "rank": 9,
-          "top": [
-            "deploy-auth",
-            "sdk-go-api",
-            "sql-where-a-call-may-appear"
-          ]
-        },
-        {
-          "query": "engine binary not found",
+          "query": "try it without writing code",
           "kind": "intent",
           "rank": 2,
           "top": [
-            "sdk-go-notes",
-            "sdk-python-engine-discovery",
-            "sdk-typescript-engine-discovery"
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code",
+            "introduction-quickstart-try-it-the-playground",
+            "cookbooks-rerank-typesafe-try-it-yourself"
           ]
         },
         {
-          "query": "public playground with no token",
+          "query": "put json inside a question",
           "kind": "intent",
-          "rank": 2,
+          "rank": 3,
           "top": [
-            "sdk-go-notes",
-            "deploy-an-open-node",
-            "deploy"
+            "sdk-python-api-clients-async",
+            "sdk-python-api-types-responses",
+            "primitives-advanced"
           ]
         },
         {
-          "query": "upgrade to the latest version",
+          "query": "how do I read what comes back",
           "kind": "intent",
-          "rank": 9,
+          "rank": 3,
           "top": [
-            "mcp-tools",
-            "cookbook-ticket-triage-where-to-go-next",
-            "sdk-go"
+            "model-jaggedness-jev-1-13-indirection",
+            "introduction",
+            "primitives-what-comes-back"
           ]
         },
         {
-          "query": "is my api key stored anywhere",
+          "query": "why probabilities instead of generated text",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "security-keys",
-            "sdk-go-api",
-            "security-what-is-stored-locally"
+            "introduction-machine-learning-primer",
+            "introduction-next-steps",
+            "cookbooks-autoresearch-feature-discovery-next-steps"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pagefind",
+      "version": "1.5.2",
+      "kind": "local",
+      "buildMs": 996.98,
+      "latencyMs": {
+        "median": 2.6,
+        "p95": 6.93
+      },
+      "hit1": 0.1951219512195122,
+      "hit3": 0.2926829268292683,
+      "mrr": 0.24959349593495933,
+      "byKind": {
+        "keyword": {
+          "hit1": 0.5,
+          "hit3": 0.8333333333333334,
+          "mrr": 0.6694444444444444,
+          "n": 12
+        },
+        "typo": {
+          "hit1": 0,
+          "hit3": 0,
+          "mrr": 0,
+          "n": 3
+        },
+        "intent": {
+          "hit1": 0.07692307692307693,
+          "hit3": 0.07692307692307693,
+          "mrr": 0.08461538461538462,
+          "n": 26
+        }
+      },
+      "perQuery": [
+        {
+          "query": "noul",
+          "kind": "keyword",
+          "rank": 6,
+          "top": [
+            "sdk-javascript-api-interfaces-noulresponse",
+            "sdk-javascript-api-interfaces-noulquestion",
+            "sdk-javascript-api-functions-noul"
           ]
         },
         {
-          "query": "send only some columns to the model",
-          "kind": "intent",
+          "query": "choice",
+          "kind": "keyword",
           "rank": 5,
           "top": [
-            "mcp-tools",
-            "sdk-go",
-            "cookbook-ticket-triage-where-to-go-next"
+            "sdk-javascript-api-type-aliases-choicecriteria",
+            "sdk-javascript-api-interfaces-choiceresponse",
+            "sdk-javascript-api-interfaces-choicequestion"
           ]
         },
         {
-          "query": "route a webhook ticket that is not in postgres yet",
-          "kind": "intent",
-          "rank": 8,
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 2,
           "top": [
-            "introduction-what-it-is-not",
-            "introduction",
-            "install"
+            "primitives-advanced-structured-score-levels",
+            "primitives-score-writing-good-levels",
+            "primitives-score-structured-level-descriptions"
           ]
         },
         {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": 4,
+          "query": "python sdk",
+          "kind": "keyword",
+          "rank": 2,
           "top": [
-            "mcp",
-            "serve",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-python",
+            "sdk"
           ]
         },
         {
-          "query": "make the results feel instant",
-          "kind": "intent",
+          "query": "javascript sdk",
+          "kind": "keyword",
           "rank": 1,
           "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant",
-            "configuration-the-cache",
-            "introduction-the-one-idea"
+            "sdk-javascript",
+            "sdk",
+            "sdk-javascript-documentation"
           ]
         },
         {
-          "query": "what happens when a statement has no jev call",
+          "query": "rate limits",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "sdk-javascript-api-classes-ratelimiterror",
+            "sdk-javascript-api-classes-ratelimiterror-constructors",
+            "models-current-models"
+          ]
+        },
+        {
+          "query": "agent skill",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "agent-skill",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "cookbooks-skill-suggestion"
+          ]
+        },
+        {
+          "query": "confidence",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "patterns-confidence-routing",
+            "confidence-three-paths-for-using-confidence-in-your-code",
+            "confidence"
+          ]
+        },
+        {
+          "query": "intent routing",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-confidence-routing"
+          ]
+        },
+        {
+          "query": "state",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "concepts-state",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value"
+          ]
+        },
+        {
+          "query": "smart home demo",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "demos-smart-home",
+            "demos-available-demos",
+            "demos-smart-home-run-it-yourself"
+          ]
+        },
+        {
+          "query": "composite scoring",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "patterns-composite-scoring",
+            "patterns-composite-scoring-example-resume-screening",
+            "patterns-the-patterns"
+          ]
+        },
+        {
+          "query": "cofidence",
+          "kind": "typo",
+          "rank": null,
+          "top": [
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "concepts-use-case-map-example-use-case-categories",
+            "cookbooks-semantic-find-try-it-on-your-own-document"
+          ]
+        },
+        {
+          "query": "primatives",
+          "kind": "typo",
+          "rank": null,
+          "top": [
+            "cookbooks-semantic-find-try-it-on-your-own-document"
+          ]
+        },
+        {
+          "query": "pyton sdk",
+          "kind": "typo",
+          "rank": null,
+          "top": [
+            "cookbooks-function-calling-setup",
+            "cookbooks-semantic-find-setup",
+            "concepts-how-to-build-with-system-one-putting-it-all-together"
+          ]
+        },
+        {
+          "query": "how much does it cost",
           "kind": "intent",
           "rank": null,
           "top": [
-            "sql-where-a-call-may-appear",
-            "sdk-go-api",
-            "deploy-an-open-node"
+            "cookbooks-llm-guardrails-define-the-guardrails",
+            "primitives-ask-multiple-questions-together",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions"
+          ]
+        },
+        {
+          "query": "how many requests per minute can I make",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "how big can the state be",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "what do I do when I get a 429",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "my api key is being rejected",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-skill-suggestion-step-1-load-the-roster"
+          ]
+        },
+        {
+          "query": "pick one option from a list",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-next-steps",
+            "cookbooks-autoformat",
+            "primitives-advanced-structured-choice-options"
+          ]
+        },
+        {
+          "query": "rate something on a scale",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-score-writing-good-levels",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "cookbooks-llm-guardrails-define-the-guardrails"
+          ]
+        },
+        {
+          "query": "ask a yes or no question",
+          "kind": "intent",
+          "rank": 5,
+          "top": [
+            "cookbooks-llm-guardrails-define-the-guardrails",
+            "primitives-noul-handling-multiple-noul-answers-in-code",
+            "cookbooks-consistency-noul-cookbook-how-we-ask"
+          ]
+        },
+        {
+          "query": "ask several questions in one call",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-ask-multiple-questions-together",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "patterns-fan-out-example-support-ticket-triage"
+          ]
+        },
+        {
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "can I fine tune it on my data",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "stop an llm from saying something harmful",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "pull dates out of messy text",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "check whether a citation is real",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "send a support ticket to the right team",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "set it up in claude code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "agent-skill-common-issues"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": null,
+          "top": []
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-use-case-map-example-automation-use-cases"
+          ]
+        },
+        {
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-sde-cascade-appendix-a-what-makes-a-good-verifier-signal",
+            "cookbooks-autoresearch-feature-discovery"
+          ]
+        },
+        {
+          "query": "try it without writing code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-noul-writing-a-noul-question",
+            "cookbooks-classifying-rag-passages-build-the-prompt-from-the-accepted-evidence"
+          ]
+        },
+        {
+          "query": "put json inside a question",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-how-to-build-with-system-one-design-a-system-one-workflow",
+            "cookbooks-skill-suggestion-step-2-score-the-agent-on-its-own"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "cookbooks-autoformat-where-the-join-thresholds-come-from",
+            "cookbooks-classifying-rag-passages-route-each-passage-in-code"
+          ]
+        },
+        {
+          "query": "why probabilities instead of generated text",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions"
           ]
         }
       ]
@@ -2001,52 +2511,63 @@
       "name": "jev-search (lexical only)",
       "version": "0.1.0",
       "kind": "local",
-      "buildMs": 6.87,
+      "buildMs": 38.7,
       "latencyMs": {
-        "median": 1.33,
-        "p95": 2.8
+        "median": 8.65,
+        "p95": 14.18
       },
-      "hit1": 0.6,
-      "hit3": 0.8,
-      "mrr": 0.6981547619047618,
+      "hit1": 0.4146341463414634,
+      "hit3": 0.5853658536585366,
+      "mrr": 0.5143631436314362,
       "byKind": {
         "keyword": {
-          "hit1": 0.8333333333333334,
-          "hit3": 0.8333333333333334,
-          "mrr": 0.8333333333333334,
+          "hit1": 0.5833333333333334,
+          "hit3": 0.9166666666666666,
+          "mrr": 0.7314814814814814,
           "n": 12
         },
         "typo": {
-          "hit1": 1,
-          "hit3": 1,
-          "mrr": 1,
+          "hit1": 0.3333333333333333,
+          "hit3": 0.6666666666666666,
+          "mrr": 0.5416666666666666,
           "n": 3
         },
         "intent": {
-          "hit1": 0.44,
-          "hit3": 0.76,
-          "mrr": 0.597047619047619,
-          "n": 25
+          "hit1": 0.34615384615384615,
+          "hit3": 0.4230769230769231,
+          "mrr": 0.4110042735042735,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
-          "rank": 1,
+          "rank": 3,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-advanced-structured-noul-criteria",
+            "primitives-noul-noul-in-the-cookbooks",
+            "primitives-noul"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": null,
+          "rank": 2,
           "top": [
-            "introduction-where-next",
-            "install-upgrading"
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "primitives-choice",
+            "primitives-advanced-structured-choice-options"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 2,
+          "top": [
+            "primitives-advanced-structured-score-levels",
+            "primitives-score",
+            "primitives-score-writing-good-levels"
           ]
         },
         {
@@ -2055,376 +2576,378 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-python-types",
-            "sdk-python-engine-discovery"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-python-api-constants"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-read-only-by-default"
+            "sdk-javascript",
+            "sdk-javascript-documentation",
+            "sdk"
           ]
         },
         {
-          "query": "exit codes",
+          "query": "rate limits",
+          "kind": "keyword",
+          "rank": 3,
+          "top": [
+            "sdk-python-api-exceptions",
+            "sdk-javascript-api-classes-ratelimiterror",
+            "models-current-models"
+          ]
+        },
+        {
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "cli-exit-codes",
-            "cli-running-statements",
-            "cli"
+            "agent-skill",
+            "introduction-quickstart-vibe-it-the-agent-skill",
+            "cookbooks-skill-suggestion"
           ]
         },
         {
-          "query": "config file",
+          "query": "confidence",
+          "kind": "keyword",
+          "rank": 9,
+          "top": [
+            "patterns-confidence-routing",
+            "confidence-three-paths-for-using-confidence-in-your-code",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence"
+          ]
+        },
+        {
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "configuration-the-config-file",
-            "configuration",
-            "configuration-precedence"
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-confidence-routing"
           ]
         },
         {
-          "query": "jev_choice",
-          "kind": "keyword",
-          "rank": null,
-          "top": [
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-ticket-triage-2-grade-it",
-            "cookbook-ticket-triage-3-describe-the-teams"
-          ]
-        },
-        {
-          "query": "typescript",
+          "query": "state",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "sdk-typescript",
-            "sdk-typescript-types",
-            "sdk-typescript-engine-discovery"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail"
           ]
         },
         {
-          "query": "openapi",
+          "query": "smart home demo",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "serve-more-endpoints",
-            "deploy-auth",
-            "deploy"
+            "demos-smart-home",
+            "demos-available-demos",
+            "demos-smart-home-run-it-yourself"
           ]
         },
         {
-          "query": "bearer token",
+          "query": "composite scoring",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "deploy-auth",
-            "deploy-an-open-node",
-            "deploy"
+            "patterns-composite-scoring",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "patterns-composite-scoring-example-resume-screening"
           ]
         },
         {
-          "query": "health check endpoint",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "serve-endpoints",
-            "serve-more-endpoints",
-            "deploy"
-          ]
-        },
-        {
-          "query": "roadmap",
-          "kind": "keyword",
-          "rank": 1,
-          "top": [
-            "limitations",
-            "limitations-known-rough-edges",
-            "limitations-likely-next"
-          ]
-        },
-        {
-          "query": "instal on linux",
+          "query": "cofidence",
           "kind": "typo",
-          "rank": 1,
+          "rank": 8,
           "top": [
-            "install",
-            "sdk-typescript",
-            "install-upgrading"
+            "patterns-confidence-routing",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "confidence-three-paths-for-using-confidence-in-your-code"
           ]
         },
         {
-          "query": "quickstrat",
+          "query": "primatives",
           "kind": "typo",
-          "rank": 1,
+          "rank": 2,
           "top": [
-            "quickstart"
+            "introduction-typesafe-primitives",
+            "primitives",
+            "primitives-next-steps"
           ]
         },
         {
-          "query": "pyhton",
+          "query": "pyton sdk",
           "kind": "typo",
           "rank": 1,
           "top": [
             "sdk-python",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "sdk-python-types"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk-javascript"
           ]
         },
         {
           "query": "how much does it cost",
           "kind": "intent",
-          "rank": 1,
+          "rank": null,
           "top": [
-            "security-cost-controls",
-            "cli-running-statements",
-            "cookbook-semantic-search-react-4-make-it-feel-instant"
+            "cookbooks-autoformat-cost-and-latency",
+            "cookbooks-parallel-questions-the-only-difference-cost-and-speed",
+            "cookbooks-llm-guardrails-define-the-guardrails"
           ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "how many requests per minute can I make",
+          "kind": "intent",
+          "rank": 8,
+          "top": [
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
+            "cookbooks-semantic-find-step-4-send-both-questions-in-one-request",
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call"
+          ]
+        },
+        {
+          "query": "how big can the state be",
           "kind": "intent",
           "rank": null,
           "top": [
-            "cookbook-semantic-search-react-what-you-need",
-            "cookbook-product-feedback-report-what-you-need",
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "cookbooks-sde-cascade-appendix-a-what-makes-a-good-verifier-signal"
           ]
         },
         {
-          "query": "install on mac",
+          "query": "what do I do when I get a 429",
           "kind": "intent",
-          "rank": 1,
+          "rank": 10,
           "top": [
-            "install",
-            "install-upgrading",
-            "install-requirements"
+            "primitives-advanced-when-to-structure-a-question",
+            "cookbooks-classification-using-confidence-return-the-group-when-sure-its-division-when-not",
+            "introduction"
           ]
         },
         {
-          "query": "use it from claude code",
+          "query": "my api key is being rejected",
           "kind": "intent",
-          "rank": 7,
+          "rank": 10,
           "top": [
-            "introduction-from-your-code",
-            "cli-exit-codes",
-            "serve-errors"
+            "cookbooks-skill-suggestion-setup",
+            "introduction-quickstart-call-it-the-api",
+            "sdk-javascript-api-classes-apipromise"
           ]
         },
         {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security",
-            "security-what-is-stored-locally",
-            "security-keys"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "cookbook-ticket-triage-where-to-go-next",
-            "configuration-the-cache",
-            "security-what-is-stored-locally"
-          ]
-        },
-        {
-          "query": "stop a query from spending too much",
+          "query": "pick one option from a list",
           "kind": "intent",
           "rank": null,
           "top": [
-            "mcp-tools",
-            "mcp-read-only-by-default",
-            "cookbook-product-feedback-report-5-ship-it-as-a-weekly-report"
+            "primitives-advanced-structured-choice-options",
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call",
+            "cookbooks-autoformat"
           ]
         },
         {
-          "query": "run one shared server for my team",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "deploy-what-the-node-holds",
-            "deploy",
-            "deploy-auth"
-          ]
-        },
-        {
-          "query": "which sql is not supported",
+          "query": "rate something on a scale",
           "kind": "intent",
           "rank": null,
           "top": [
-            "cookbook-product-feedback-report-2-which-products-are-breaking",
-            "cookbook-ticket-triage",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply"
+            "confidence-thresholds-scale-with-risk",
+            "primitives-score-writing-good-levels",
+            "sdk-javascript-api-classes-ratelimiterror"
           ]
         },
         {
-          "query": "can an agent write to the database",
+          "query": "ask a yes or no question",
           "kind": "intent",
-          "rank": 5,
+          "rank": 6,
           "top": [
-            "mcp-tools",
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "mcp-resource-and-prompt"
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
+            "primitives-noul-writing-a-noul-question",
+            "cookbooks-entity-alignment-ask-one-score-question-and-three-noul-questions-per-candidate-pair"
           ]
         },
         {
-          "query": "sort tickets by how urgent they are",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-4-rank-by-urgency",
-            "cookbook-ticket-triage-1-route-ten-tickets"
-          ]
-        },
-        {
-          "query": "find reviews that need a response",
+          "query": "ask several questions in one call",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
-            "cookbook-product-feedback-report-what-you-need"
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call",
+            "primitives-ask-for-one-snap-judgment-per-question"
           ]
         },
         {
-          "query": "build a search box in react",
+          "query": "when should a human review the answer",
           "kind": "intent",
-          "rank": 1,
+          "rank": null,
           "top": [
-            "cookbook-semantic-search-react",
-            "cookbook-semantic-search-react-where-to-go-next",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go"
+            "primitives-noul-handling-multiple-noul-answers-in-code",
+            "sdk-python-api-types-responses",
+            "cookbooks-citation-check"
           ]
         },
         {
-          "query": "why does order by run on the client",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "cookbook-product-feedback-report-2-which-products-are-breaking",
-            "sdk-go",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server"
-          ]
-        },
-        {
-          "query": "my first query after connecting",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "mcp-connect",
-            "quickstart",
-            "quickstart-next"
-          ]
-        },
-        {
-          "query": "use from go without running a server",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "sdk-go"
-          ]
-        },
-        {
-          "query": "engine binary not found",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "sdk-python-engine-discovery",
-            "sdk-typescript-engine-discovery",
-            "sdk-go-notes"
-          ]
-        },
-        {
-          "query": "public playground with no token",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "deploy-an-open-node",
-            "deploy-what-the-node-holds",
-            "deploy"
-          ]
-        },
-        {
-          "query": "upgrade to the latest version",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "install-upgrading",
-            "install",
-            "serve-endpoints"
-          ]
-        },
-        {
-          "query": "is my api key stored anywhere",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "security-what-is-stored-locally",
-            "security-keys",
-            "cookbook-semantic-search-react-1-the-api-route"
-          ]
-        },
-        {
-          "query": "send only some columns to the model",
+          "query": "can I fine tune it on my data",
           "kind": "intent",
           "rank": 4,
           "top": [
-            "mcp-read-only-by-default",
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "mcp-tools"
+            "cookbooks-sde-cascade-step-1-the-data",
+            "models-data-handling",
+            "cookbooks-autoresearch-feature-discovery-pointing-it-at-your-own-data"
           ]
         },
         {
-          "query": "route a webhook ticket that is not in postgres yet",
+          "query": "do you train on my requests",
+          "kind": "intent",
+          "rank": 9,
+          "top": [
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "cookbooks-semantic-find-step-4-send-both-questions-in-one-request",
+            "api-request-body"
+          ]
+        },
+        {
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "demos-smart-home-how-it-works",
+            "concepts-how-to-build-with-system-one-design-a-system-one-workflow",
+            "concepts-system-one-fast-judgments-inside-a-larger-workflow"
+          ]
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-semantic-find-step-5-read-the-result",
+            "cookbooks-hierarchical-classification-implement-greedy-and-beam-search",
+            "cookbooks-hierarchical-classification-results"
+          ]
+        },
+        {
+          "query": "stop an llm from saying something harmful",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "cookbook-semantic-search-react-1-the-api-route"
+            "cookbooks-llm-guardrails",
+            "cookbooks-llm-guardrails-turn-the-assessment-into-a-decision",
+            "cookbooks-llm-guardrails-define-the-guardrails"
           ]
         },
         {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "how-it-works-pass-a-collect",
-            "how-it-works"
-          ]
-        },
-        {
-          "query": "make the results feel instant",
+          "query": "pull dates out of messy text",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant",
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
-            "cookbook-semantic-search-react-2-the-component"
+            "cookbooks-date-extraction-cookbook",
+            "cookbooks-date-extraction-cookbook-the-questions",
+            "cookbooks-sde-cascade-step-2-extract-with-the-mini-model-text-mode"
           ]
         },
         {
-          "query": "what happens when a statement has no jev call",
+          "query": "check whether a citation is real",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "cookbooks-citation-check",
+            "cookbooks-citation-check-check-every-citation",
+            "cookbooks-semantic-find-step-3-check-whether-an-answer-exists"
+          ]
+        },
+        {
+          "query": "send a support ticket to the right team",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "patterns-fan-out-example-support-ticket-triage",
+            "cookbooks-pre-parsed-value-extraction-cookbook-email-pick-the-right-address-by-role",
+            "concepts-how-to-build-with-system-one-putting-it-all-together"
+          ]
+        },
+        {
+          "query": "set it up in claude code",
           "kind": "intent",
           "rank": 3,
           "top": [
-            "sql-where-a-call-may-appear",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "cli-running-statements"
+            "agent-skill-common-issues",
+            "cookbooks-classifying-rag-passages-setup",
+            "agent-skill-installation"
+          ]
+        },
+        {
+          "query": "what does confidence actually mean",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "confidence-confidence-is-derived-from-the-probabilities",
+            "confidence",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code"
+          ]
+        },
+        {
+          "query": "screen job applicants",
+          "kind": "intent",
+          "rank": 2,
+          "top": [
+            "cookbooks-llm-guardrails-screen-every-message",
+            "patterns-composite-scoring-example-resume-screening",
+            "cookbooks-llm-guardrails-the-same-probabilities-different-decisions"
+          ]
+        },
+        {
+          "query": "what is the model bad at",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "concepts-system-one-call-a-system-one-model",
+            "cookbooks-sde-cascade-step-2-extract-with-the-mini-model-text-mode",
+            "models-listing-models"
+          ]
+        },
+        {
+          "query": "try it without writing code",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "primitives-noul-writing-a-noul-question",
+            "primitives-score-writing-good-levels",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code"
+          ]
+        },
+        {
+          "query": "put json inside a question",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-advanced-when-to-structure-a-question",
+            "cookbooks-classifying-rag-passages-ask-four-questions-about-each-passage",
+            "sdk-python-api-types-questions"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-what-comes-back",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "cookbooks-autoformat-where-the-join-thresholds-come-from"
+          ]
+        },
+        {
+          "query": "why probabilities instead of generated text",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-three-post-training-approaches",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions"
           ]
         }
       ]
@@ -2433,19 +2956,19 @@
       "name": "jev-search",
       "version": "0.1.0",
       "kind": "remote",
-      "buildMs": 7.9,
+      "buildMs": 34.3,
       "latencyMs": {
-        "median": 258.96,
-        "p95": 384.31
+        "median": 278.03,
+        "p95": 327
       },
-      "hit1": 0.8,
-      "hit3": 0.85,
-      "mrr": 0.8244047619047619,
+      "hit1": 0.8292682926829268,
+      "hit3": 0.8292682926829268,
+      "mrr": 0.8292682926829268,
       "byKind": {
         "keyword": {
-          "hit1": 0.8333333333333334,
-          "hit3": 0.8333333333333334,
-          "mrr": 0.8333333333333334,
+          "hit1": 1,
+          "hit3": 1,
+          "mrr": 1,
           "n": 12
         },
         "typo": {
@@ -2455,30 +2978,41 @@
           "n": 3
         },
         "intent": {
-          "hit1": 0.76,
-          "hit3": 0.84,
-          "mrr": 0.799047619047619,
-          "n": 25
+          "hit1": 0.7307692307692307,
+          "hit3": 0.7307692307692307,
+          "mrr": 0.7307692307692307,
+          "n": 26
         }
       },
       "perQuery": [
         {
-          "query": "install",
+          "query": "noul",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "install",
-            "sdk-python",
-            "sdk-typescript"
+            "primitives-noul",
+            "sdk-javascript-api-functions-noul",
+            "primitives-noul-writing-a-noul-question"
           ]
         },
         {
-          "query": "homebrew",
+          "query": "choice",
           "kind": "keyword",
-          "rank": null,
+          "rank": 1,
           "top": [
-            "install-upgrading",
-            "introduction-where-next"
+            "primitives-choice",
+            "primitives-define-a-question",
+            "sdk-javascript-api-functions-choice"
+          ]
+        },
+        {
+          "query": "score levels",
+          "kind": "keyword",
+          "rank": 1,
+          "top": [
+            "primitives-score-writing-good-levels",
+            "primitives-score",
+            "primitives-score-structured-level-descriptions"
           ]
         },
         {
@@ -2487,374 +3021,373 @@
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-python-embedded-engine",
-            "sdk-python-remote-engine"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk"
           ]
         },
         {
-          "query": "mcp",
+          "query": "javascript sdk",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "mcp",
-            "mcp-connect",
-            "mcp-tools"
+            "sdk-javascript",
+            "sdk-javascript-quickstart",
+            "sdk"
           ]
         },
         {
-          "query": "exit codes",
+          "query": "rate limits",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "cli-exit-codes",
-            "serve-the-same-documents-from-the-cli",
-            "security-cost-controls"
+            "models-current-models",
+            "sdk-python-api-exceptions",
+            "sdk-javascript-api-classes-ratelimiterror"
           ]
         },
         {
-          "query": "config file",
+          "query": "agent skill",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "configuration-the-config-file",
-            "configuration",
-            "mcp-connect"
+            "agent-skill",
+            "agent-skill-example-prompts",
+            "agent-skill-installation"
           ]
         },
         {
-          "query": "jev_choice",
-          "kind": "keyword",
-          "rank": null,
-          "top": [
-            "cookbook-ticket-triage-1-route-ten-tickets",
-            "sql-where-a-call-may-appear",
-            "cookbook-ticket-triage"
-          ]
-        },
-        {
-          "query": "typescript",
+          "query": "confidence",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "sdk-typescript",
-            "sdk-typescript-embedded-engine",
-            "sdk-typescript-remote-engine"
+            "confidence",
+            "confidence-three-paths-for-using-confidence-in-your-code",
+            "confidence-confidence-is-derived-from-the-probabilities"
           ]
         },
         {
-          "query": "openapi",
+          "query": "intent routing",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "serve-more-endpoints",
-            "deploy-auth",
-            "deploy"
+            "patterns-intent-routing",
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-the-patterns"
           ]
         },
         {
-          "query": "bearer token",
+          "query": "state",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "deploy-auth",
-            "sdk-python-remote-engine",
-            "sdk-typescript-remote-engine"
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value",
+            "concepts-state-separate-content-from-questions"
           ]
         },
         {
-          "query": "health check endpoint",
+          "query": "smart home demo",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "serve-endpoints",
-            "serve-more-endpoints",
-            "deploy"
+            "demos-smart-home",
+            "demos-smart-home-run-it-yourself",
+            "demos-available-demos"
           ]
         },
         {
-          "query": "roadmap",
+          "query": "composite scoring",
           "kind": "keyword",
           "rank": 1,
           "top": [
-            "limitations",
-            "limitations-likely-next",
-            "limitations-not-in-v1"
+            "patterns-composite-scoring",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "patterns-composite-scoring-example-resume-screening"
           ]
         },
         {
-          "query": "instal on linux",
+          "query": "cofidence",
           "kind": "typo",
           "rank": 1,
           "top": [
-            "install",
-            "sdk-typescript",
-            "sdk-python"
+            "confidence",
+            "confidence-three-paths-for-using-confidence-in-your-code",
+            "confidence-confidence-is-derived-from-the-probabilities"
           ]
         },
         {
-          "query": "quickstrat",
+          "query": "primatives",
           "kind": "typo",
           "rank": 1,
           "top": [
-            "quickstart"
+            "primitives",
+            "introduction-typesafe-primitives",
+            "primitives-choose-a-question-type"
           ]
         },
         {
-          "query": "pyhton",
+          "query": "pyton sdk",
           "kind": "typo",
           "rank": 1,
           "top": [
             "sdk-python",
-            "sdk-python-embedded-engine",
-            "sdk-python-engine-discovery"
+            "introduction-quickstart-code-it-the-python-sdk",
+            "sdk"
           ]
         },
         {
           "query": "how much does it cost",
           "kind": "intent",
-          "rank": 1,
+          "rank": null,
           "top": [
-            "cli-the-footer",
-            "security-cost-controls",
-            "cli-running-statements"
+            "cookbooks-autoformat-cost-and-latency",
+            "cookbooks-parallel-questions-the-only-difference-cost-and-speed",
+            "primitives-ask-multiple-questions-together"
           ]
         },
         {
-          "query": "does it need a postgres extension",
+          "query": "how many requests per minute can I make",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "models-current-models"
+          ]
+        },
+        {
+          "query": "how big can the state be",
           "kind": "intent",
           "rank": null,
           "top": [
-            "introduction-the-one-idea",
-            "cookbook-semantic-search-react-what-you-need",
-            "cookbook-ticket-triage-what-you-need"
+            "model-jaggedness-jev-1-13-large-state-full-of-irrelevant-detail",
+            "concepts-state",
+            "concepts-state-state-can-be-a-simple-string-or-a-structured-json-value"
           ]
         },
         {
-          "query": "install on mac",
+          "query": "what do I do when I get a 429",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "install",
-            "install-upgrading",
-            "sdk-python"
+            "sdk-python-api-retries",
+            "api-errors"
           ]
         },
         {
-          "query": "use it from claude code",
+          "query": "my api key is being rejected",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "mcp-connect",
-            "mcp",
-            "introduction-from-your-code"
+            "api-errors",
+            "introduction-quickstart-call-it-the-api",
+            "sdk-python-api-clients-sync"
           ]
         },
         {
-          "query": "what data leaves my machine",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "security-what-is-sent",
-            "security",
-            "security-keys"
-          ]
-        },
-        {
-          "query": "where is the cache stored",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "configuration-the-cache",
-            "security-what-is-stored-locally",
-            "configuration-the-config-file"
-          ]
-        },
-        {
-          "query": "stop a query from spending too much",
+          "query": "pick one option from a list",
           "kind": "intent",
           "rank": null,
           "top": [
-            "mcp-read-only-by-default",
-            "mcp-tools",
-            "mcp-resource-and-prompt"
+            "primitives-choice-good-practice-ask-more-than-one-question-per-call",
+            "primitives-choice-a-more-complex-example",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence"
           ]
         },
         {
-          "query": "run one shared server for my team",
-          "kind": "intent",
-          "rank": 1,
-          "top": [
-            "deploy",
-            "serve",
-            "deploy-what-the-node-holds"
-          ]
-        },
-        {
-          "query": "which sql is not supported",
+          "query": "rate something on a scale",
           "kind": "intent",
           "rank": null,
           "top": [
-            "security-what-it-is-not",
-            "introduction-what-it-is-not",
-            "cookbook-product-feedback-report-2-which-products-are-breaking"
+            "primitives-score-writing-good-levels",
+            "primitives-score-splitting-a-complex-judgment-into-several-score-questions",
+            "primitives-next-steps"
           ]
         },
         {
-          "query": "can an agent write to the database",
+          "query": "ask a yes or no question",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "mcp-read-only-by-default",
-            "deploy-what-the-node-holds",
-            "mcp-tools"
+            "primitives-noul",
+            "primitives-noul-writing-a-noul-question",
+            "primitives"
           ]
         },
         {
-          "query": "sort tickets by how urgent they are",
+          "query": "ask several questions in one call",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-ticket-triage-4-rank-by-urgency",
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-5-ship-it-as-a-job"
+            "primitives-ask-multiple-questions-together",
+            "primitives-noul-good-practice-ask-more-than-one-question-per-call",
+            "cookbooks-parallel-questions"
           ]
         },
         {
-          "query": "find reviews that need a response",
+          "query": "when should a human review the answer",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-llm-guardrails-turn-the-assessment-into-a-decision",
+            "cookbooks-consistency-noul-cookbook",
+            "cookbooks-consistency-noul-cookbook-how-we-ask"
+          ]
+        },
+        {
+          "query": "can I fine tune it on my data",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-product-feedback-report-4-reviewers-who-need-a-reply",
-            "cookbook-product-feedback-report-reviews-that-need-a-reply-9",
-            "cookbook-product-feedback-report"
+            "models-customizing-jev",
+            "legal",
+            "cookbooks-autoresearch-feature-discovery-pointing-it-at-your-own-data"
           ]
         },
         {
-          "query": "build a search box in react",
+          "query": "do you train on my requests",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-semantic-search-react-2-the-component",
-            "cookbook-semantic-search-react",
-            "cookbook-semantic-search-react-what-you-need"
+            "models-data-handling",
+            "models-customizing-jev",
+            "introduction-machine-learning-primer-three-post-training-approaches"
           ]
         },
         {
-          "query": "why does order by run on the client",
+          "query": "does it work in japanese",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "sdk-python-usage"
+          ]
+        },
+        {
+          "query": "make my search results better",
+          "kind": "intent",
+          "rank": null,
+          "top": [
+            "cookbooks-rerank-typesafe-what-is-fast-search",
+            "cookbooks-semantic-find",
+            "cookbooks-semantic-find-what-the-scores-mean"
+          ]
+        },
+        {
+          "query": "stop an llm from saying something harmful",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "sql-pushdown-rules",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server"
+            "cookbooks-llm-guardrails",
+            "cookbooks-llm-guardrails-turn-the-assessment-into-a-decision",
+            "cookbooks-llm-guardrails-screen-every-message"
           ]
         },
         {
-          "query": "my first query after connecting",
+          "query": "pull dates out of messy text",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "quickstart",
-            "introduction-where-next",
-            "quickstart-next"
+            "cookbooks-date-extraction-cookbook",
+            "cookbooks-date-extraction-cookbook-resolve-it-in-code",
+            "cookbooks-date-extraction-cookbook-the-questions"
           ]
         },
         {
-          "query": "use from go without running a server",
+          "query": "check whether a citation is real",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "sdk-go",
-            "cookbook-semantic-search-react-5-the-same-route-in-express-python-and-go",
-            "serve-the-same-documents-from-the-cli"
+            "cookbooks-citation-check",
+            "cookbooks-citation-check-check-every-citation",
+            "cookbooks-citation-check-verify-whether-the-source-supports-the-claim"
           ]
         },
         {
-          "query": "engine binary not found",
+          "query": "send a support ticket to the right team",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "sdk-python-engine-discovery",
-            "sdk-typescript-engine-discovery",
-            "sdk-typescript-embedded-engine"
+            "patterns-intent-routing-example-customer-service-routing",
+            "patterns-fan-out-example-support-ticket-triage",
+            "primitives-choice-a-more-complex-example"
           ]
         },
         {
-          "query": "public playground with no token",
+          "query": "set it up in claude code",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "deploy-an-open-node",
-            "deploy-auth",
-            "deploy"
+            "agent-skill-installation",
+            "agent-skill",
+            "agent-skill-example-prompts"
           ]
         },
         {
-          "query": "upgrade to the latest version",
+          "query": "what does confidence actually mean",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "install-upgrading",
-            "install"
+            "confidence",
+            "confidence-confidence-is-derived-from-the-probabilities",
+            "confidence-i-don-t-know-is-a-useful-signal"
           ]
         },
         {
-          "query": "is my api key stored anywhere",
-          "kind": "intent",
-          "rank": 3,
-          "top": [
-            "security-what-is-stored-locally",
-            "configuration-the-config-file",
-            "security-keys"
-          ]
-        },
-        {
-          "query": "send only some columns to the model",
+          "query": "screen job applicants",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "sql-row-sources",
-            "security",
-            "security-what-is-sent"
+            "patterns-composite-scoring-example-resume-screening",
+            "concepts-use-case-map-example-automation-use-cases",
+            "cookbooks-autoresearch-feature-discovery-next-steps"
           ]
         },
         {
-          "query": "route a webhook ticket that is not in postgres yet",
+          "query": "what is the model bad at",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-ticket-triage-6-route-at-intake-without-the-database",
-            "cookbook-ticket-triage",
-            "cookbook-ticket-triage-1-route-ten-tickets"
+            "model-jaggedness-jev-1-13-the-failure-modes-in-detail",
+            "concepts-system-one-how-it-differs-from-an-llm",
+            "introduction-atomic-questions-composed-in-code"
           ]
         },
         {
-          "query": "what does the server actually see",
-          "kind": "intent",
-          "rank": 2,
-          "top": [
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "how-it-works",
-            "how-it-works-pass-a-collect"
-          ]
-        },
-        {
-          "query": "make the results feel instant",
+          "query": "try it without writing code",
           "kind": "intent",
           "rank": 1,
           "top": [
-            "cookbook-semantic-search-react-4-make-it-feel-instant",
-            "cookbook-semantic-search-react-2-the-component",
-            "sdk-typescript-remote-engine"
+            "introduction-quickstart-try-it-the-playground",
+            "cookbooks-date-extraction-cookbook-open-it-in-the-typesafe-playground",
+            "cookbooks-classification-using-confidence-open-it-in-the-playground"
           ]
         },
         {
-          "query": "what happens when a statement has no jev call",
+          "query": "put json inside a question",
           "kind": "intent",
-          "rank": 7,
+          "rank": 1,
           "top": [
-            "sql-pushdown-rules",
-            "how-it-works-when-order-by-and-limit-stay-on-the-server",
-            "how-it-works-pass-a-collect"
+            "primitives-advanced-when-to-structure-a-question",
+            "api-question-types",
+            "sdk-python-api-types-questions"
+          ]
+        },
+        {
+          "query": "how do I read what comes back",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "primitives-what-comes-back",
+            "cookbooks-classification-using-confidence-ask-one-choice-question-and-read-the-confidence",
+            "primitives-score-reading-a-score"
+          ]
+        },
+        {
+          "query": "why probabilities instead of generated text",
+          "kind": "intent",
+          "rank": 1,
+          "top": [
+            "introduction-machine-learning-primer",
+            "introduction-machine-learning-primer-rlcd-and-calibrated-decisions",
+            "introduction-machine-learning-primer-three-post-training-approaches"
           ]
         }
       ]

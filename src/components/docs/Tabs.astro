@@ -1,0 +1,32 @@
+---
+/* Tabs without a framework: every child <div> is a panel, in label order. */
+interface Props { labels: string[]; storageKey?: string; icons?: (string | undefined)[] }
+const { labels, storageKey, icons = [] } = Astro.props
+const id = "tabs-" + Math.random().toString(36).slice(2, 8)
+---
+<div class="doc-tabs" data-tabs data-key={storageKey} id={id}>
+  <div role="tablist" class="doc-tablist">
+    {labels.map((l, i) => (
+      <button type="button" role="tab" class="doc-tab" aria-selected={i === 0 ? "true" : "false"} aria-controls={`${id}-p${i}`} data-index={i}>
+        {icons[i] && <svg class="tab-icon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d={icons[i]} /></svg>}{l}
+      </button>
+    ))}
+  </div>
+  <div class="doc-tabpanels"><slot /></div>
+</div>
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-tabs]")) {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>("[role=tab]"))
+    const panels = Array.from(root.querySelector(".doc-tabpanels")!.children) as HTMLElement[]
+    const key = root.dataset.key ? "jevql-tabs:" + root.dataset.key : ""
+    const show = (i: number, save = false) => {
+      tabs.forEach((t, j) => t.setAttribute("aria-selected", String(j === i)))
+      panels.forEach((p, j) => { p.hidden = j !== i; p.classList.add("doc-tabpanel") })
+      if (save && key) { try { localStorage.setItem(key, String(i)) } catch {} }
+    }
+    let start = 0
+    if (key) { try { start = Number(localStorage.getItem(key) ?? 0) || 0 } catch {} }
+    show(Math.min(start, panels.length - 1))
+    tabs.forEach((t, i) => t.addEventListener("click", () => show(i, true)))
+  }
+</script>
