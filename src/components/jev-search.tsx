@@ -388,7 +388,12 @@ function Results({
       {groups.map((g) => (
         <div key={g.section || "_"} role="group" aria-label={g.section || undefined}>
           {g.section ? (
-            <div className="px-2 pb-1 pt-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{g.section}</div>
+            <div
+              data-slot="jev-search-group"
+              className="px-2 pb-1 pt-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
+            >
+              {g.section}
+            </div>
           ) : null}
           {g.items.map(({ hit, index }) => (
             <Row
@@ -448,6 +453,7 @@ function Row({
       )}
     >
       <span
+        data-slot="jev-search-item-icon"
         className={cn(
           "flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-background text-muted-foreground",
           active && "border-transparent bg-[var(--_jev-accent)] text-[var(--_jev-accent-fg)]",
@@ -456,11 +462,11 @@ function Row({
         <Icon className="size-4" aria-hidden />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block truncate font-medium leading-5">
+        <span data-slot="jev-search-item-title" className="block truncate font-medium leading-5">
           <Highlight text={hit.title} terms={hit.terms} />
         </span>
         {hit.description ? (
-          <span className="block truncate text-xs text-muted-foreground">
+          <span data-slot="jev-search-item-description" className="block truncate text-xs text-muted-foreground">
             <Highlight text={hit.description} terms={hit.terms} />
           </span>
         ) : null}
@@ -476,6 +482,8 @@ function Meter({ value, judged, judging }: { value?: number; judged: boolean; ju
   if (!judged || value === undefined) {
     return (
       <span
+        data-slot="jev-search-meter"
+        data-state="pending"
         className="h-1.5 w-12 shrink-0 rounded-full bg-muted"
         style={{
           backgroundImage: "linear-gradient(90deg, transparent 0%, color-mix(in oklch, var(--_jev-accent) 60%, transparent) 50%, transparent 100%)",
@@ -488,9 +496,10 @@ function Meter({ value, judged, judging }: { value?: number; judged: boolean; ju
   }
   const pct = Math.round(value * 100)
   return (
-    <span data-slot="jev-search-meter" className="flex shrink-0 items-center gap-2" title={`jev relevance ${pct}%`}>
-      <span className="h-1.5 w-12 overflow-hidden rounded-full bg-muted">
+    <span data-slot="jev-search-meter" data-state="done" className="flex shrink-0 items-center gap-2" title={`jev relevance ${pct}%`}>
+      <span data-slot="jev-search-meter-track" className="h-1.5 w-12 overflow-hidden rounded-full bg-muted">
         <span
+          data-slot="jev-search-meter-fill"
           className="block h-full rounded-full"
           style={{
             width: `${pct}%`,
@@ -500,7 +509,9 @@ function Meter({ value, judged, judging }: { value?: number; judged: boolean; ju
           }}
         />
       </span>
-      <span className="w-8 text-right font-mono text-[11px] tabular-nums text-muted-foreground">{pct}%</span>
+      <span data-slot="jev-search-meter-value" className="w-8 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
+        {pct}%
+      </span>
     </span>
   )
 }
@@ -509,7 +520,7 @@ function Status({ search, brand, className }: { search: JevSearchState; brand: s
   const { phase, jevMs, judgedCount, cached, error, answerable } = search
   const q = search.query.trim()
   return (
-    <span className={cn("inline-flex min-w-0 items-center gap-1.5 truncate", className)}>
+    <span data-slot="jev-search-status" className={cn("inline-flex min-w-0 items-center gap-1.5 truncate", className)}>
       {phase === "judging" ? (
         <>
           <Sparkles className="size-3 shrink-0" style={{ color: "var(--_jev-accent)" }} aria-hidden />
@@ -557,7 +568,9 @@ function EmptyState({
     <div className="space-y-3 p-1">
       {recents.length > 0 ? (
         <div>
-          <div className="px-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Recent</div>
+          <div data-slot="jev-search-group" className="px-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            Recent
+          </div>
           {recents.map((r) => (
             <button
               key={r}
@@ -573,13 +586,16 @@ function EmptyState({
       ) : null}
       {suggestions.length > 0 ? (
         <div>
-          <div className="px-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Try asking</div>
+          <div data-slot="jev-search-group" className="px-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            Try asking
+          </div>
           <div className="flex flex-wrap gap-1.5 px-2 pb-2">
             {suggestions.map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => onPick(s)}
+                data-slot="jev-search-suggestion"
                 className="rounded-full border border-border bg-background px-3 py-1 text-xs text-foreground/80 transition-colors hover:border-[var(--_jev-accent)] hover:bg-accent"
               >
                 {s}
@@ -594,7 +610,7 @@ function EmptyState({
 
 function NoResults({ query, search, brand }: { query: string; search: JevSearchState; brand: string }) {
   return (
-    <div className="px-3 py-10 text-center text-sm text-muted-foreground">
+    <div data-slot="jev-search-empty" className="px-3 py-10 text-center text-sm text-muted-foreground">
       <p>
         Nothing matches <span className="font-medium text-foreground">“{query}”</span>.
       </p>
